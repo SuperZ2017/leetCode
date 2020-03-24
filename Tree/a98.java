@@ -22,7 +22,7 @@ public class a98 {
         if (!isValid(node.right, val, upper))
             return false;
         if (!isValid(node.left, lower, val))
-            return true;
+            return false;
         return true;
     }
 }
