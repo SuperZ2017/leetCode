@@ -7,8 +7,8 @@ public class a169 {
     public int majorityElement(int[] nums) {
 
         Map<Integer, Integer> map = new HashMap<>();
-        Arrays.stream(nums).boxed().forEach(num ->
-                map.merge(num, 1, (a , b) -> a + b));
+        Arrays.stream(nums).forEach(num ->
+                map.merge(num, 1, Integer::sum));
 
         return Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
