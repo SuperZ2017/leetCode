@@ -4,6 +4,7 @@ import java.util.*;
 
 public class a20 {
 
+    // 只入栈左括号，和其匹配
     public boolean isValid(String s) {
         Deque<Character> stack = new ArrayDeque<>();
         Map<Character, Character> map = new HashMap<>(3);
@@ -12,7 +13,7 @@ public class a20 {
         map.put('{','}');
         for (int i = 0; i < s.length(); i++) {
             char tmp = s.charAt(i);
-            if (!map.containsKey(tmp)) {
+            if (map.containsKey(tmp)) {
                 stack.push(tmp);
             } else if (stack.isEmpty() || tmp != map.get(stack.pop())) {
                 return false;

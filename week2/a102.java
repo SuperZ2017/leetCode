@@ -8,16 +8,15 @@ public class a102 {
 
     // BFS
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        Queue<TreeNode> queue = new ArrayDeque<>();
-
         if (root == null)
             return Collections.emptyList();
-        queue.add(root);
 
+        List<List<Integer>> result = new ArrayList<>();
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
         while (!queue.isEmpty()) {
-            List<Integer> list = new ArrayList<>();
             int len = queue.size();
+            List<Integer> list= new ArrayList<>();
             for (int i = 0; i < len; i++) {
                 TreeNode node = queue.poll();
                 list.add(node.val);
@@ -28,9 +27,10 @@ public class a102 {
             }
             result.add(list);
         }
-
         return result;
+
     }
+
 
     List<List<Integer>> res = new ArrayList<>();
 
@@ -43,14 +43,11 @@ public class a102 {
     }
 
     public void dfs(TreeNode node, int level) {
-
         if (node == null)
-            return ;
+            return;
 
         if (res.size() == level)
             res.add(new ArrayList<>());
-
-        res.get(level).add(node.val);
         if (node.left != null)
             dfs(node.left, level + 1);
         if (node.right != null)
