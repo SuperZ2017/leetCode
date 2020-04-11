@@ -15,11 +15,12 @@ public class b12 {
     }
 
     private boolean dfs(char[][] board, char[] words, int i, int j, int k) {
-        if (i > board.length || j > board[0].length || board[i][j] != words[k] || i < 0 || j < 0)
+        // 边界判断，要最后判断 board[i][j] != words[k]
+        if (i >= board.length || i < 0 || j >= board[0].length || j < 0 || board[i][j] != words[k])
             return false;
-        char temp = board[i][j];
-        if (k == words.length)
+        if (k == words.length - 1)
             return true;
+        char temp = board[i][j];
         board[i][j] = '/';
         boolean res = dfs(board, words, i + 1, j, k + 1) || dfs(board, words, i - 1, j, k + 1)
                      || dfs(board, words, i, j + 1, k + 1) || dfs(board, words, i, j - 1, k +1 );
