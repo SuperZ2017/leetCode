@@ -3,11 +3,11 @@ import data.TreeNode;
 import java.util.*;
 
 public class test {
-    public static void main(String[] args) {
-        char a = 'a';
-        int c = a;
-        System.out.println(c);
-    }
+//    public static void main(String[] args) {
+//        char a = 'a';
+//        int c = a;
+//        System.out.println(c);
+//    }
 
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
@@ -110,6 +110,45 @@ public class test {
 //            visited[i][j] = true;
 //            queue.add(i + 1, j);
 //        }
+
+    public static void main(String[] args) {
+//        char[] num = {'a', 'b', 'c', 'd'};
+//        String s = "tbcacbdata";
+//        Set<Character> needs = new HashSet<>();
+//        Set<Character> windows = new HashSet<>();
+//        for (char c : num) needs.add(c);
+//        int curIndex = 0;
+//
+//        for (int i = 0; i < s.length(); i++) {
+//            char c = s.charAt(i);
+//            if (needs.contains(c) && !windows.contains(c)) {
+//                windows.add(c);
+//                if (needs.size() == windows.size())
+//                    break;
+//            } else if (needs.contains(c) && windows.contains(c)) {
+//                while (s.charAt(curIndex) != c) {
+//                    windows.remove(s.charAt(curIndex));
+//                    curIndex++;
+//                }
+//                curIndex++;
+//            } else {
+//                curIndex++;
+//                windows.clear();
+//            }
+//        }
+        int[] nums = {1,2,3,7,9,8,7,3,1};
+        int a = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (a > nums[i])
+                break;
+            else {
+                a = nums[i];
+            }
+        }
+        System.out.println(a);
+
+
+    }
 
 
     }
