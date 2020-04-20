@@ -1,38 +1,41 @@
 package Sort;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class quickSort {
 
     public static void quickSort (int[] arr, int low, int high) {
-        int i, j, temp, t;
-        if (low > high)
-            return;
+        int i, j, tmp, t;
         i = low;
         j = high;
-        temp = arr[low];
-
+        if (low > high)
+            return;
+        tmp = arr[low];
         while (i < j) {
-
-            while (temp < arr[j] && i < j) {
+            while (tmp < arr[j] && i < j)
                 j--;
-            }
-
-            while (temp >= arr[i] && i < j) {
+            while (tmp >= arr[i] && i < j)
                 i++;
-            }
-
             if (i < j) {
                 t = arr[i];
                 arr[i] = arr[j];
                 arr[j] = t;
             }
-
-            //最后将基准为与i和j相等位置的数字交换
-            arr[low] = arr[i];
-            arr[i] = temp;
-
-            quickSort(arr, low, j - 1);
-            quickSort(arr, j + 1, high);
-
         }
+
+        arr[low] = arr[i];
+        arr[i] = tmp;
+        quickSort(arr, low, j - 1);
+        quickSort(arr, j + 1, high);
+
+    }
+
+
+
+    public static void main(String[] args) {
+        int[] arr = {1,7,9,0,2,9};
+        quickSort(arr, 0, arr.length - 1);
+        Arrays.stream(arr).forEach(i -> System.out.println(i));
     }
 }
