@@ -28,6 +28,6 @@ public class a347 {
         int[] nums = {1,1,2,3,4,5,7,4,7,7,8,8,8,9,9,9};
         int k = 1;
         List<Integer> re = topKFrequent(nums, k);
-        System.out.println(1);
+        System.out.println(re);
     }
 }

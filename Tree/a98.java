@@ -2,6 +2,8 @@ package Tree;
 
 import data.TreeNode;
 
+import java.util.LinkedList;
+
 public class a98 {
 
     public boolean isValidBST(TreeNode root) {
@@ -23,6 +25,27 @@ public class a98 {
             return false;
         if (!isValid(node.left, lower, val))
             return false;
+        return true;
+    }
+
+    public boolean isValidBST1(TreeNode root) {
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        double inorder = -Double.MAX_VALUE;
+        stack.add(root);
+
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                stack.add(root);
+                root = root.left;
+            }
+
+            root = stack.pop();
+            if (root.val <= inorder)
+                return false;
+            inorder = root.val;
+            root = root.right;
+        }
+
         return true;
     }
 }

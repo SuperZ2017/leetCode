@@ -2,6 +2,9 @@ package week4;
 
 import java.util.LinkedList;
 
+/**
+ * 根据后缀表达式求值
+ */
 public class a150 {
 
     public int evalRPN(String[] tokens) {
