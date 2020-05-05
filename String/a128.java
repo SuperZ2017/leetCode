@@ -20,7 +20,7 @@ public class a128 {
                 int currentNum = num;
                 int currentStreak = 1;
 
-                while (set.contains(num+1)) {
+                while (set.contains(currentNum+1)) {
                     currentNum += 1;
                     currentStreak += 1;
                 }

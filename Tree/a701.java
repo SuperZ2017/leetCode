@@ -2,6 +2,10 @@ package Tree;
 
 import data.TreeNode;
 
+
+/**
+ * 二叉搜索数组中的插入操作
+ */
 public class a701 {
 
     public TreeNode insertIntoBST(TreeNode root, int val) {

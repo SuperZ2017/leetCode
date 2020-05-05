@@ -2,6 +2,9 @@ package Stack;
 
 import java.util.PriorityQueue;
 
+/**
+ * 数据流中第K大元素
+ */
 public class KthLargest {
     final PriorityQueue<Integer> q;
     final int k;

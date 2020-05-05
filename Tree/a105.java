@@ -4,6 +4,9 @@ import data.TreeNode;
 
 import java.util.Arrays;
 
+/**
+ * 根据一棵树的前序遍历与中序遍历构造二叉树。
+ */
 public class a105 {
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
