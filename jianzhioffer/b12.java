@@ -1,5 +1,9 @@
 package jianzhioffer;
 
+
+/**
+ * 矩阵中的路径
+ */
 public class b12 {
 
     public boolean exist(char[][] board, String word) {

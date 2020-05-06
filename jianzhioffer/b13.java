@@ -10,7 +10,6 @@ public class b13 {
         return dfs(0, 0, k, m, n, visited);
     }
 
-
     private int dfs(int i, int j, int k,int m, int n, boolean[][] visited) {
         int count = 0;
         if (i < m && j < n && i > 0 && j > 0 && !valid(i, j, k) && visited[i][j])

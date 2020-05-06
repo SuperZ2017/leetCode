@@ -1,9 +1,14 @@
-package jianzhioffer;
+package Sliding_Window;
 
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 最长不含重复的子字符串
+ *
+ * pwwkew  wke
+ */
 public class b48 {
 
     public static int lengthOfLongestSubstring(String s) {
@@ -16,7 +21,9 @@ public class b48 {
             if (!windows.contains(c)) {
                 windows.add(c);
                 maxLen = Math.max(right - left + 1, maxLen);
+
             } else if (windows.contains(c)) {
+                // 窗口右移，直到不包含这个元素
                 while (windows.contains(c))
                     windows.remove(ch[left++]);
                 windows.add(c);

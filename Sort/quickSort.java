@@ -11,12 +11,17 @@ public class quickSort {
         j = high;
         if (low > high)
             return;
+
+        //基准
         tmp = arr[low];
         while (i < j) {
+            //  从右往左，找到第一个比基准小的数
             while (tmp < arr[j] && i < j)
                 j--;
+            //  从左往右，找到第一个比基准大的数
             while (tmp >= arr[i] && i < j)
                 i++;
+            // 交换
             if (i < j) {
                 t = arr[i];
                 arr[i] = arr[j];
