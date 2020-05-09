@@ -1,5 +1,8 @@
 package backtrack;
 
+/**
+ * 解数独
+ */
 public class a37 {
 
     public void solveSudoku(char[][] board) {

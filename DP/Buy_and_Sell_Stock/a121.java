@@ -11,7 +11,7 @@ public class a121 {
         int dp_i_0 = 0;
         int dp_i_1 = Integer.MIN_VALUE;
 
-        for(int i = 0; i < n; i++){
+        for(int i = 0; i < n; i++) {
             // 今天没有持有股票 --> 1. 昨天持有，今天不变  2. 昨天持有，今天卖了
             dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
             // 今天持有股票 --> 1. 昨天持有，今天不变  2. 昨天没有，今天买入

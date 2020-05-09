@@ -1,4 +1,4 @@
-package week2;
+package Math;
 
 public class a50 {
 
