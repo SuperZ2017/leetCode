@@ -1,5 +1,7 @@
 package DP;
 
+import data.TreeNode;
+
 /**
  * 整数拆分
  */
@@ -12,8 +14,9 @@ public class a343 {
         for(int i = 2; i <= n; i++)
             for(int j = 1; j < i; j++)
                 //当拆分为两个数时候 j 乘以 i-j，（n拆成j和i-j）
-                // 当拆分为多个数字时候就为j乘以dp[i-j]（当n为i-j时候最大的乘积）
-                dp[i] = Math.max(dp[i],Math.max(j*(i-j),dp[j]*(i-j)));
+                // 当拆分为多个数字时候就为 dp[j]乘以 i-j（当n为i-j时候最大的乘积）
+                dp[i] = Math.max(dp[i],
+                        Math.max(j*(i-j),dp[j]*(i-j)));
         return dp[n];
     }
 }

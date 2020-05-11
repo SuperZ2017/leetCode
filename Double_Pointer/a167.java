@@ -1,5 +1,9 @@
 package Double_Pointer;
 
+
+/**
+ * 两数之和
+ */
 public class a167 {
 
     public int[] twoSum(int[] numbers, int target) {
