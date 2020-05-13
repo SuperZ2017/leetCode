@@ -22,7 +22,6 @@ public class a5 {
         int maxLen = 0;
         boolean[][] dp = new boolean[strLen][strLen];
 
-
         for (int r = 1; r < strLen; r++) {
             for (int l = 0; l < r; l++)
             if (s.charAt(r) == s.charAt(l) && (r - l <= 2 || dp[r+1][l-1])) {

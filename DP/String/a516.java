@@ -1,13 +1,16 @@
-package DP;
+package DP.String;
 
 /**
  * 最长回文子序列
  */
 public class a516 {
 
+
+    // 在子串 s[i..j] 中，最长回文子序列的长度为 dp[i][j]
     public int longestPalindromeSubseq(String s) {
         int n = s.length();
         int[][] dp = new int[n][n];
+        // 如果只有1个字符，则长度为1
         for (int k = 0; k < n; k++)
             dp[k][k] = 1;
 

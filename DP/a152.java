@@ -1,5 +1,8 @@
 package DP;
 
+/**
+ * 乘积最大的子数组
+ */
 public class a152 {
 
     public int maxProduct(int[] nums) {
@@ -13,8 +16,8 @@ public class a152 {
                 imin = tmp;
             }
 
-            imax = Math.max(imax*nums[i], nums[i]);
-            imin = Math.min(imin*nums[i], nums[i]);
+            imax = Math.max(imax * nums[i], nums[i]);
+            imin = Math.min(imin * nums[i], nums[i]);
 
             max = Math.max(max, imax);
         }
