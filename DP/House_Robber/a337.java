@@ -1,4 +1,4 @@
-package DP;
+package DP.House_Robber;
 
 import data.TreeNode;
 

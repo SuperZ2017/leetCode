@@ -11,13 +11,13 @@ public class a92 {
         if (m == 1)
             return reverseN(head, n);
 
-        head.next = reverseBetween(head, m - 1, n - 1);
+        head.next = reverseBetween(head.next, m - 1, n - 1);
         return head;
     }
 
     ListNode successor = null;
     ListNode reverseN(ListNode head, int n) {
-        if (head == null || head.next == null || n == 1) {
+        if (n == 1) {
             successor = head.next;
             return head;
         }

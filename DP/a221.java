@@ -13,10 +13,11 @@ public class a221 {
             return 0;
 
         int rows = matrix.length, columns = matrix[0].length;
-        // dp(i,j) 表示以 (i, j)(i,j) 为右下角，且只包含 1 的正方形的边长最大值。
+        // dp(i,j) 表示以 (i, j) 为右下角，且只包含 1 的正方形的边长最大值。
         int[][] dp = new int[rows][columns];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
+                // 如果 i 和 j 中至少有一个为 0，则以位置 (i,j) 为右下角的最大正方形的边长只能是 1，因此 dp(i, j) = 1。
                 if (matrix[i][j] == '1') {
                     if (i == 0 || j == 0) {
                         dp[i][j] = 1;
