@@ -68,6 +68,7 @@ public class a51 {
     }
 
     public static void main(String[] args) {
-        solveNQueens(8);
+//        solveNQueens(8);
+        System.out.println(1001 & 1100);
     }
 }
