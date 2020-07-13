@@ -3,6 +3,9 @@ package Search;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 二进制矩阵中的最短路径
+ */
 public class a1091 {
 
     private static int[][] directions = {{0,1}, {0,-1}, {1,-1}, {1,0}, {1,1}, {-1,-1}, {-1,0}, {-1,1}};
@@ -32,7 +35,7 @@ public class a1091 {
             }
         }
 
-        return grid[row - 1][col - 1] == 0 ? -1 : grid[row - 1][col - 1];
+        return grid[row-1][col-1] == 0 ? -1 : grid[row-1][col-1];
     }
 
     private boolean inGrid(int x, int y) {
