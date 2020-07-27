@@ -1,7 +1,7 @@
 package Double_Pointer;
 
 /**
- * 剩水最多的容器
+ * 盛水最多的容器
  */
 public class a11 {
 

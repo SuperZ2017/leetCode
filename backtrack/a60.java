@@ -8,36 +8,40 @@ import java.util.List;
  */
 public class a60 {
 
+    int count;
+    boolean[] used;
+    LinkedList<Integer> res;
+
     public String getPermutation(int n, int k) {
-        boolean[] visited = new boolean[n];
-        List<Integer> a = backTrace(n, k, visited, new LinkedList<>());
+        used = new boolean[n];
+        res = new LinkedList<>();
+        backTrack(n, k);
         StringBuilder sb = new StringBuilder();
-        for (Integer integer : a) {
-            sb.append(integer);
-        }
+        for (Integer i : res)
+            sb.append(i);
+
         return sb.toString();
     }
 
-
-    private volatile int count;
-    private LinkedList<Integer> backTrace(int n, int k , boolean[] visited, LinkedList<Integer> result) {
-        if (result.size() == n) {
-            ++count;
-            return result;
+    void backTrack(int n, int k) {
+        if (res.size() == n) {
+            count++;
+            return;
         }
+
         for (int i = 1; i <= n; i++) {
-            if (!visited[i - 1]) {
-                visited[i - 1] = true;
-                result.add(i);
-                result = backTrace(n, k, visited, result);
-                if (count == k) {
-                    return result;
-                }
-                visited[i - 1] = false;
-                result.removeLast();
+            if (!used[i - 1]) {
+                used[i - 1] = true;
+                res.add(i);
+                backTrack(n, k);
+                if (count == k)
+                    return;
+                used[i-1] = false;
+                res.removeLast();
             }
         }
-        return result;
+
+        return;
     }
 
 }

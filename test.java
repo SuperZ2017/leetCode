@@ -1,115 +1,187 @@
+import data.ListNode;
 import data.TreeNode;
 
 import java.util.*;
 
 public class test {
-//    public static void main(String[] args) {
-//        char a = 'a';
-//        int c = a;
-//        System.out.println(c);
-//    }
 
-    public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        Arrays.sort(nums);
+    public boolean checkInclusion(String s1, String s2) {
+        Map<Character, Integer> window = new HashMap<>();
+        Map<Character, Integer> needs = new HashMap<>();
+        for (Character c : s2.toCharArray())
+            needs.merge(c, 1, (p, o) -> p + o);
 
-        int len = nums.length;
+        int L = 0, R = 0;
+        int match = 0;
 
-        for (int i = 0; i < nums.length; i++) {
+        while (R < s1.length()) {
+            char c1 = s1.charAt(R);
+            if (needs.containsKey(c1)) {
+                window.merge(c1, 1, (p, o) -> p + o);
+                if (window.get(c1) == needs.get(c1))
+                    match++;
+            }
 
-            if (nums[i] > 0)
-                return Collections.emptyList();
+            R++;
 
-            int cur = nums[i];
+            while (R - L < s1.length()) {
+                if (match == needs.size())
+                    return true;
 
-            if (i > 0 && nums[i] == nums[i - 1])
-                continue;
-
-            int L = i + 1, R = len - 1;
-            while (L < R) {
-                int temp = cur + nums[L] + nums[R];
-                if (temp == 0) {
-                    result.add(Arrays.asList(cur, nums[L], nums[R]));
-                    while (L < R && nums[L + 1] == nums[L]) L++;
-                    while (L < R && nums[R - 1] == nums[R]) R--;
-                } else if (temp > 0) {
-                    R--;
-                } else {
-                    L++;
+                char c2 = s1.charAt(L);
+                if (needs.containsKey(c2)) {
+                    window.put(c2, window.get(c2) - 1);
+                    if (needs.get(c2) > window.get(c2))
+                        match--;
                 }
+
+                L++;
             }
         }
-        return result;
+
+        return false;
     }
 
-    public boolean isValid(String s) {
-        Map<Character, Character> map = new HashMap<>(3);
-        map.put('(', ')');
-        map.put('[', ']');
-        map.put('{', '}');
-        Deque<Character> stack = new ArrayDeque<>();
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (map.containsKey(c))
-                stack.add(c);
-            else if (!map.containsKey(c))
-                stack.push(c);
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        Stack<Integer> stack = new Stack<>();
+        int[] res = new int[nums.length];
+
+        for (int i = 2*n-1; i >= 0; i--) {
+
+            while (!stack.isEmpty() && stack.peek() < nums[i%n])
+                stack.pop();
+
+            res[i%n] = stack.isEmpty() ? -1 : stack.peek();
+
+            stack.push(nums[i%n]);
+
         }
 
-        if (!stack.isEmpty())
-            return false;
-
-        return true;
+        return res;
     }
 
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null)
-            return null;
-        if (root == p || root == q)
-            return root;
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
 
-        if (left == null) {
-            return right;
-        } else if (right == null) {
-            return left;
-        } else {
-            return root;
+    public String convert(String s, int numRows) {
+        List<StringBuilder> list = new ArrayList<>();
+        int i = 0, flag = -1;
+
+        for (char c : s.toCharArray()) {
+            list.get(i).append(c);
+            if (i == 0 || i == numRows - 1)
+                flag = -flag;
+            i += flag;
         }
+
+        StringBuilder sb = new StringBuilder();
+        for (StringBuilder s1 : list)
+            sb.append(s1);
+
+        return sb.toString();
     }
 
 
-//    public int movingCount(int m, int n, int k) {
-//        boolean[][] visited = new boolean[m][n];
-//        return dfs(0, 0, k, m, n, visited);
-//    }
-//
-//    private int dfs(int i, int j, int k, int m, int n, boolean[][] visited) {
-//        int count = 0;
-//        if (i < m && j < n && visited[i][j] && valid(i, j, k))
-//            count += 1 + dfs(i + 1, j, k, m, n, visited) + dfs(i - 1, j, k, m, n, visited)
-//                    + dfs(i, j + 1, k, m, n, visited) + dfs(i , j -1 , k, m, n, visited);
-//
-//        return count;
-//
-//    }
-//
-//
-//    public int movingCount1(int m, int n, int k) {
-//        boolean[][] visited = new boolean[m][n];
-//        Queue<int[]> queue = new LinkedList<>();
-//        queue.add(new int[]{0, 0});
-//        int res = 0;
-//        while (!queue.isEmpty()) {
-//            int[] x = queue.poll();
-//            int i = x[0];
-//            int j = x[1];
-//            if (i > m || i < 0 || j > n || j < 0 || visited || !valid(i, j, k))
-//                continue;
-//            visited[i][j] = true;
-//            queue.add(i + 1, j);
-//        }
+    public static void main(String[] args) {
+//        System.out.println("abc".indexOf("abc"));
+        StringBuilder sb = new StringBuilder();
+        sb.insert(0, 'A');
+        sb.insert(0, 'c');
+        System.out.println(sb.toString());
+    }
+
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        int ans = nums[0] + nums[1] + nums[2];
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+
+            int L = i + 1, R = nums.length - 1;
+            sum = nums[i] + nums[L] + nums[R];
+            if (Math.abs(target - sum) < Math.abs(target - ans))
+                ans = sum;
+
+            if (sum > target)
+                R--;
+            else if (sum < target)
+                L++;
+            else
+                return ans;
+
+        }
+
+        return ans;
+    }
+
+    List<String> res;
+    public List<String> generateParenthesis(int n) {
+        res = new LinkedList<>();
+        gen(n, n, "");
+        return res;
+    }
+
+    void gen(int left, int right, String str) {
+        if (left == 0 && right == 0) {
+            res.add(str);
+            return;
+        }
+
+        if (left > 0)
+            gen(left-1, right, str + "(");
+
+        if (right > 0)
+            gen(left, right-1, str + ")");
+    }
+
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (v1, v2) -> v1[0] - v2[0]);
+
+        int[][] res = new int[intervals.length][2];
+        int idx = -1;
+        for (int[] interval : intervals) {
+            if (idx == -1 || interval[0] > res[idx][1])
+                res[++idx] = interval;
+            else
+                res[idx][1] = Math.max(res[idx][1], interval[1]);
+        }
+
+        return Arrays.copyOf(res, idx + 1);
+    }
+
+
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode p = dummy;
+
+        while (p.next != null && p.next.next != null) {
+
+            if (p.next.val == p.next.next.val) {
+                ListNode tmp = p.next;
+                while (tmp != null && tmp.next != null && tmp.val == tmp.next.val)
+                    tmp = tmp.next;
+                p.next = tmp.next;
+            } else {
+                p.next = p.next;
+            }
+        }
+
+        return dummy.next;
+    }
+
+    public ListNode deleteDuplicates_1(ListNode head) {
+        ListNode cur = head;
+
+        while (cur != null && cur.next != null) {
+
+            if (cur.val == cur.next.val) {
+                cur.next = cur.next.next;
+            } else
+                cur = cur.next;
+        }
+
+        return head;
+    }
+
 
 }
 

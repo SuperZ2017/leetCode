@@ -1,7 +1,6 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Stack;
+import data.ListNode;
+
+import java.util.*;
 
 public class Main3 {
 
@@ -44,4 +43,28 @@ public class Main3 {
             stack.clear();
         }
     }
+
+    public ListNode mergeKLists(ListNode[] lists) {
+
+        PriorityQueue<ListNode> queue = new PriorityQueue<>();
+        ListNode dummy = new ListNode(0);
+        ListNode p = dummy;
+
+
+        for (ListNode listNode : lists)
+            queue.add(listNode);
+
+        while (!queue.isEmpty()) {
+
+            ListNode node1 = queue.poll();
+            dummy.next = node1;
+            dummy = dummy.next;
+            if (dummy.next != null)
+                queue.add(dummy.next);
+
+        }
+
+        return dummy.next;
+    }
+
 }

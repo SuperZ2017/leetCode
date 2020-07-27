@@ -1,6 +1,9 @@
-package week5;
+package Cracking_the_coding_interview;
 
-public class a48 {
+/**
+ * 旋转矩阵
+ */
+public class s0107 {
 
     public void rotate(int[][] matrix) {
         int m = matrix.length;
@@ -15,13 +18,15 @@ public class a48 {
             }
         }
 
-       // 每行互换
+        // 每行互换
         for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n / 2; j++) {
+            for (int j = 0; j < n/2; j++) {
                 int temp = matrix[i][j];
                 matrix[i][j] = matrix[i][m-j-1];
                 matrix[i][m-j-1] = temp;
             }
         }
+
     }
+
 }
