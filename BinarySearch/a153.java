@@ -13,7 +13,7 @@ public class a153 {
         // 有序
         if (nums[0] < nums[r])
             return nums[0];
-        while (l < r) {
+        while (l <= r) {
             int mid = l + (r - l) / 2;
 
             if (nums[mid] > nums[mid+1])

@@ -1,5 +1,8 @@
 package jianzhioffer;
 
+/**
+ * 二维数组中的查找
+ */
 public class b04 {
 
     public boolean findNumberIn2DArray(int[][] matrix, int target) {

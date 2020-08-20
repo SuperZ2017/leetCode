@@ -11,7 +11,7 @@ import java.util.Stack;
  *
  */
 class CQueue {
-
+    // stack1 用于入栈，stack2 用于出栈
     Stack<Integer> stack1 = new Stack<>();
     Stack<Integer> stack2 = new Stack<>();
     public CQueue() {
@@ -29,7 +29,7 @@ class CQueue {
             return -1;
         while (!stack1.isEmpty())
             stack2.push(stack1.pop());
-
+        System.out.println();
         return stack2.pop();
     }
 }

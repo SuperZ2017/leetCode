@@ -8,6 +8,7 @@ import java.util.Queue;
  */
 public class a1091 {
 
+    // 表示8个方向可以进行移动，｛1,1｝表示右下方
     private static int[][] directions = {{0,1}, {0,-1}, {1,-1}, {1,0}, {1,1}, {-1,-1}, {-1,0}, {-1,1}};
     private int row, col;
 

@@ -1,9 +1,9 @@
-package Matrix;
+package jianzhioffer;
 
 /**
  * 数组中重复的数字
  */
-public class b3 {
+public class b03 {
 
     public int findRepeatNumber(int[] nums) {
 

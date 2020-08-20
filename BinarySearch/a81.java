@@ -17,6 +17,7 @@ public class a81 {
             if (nums[mid] == target)
                 return true;
 
+            // 10111 和 1110111101 这种。nums[start]==nums[mid],，分不清到底是前面有序还是后面有序，此时start++，相当于去掉一个重复的干扰项。
             if (nums[start] == nums[mid]) {
                 start++;
                 continue;

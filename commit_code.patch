@@ -1,0 +1,2500 @@
+Index: backtrack/a60.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backtrack/a60.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ backtrack/a60.java	(date 1595251801697)
+@@ -8,36 +8,40 @@
+  */
+ public class a60 {
+ 
++    int count;
++    boolean[] used;
++    LinkedList<Integer> res;
++
+     public String getPermutation(int n, int k) {
+-        boolean[] visited = new boolean[n];
+-        List<Integer> a = backTrace(n, k, visited, new LinkedList<>());
++        used = new boolean[n];
++        res = new LinkedList<>();
++        backTrack(n, k);
+         StringBuilder sb = new StringBuilder();
+-        for (Integer integer : a) {
+-            sb.append(integer);
+-        }
++        for (Integer i : res)
++            sb.append(i);
++
+         return sb.toString();
+     }
+ 
+-
+-    private volatile int count;
+-    private LinkedList<Integer> backTrace(int n, int k , boolean[] visited, LinkedList<Integer> result) {
+-        if (result.size() == n) {
+-            ++count;
+-            return result;
++    void backTrack(int n, int k) {
++        if (res.size() == n) {
++            count++;
++            return;
+         }
++
+         for (int i = 1; i <= n; i++) {
+-            if (!visited[i - 1]) {
+-                visited[i - 1] = true;
+-                result.add(i);
+-                result = backTrace(n, k, visited, result);
+-                if (count == k) {
+-                    return result;
+-                }
+-                visited[i - 1] = false;
+-                result.removeLast();
++            if (!used[i - 1]) {
++                used[i - 1] = true;
++                res.add(i);
++                backTrack(n, k);
++                if (count == k)
++                    return;
++                used[i-1] = false;
++                res.removeLast();
+             }
+         }
+-        return result;
++
++        return;
+     }
+ 
+ }
+Index: test.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- test.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ test.java	(date 1595838356173)
+@@ -1,115 +1,187 @@
++import data.ListNode;
+ import data.TreeNode;
+ 
+ import java.util.*;
+ 
+ public class test {
+-//    public static void main(String[] args) {
+-//        char a = 'a';
+-//        int c = a;
+-//        System.out.println(c);
+-//    }
++
++    public boolean checkInclusion(String s1, String s2) {
++        Map<Character, Integer> window = new HashMap<>();
++        Map<Character, Integer> needs = new HashMap<>();
++        for (Character c : s2.toCharArray())
++            needs.merge(c, 1, (p, o) -> p + o);
++
++        int L = 0, R = 0;
++        int match = 0;
++
++        while (R < s1.length()) {
++            char c1 = s1.charAt(R);
++            if (needs.containsKey(c1)) {
++                window.merge(c1, 1, (p, o) -> p + o);
++                if (window.get(c1) == needs.get(c1))
++                    match++;
++            }
++
++            R++;
++
++            while (R - L < s1.length()) {
++                if (match == needs.size())
++                    return true;
++
++                char c2 = s1.charAt(L);
++                if (needs.containsKey(c2)) {
++                    window.put(c2, window.get(c2) - 1);
++                    if (needs.get(c2) > window.get(c2))
++                        match--;
++                }
++
++                L++;
++            }
++        }
++
++        return false;
++    }
++
++    public int[] nextGreaterElements(int[] nums) {
++        int n = nums.length;
++        Stack<Integer> stack = new Stack<>();
++        int[] res = new int[nums.length];
++
++        for (int i = 2*n-1; i >= 0; i--) {
++
++            while (!stack.isEmpty() && stack.peek() < nums[i%n])
++                stack.pop();
++
++            res[i%n] = stack.isEmpty() ? -1 : stack.peek();
++
++            stack.push(nums[i%n]);
++
++        }
++
++        return res;
++    }
+ 
+-    public List<List<Integer>> threeSum(int[] nums) {
+-        List<List<Integer>> result = new ArrayList<>();
++
++    public String convert(String s, int numRows) {
++        List<StringBuilder> list = new ArrayList<>();
++        int i = 0, flag = -1;
++
++        for (char c : s.toCharArray()) {
++            list.get(i).append(c);
++            if (i == 0 || i == numRows - 1)
++                flag = -flag;
++            i += flag;
++        }
++
++        StringBuilder sb = new StringBuilder();
++        for (StringBuilder s1 : list)
++            sb.append(s1);
++
++        return sb.toString();
++    }
++
++
++    public static void main(String[] args) {
++//        System.out.println("abc".indexOf("abc"));
++        StringBuilder sb = new StringBuilder();
++        sb.insert(0, 'A');
++        sb.insert(0, 'c');
++        System.out.println(sb.toString());
++    }
++
++    public int threeSumClosest(int[] nums, int target) {
+         Arrays.sort(nums);
+-
+-        int len = nums.length;
+-
++        int ans = nums[0] + nums[1] + nums[2];
++        int sum = 0;
+         for (int i = 0; i < nums.length; i++) {
+ 
+-            if (nums[i] > 0)
+-                return Collections.emptyList();
+-
+-            int cur = nums[i];
++            int L = i + 1, R = nums.length - 1;
++            sum = nums[i] + nums[L] + nums[R];
++            if (Math.abs(target - sum) < Math.abs(target - ans))
++                ans = sum;
+ 
+-            if (i > 0 && nums[i] == nums[i - 1])
+-                continue;
+-
+-            int L = i + 1, R = len - 1;
+-            while (L < R) {
+-                int temp = cur + nums[L] + nums[R];
+-                if (temp == 0) {
+-                    result.add(Arrays.asList(cur, nums[L], nums[R]));
+-                    while (L < R && nums[L + 1] == nums[L]) L++;
+-                    while (L < R && nums[R - 1] == nums[R]) R--;
+-                } else if (temp > 0) {
+-                    R--;
+-                } else {
+-                    L++;
+-                }
+-            }
+-        }
+-        return result;
+-    }
++            if (sum > target)
++                R--;
++            else if (sum < target)
++                L++;
++            else
++                return ans;
++
++        }
++
++        return ans;
++    }
++
++    List<String> res;
++    public List<String> generateParenthesis(int n) {
++        res = new LinkedList<>();
++        gen(n, n, "");
++        return res;
++    }
++
++    void gen(int left, int right, String str) {
++        if (left == 0 && right == 0) {
++            res.add(str);
++            return;
++        }
+ 
+-    public boolean isValid(String s) {
+-        Map<Character, Character> map = new HashMap<>(3);
+-        map.put('(', ')');
+-        map.put('[', ']');
+-        map.put('{', '}');
+-        Deque<Character> stack = new ArrayDeque<>();
+-        for (int i = 0; i < s.length(); i++) {
+-            char c = s.charAt(i);
+-            if (map.containsKey(c))
+-                stack.add(c);
+-            else if (!map.containsKey(c))
+-                stack.push(c);
+-        }
++        if (left > 0)
++            gen(left-1, right, str + "(");
++
++        if (right > 0)
++            gen(left, right-1, str + ")");
++    }
+ 
+-        if (!stack.isEmpty())
+-            return false;
++    public int[][] merge(int[][] intervals) {
++        Arrays.sort(intervals, (v1, v2) -> v1[0] - v2[0]);
+ 
+-        return true;
+-    }
++        int[][] res = new int[intervals.length][2];
++        int idx = -1;
++        for (int[] interval : intervals) {
++            if (idx == -1 || interval[0] > res[idx][1])
++                res[++idx] = interval;
++            else
++                res[idx][1] = Math.max(res[idx][1], interval[1]);
++        }
+ 
+-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+-        if (root == null)
+-            return null;
+-        if (root == p || root == q)
+-            return root;
+-        TreeNode left = lowestCommonAncestor(root.left, p, q);
+-        TreeNode right = lowestCommonAncestor(root.right, p, q);
++        return Arrays.copyOf(res, idx + 1);
++    }
++
++
++    public ListNode deleteDuplicates(ListNode head) {
++        ListNode dummy = new ListNode(0);
++        dummy.next = head;
++        ListNode p = dummy;
+ 
+-        if (left == null) {
+-            return right;
+-        } else if (right == null) {
+-            return left;
+-        } else {
+-            return root;
++        while (p.next != null && p.next.next != null) {
++
++            if (p.next.val == p.next.next.val) {
++                ListNode tmp = p.next;
++                while (tmp != null && tmp.next != null && tmp.val == tmp.next.val)
++                    tmp = tmp.next;
++                p.next = tmp.next;
++            } else {
++                p.next = p.next;
++            }
+         }
++
++        return dummy.next;
+     }
+ 
++    public ListNode deleteDuplicates_1(ListNode head) {
++        ListNode cur = head;
++
++        while (cur != null && cur.next != null) {
+ 
+-//    public int movingCount(int m, int n, int k) {
+-//        boolean[][] visited = new boolean[m][n];
+-//        return dfs(0, 0, k, m, n, visited);
+-//    }
+-//
+-//    private int dfs(int i, int j, int k, int m, int n, boolean[][] visited) {
+-//        int count = 0;
+-//        if (i < m && j < n && visited[i][j] && valid(i, j, k))
+-//            count += 1 + dfs(i + 1, j, k, m, n, visited) + dfs(i - 1, j, k, m, n, visited)
+-//                    + dfs(i, j + 1, k, m, n, visited) + dfs(i , j -1 , k, m, n, visited);
+-//
+-//        return count;
+-//
+-//    }
+-//
+-//
+-//    public int movingCount1(int m, int n, int k) {
+-//        boolean[][] visited = new boolean[m][n];
+-//        Queue<int[]> queue = new LinkedList<>();
+-//        queue.add(new int[]{0, 0});
+-//        int res = 0;
+-//        while (!queue.isEmpty()) {
+-//            int[] x = queue.poll();
+-//            int i = x[0];
+-//            int j = x[1];
+-//            if (i > m || i < 0 || j > n || j < 0 || visited || !valid(i, j, k))
+-//                continue;
+-//            visited[i][j] = true;
+-//            queue.add(i + 1, j);
+-//        }
++            if (cur.val == cur.next.val) {
++                cur.next = cur.next.next;
++            } else
++                cur = cur.next;
++        }
++
++        return head;
++    }
++
+ 
+ }
+ 
+Index: backtrack/a90.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backtrack/a90.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ backtrack/a90.java	(date 1595300007348)
+@@ -5,7 +5,7 @@
+ import java.util.List;
+ 
+ /**
+- * 子集2
++ * 子集 2
+  */
+ public class a90 {
+ 
+@@ -23,7 +23,9 @@
+             res.add(new LinkedList<>(track));
+ 
+         for (int i = start; i < nums.length; i++) {
+-//            if (i != start && nums[i] == nums[i-1])
++//            if (i != start && nums[i] == nums[i-1])   // 需要注意的是 nums[i - 1] == nums[i] 的作用是在递归树的同一层上的，
++                                                        // 也就是防止 nums = [1, 2, 2'] 出现 [1, 2]， [1, 2'] 两个重复的解
++                                                        // （即： 通过 nums[1] == nums[2]: continue 进行的剪枝）
+ //                continue;
+             track.add(nums[i]);
+             backtrack(nums, i + 1, track);
+Index: Cracking_the_coding_interview/s0107.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0107.java	(date 1594868091992)
++++ Cracking_the_coding_interview/s0107.java	(date 1594868091992)
+@@ -0,0 +1,32 @@
++package Cracking_the_coding_interview;
++
++/**
++ * 旋转矩阵
++ */
++public class s0107 {
++
++    public void rotate(int[][] matrix) {
++        int m = matrix.length;
++        int n = matrix[0].length;
++
++        // 行列互换
++        for (int i = 0; i < m; i++) {
++            for (int j = i; j < n; j++) {
++                int temp = matrix[i][j];
++                matrix[i][j] = matrix[j][i];
++                matrix[j][i] = temp;
++            }
++        }
++
++        // 每行互换
++        for (int i = 0; i < m; i++) {
++            for (int j = 0; j < n/2; j++) {
++                int temp = matrix[i][j];
++                matrix[i][j] = matrix[i][m-j-1];
++                matrix[i][m-j-1] = temp;
++            }
++        }
++
++    }
++
++}
+Index: Matrix/a349.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Matrix/a349.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ Matrix/a349.java	(date 1595303227588)
+@@ -1,8 +1,6 @@
+ package Matrix;
+ 
+-import java.util.Arrays;
+-import java.util.HashSet;
+-import java.util.Set;
++import java.util.*;
+ 
+ // 数组的交集 结果无重复
+ public class a349 {
+@@ -34,4 +32,42 @@
+ 
+     }
+ 
++    List<List<Integer>> res;
++//    public List<List<Integer>> combine(int n, int k) {
++//        res = new LinkedList<>();
++//        LinkedList<Integer> list = new LinkedList<>();
++//        backTrack(n, k, 1, list);
++//        return res;
++//    }
++//
++//    void backTrack(int n, int k, int start, LinkedList<Integer> list) {
++//        if (list.size() == k) {
++//            res.add(new LinkedList<>(list));
++//            return;
++//        }
++//
++//        for (int i = 1; i <= n; i++) {
++//            list.add(i);
++//            backTrack(n, k, i + 1, list);
++//            list.removeLast();
++//        }
++//    }
++
++    public List<List<Integer>> subsets(int[] nums) {
++        res = new LinkedList<>();
++        LinkedList<Integer> list = new LinkedList<>();
++        backTrack(nums, 0, list);
++        return res;
++    }
++
++
++    void backTrack(int[] nums, int start, LinkedList<Integer> list) {
++        res.add(new LinkedList<>(list));
++
++        for (int i = start; i < nums.length; i++) {
++            list.add(nums[i]);
++            backTrack(nums, i + 1, list);
++            list.removeLast();
++        }
++    }
+ }
+Index: Cracking_the_coding_interview/s0104.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0104.java	(date 1594779603772)
++++ Cracking_the_coding_interview/s0104.java	(date 1594779603772)
+@@ -0,0 +1,30 @@
++package Cracking_the_coding_interview;
++
++import java.util.ArrayList;
++import java.util.HashMap;
++import java.util.Map;
++
++public class s0104 {
++
++    public static boolean canPermutePalindrome(String s) {
++        Map<Character, Integer> map = new HashMap<>();
++        for (int i = 0; i < s.length(); i++) {
++            char c = s.charAt(i);
++            map.put(c, map.getOrDefault(c, 0) + 1);
++        }
++
++        /* 检查最多一个字符的数目为奇数 */
++        boolean flag = false;
++        for (int n : map.values()) {
++            if (n % 2 == 1) {
++                if (flag)
++                    return false;
++                flag = true;
++            }
++
++        }
++
++        return true;
++    }
++
++}
+Index: Cracking_the_coding_interview/s0103.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0103.java	(date 1594776237139)
++++ Cracking_the_coding_interview/s0103.java	(date 1594776237139)
+@@ -0,0 +1,37 @@
++package Cracking_the_coding_interview;
++
++import javax.print.DocFlavor;
++
++/**
++ * 将空格替换为 %20
++ */
++public class s0103 {
++
++    public String replaceSpaces(String S, int length) {
++        char[] str = S.toCharArray();
++        int spaceCount = 0, index, i = 0;
++        for (; i < length; i++) {
++            if (str[i] == ' ')
++                spaceCount++;
++        }
++
++        index = length + spaceCount * 2;
++        for (i = length - 1; i >= 0; i--) {
++            if (str[i] == ' ') {
++                str[index - 1] = '0';
++                str[index - 2] = '2';
++                str[index - 3] = '%';
++                index = index - 3;
++            } else {
++                str[index - 1] = str[i];
++                index--;
++            }
++        }
++
++        StringBuilder sb = new StringBuilder();
++        for (char c : str)
++            sb.append(c);
++
++        return sb.toString().trim();
++    }
++}
+Index: Cracking_the_coding_interview/s0102.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0102.java	(date 1594628775950)
++++ Cracking_the_coding_interview/s0102.java	(date 1594628775950)
+@@ -0,0 +1,27 @@
++package Cracking_the_coding_interview;
++
++/**
++ *  检查两个字符串的字符数是否相同
++ *
++ *  创建一个类似于散列表的数组（从第4行到第7行），将其每个字符映射到其字符出现的次数。
++ *  增加第一个字符串，然后减少第二个字符串，如果两者互为重排，则该数组最终将为0。
++ */
++public class s0102 {
++
++    public boolean CheckPermutation(String s1, String s2) {
++        if (s1.length() != s2.length())
++            return false;
++
++        int[] letters = new int[128]; // 假设为ASCII字符
++        for (int i = 0; i < s2.length(); i++)
++            letters[s1.charAt(i)]++;
++
++        for (int j = 0; j < s2.length(); j++) {
++            letters[s2.charAt(j)]--;
++            if (letters[s2.charAt(j)] < 0)
++                return false;
++        }
++
++        return true; // 字母没有负值，因此也没有正值
++    }
++}
+Index: Cracking_the_coding_interview/s0101.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0101.java	(date 1594628193122)
++++ Cracking_the_coding_interview/s0101.java	(date 1594628193122)
+@@ -0,0 +1,54 @@
++package Cracking_the_coding_interview;
++
++import java.util.HashMap;
++import java.util.Map;
++
++/**
++ * 判定字符是否唯一，使用位向量 高效
++ */
++public class s0101 {
++
++    public boolean isUnique(String astr) {
++        Map<Character, Integer> map = new HashMap<>();
++        for (int i = 0; i < astr.length(); i++) {
++            Character c = astr.charAt(i);
++            map.put(c, map.getOrDefault(c, 0) + 1);
++//            map.merge(c, 0, (p, v) -> p + v);
++            if (map.get(c) > 1)
++                return false;
++        }
++
++        return true;
++    }
++
++    boolean isUnique1(String str) {
++        if (str.length() > 128)
++            return false;
++
++        boolean[] char_set = new boolean[128];
++        for (int i = 0; i < str.length(); i++) {
++            int val = str.charAt(i);
++            if (char_set[val])  // 在字符串中已找到该字符
++                return false;
++
++            char_set[val] = true;
++        }
++
++        return true;
++    }
++
++    // 使用位向量（bit vector），可以将空间占用减少为原先的1/8。
++    // 下面的代码假定字符串只含有小写字母a到z。这样一来只需使用一个int型变量。
++    boolean isUnique2(String str) {
++        int checker = 0;
++        for (int i = 0; i < str.length(); i++) {
++            int val = str.charAt(i) - 'a';
++            if ((checker & (1 << val)) > 0)
++                return false;
++
++            checker |= (1 << val);
++        }
++
++        return true;
++    }
++}
+Index: String/a6.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- String/a6.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ String/a6.java	(date 1595511045230)
+@@ -3,6 +3,9 @@
+ import java.util.ArrayList;
+ import java.util.List;
+ 
++/**
++ * Z字形变换
++ */
+ public class a6 {
+ 
+     public String convert(String s, int numRows) {
+Index: Main3.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Main3.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ Main3.java	(date 1595687925678)
+@@ -1,7 +1,6 @@
+-import java.util.HashMap;
+-import java.util.Map;
+-import java.util.Scanner;
+-import java.util.Stack;
++import data.ListNode;
++
++import java.util.*;
+ 
+ public class Main3 {
+ 
+@@ -44,4 +43,28 @@
+             stack.clear();
+         }
+     }
++
++    public ListNode mergeKLists(ListNode[] lists) {
++
++        PriorityQueue<ListNode> queue = new PriorityQueue<>();
++        ListNode dummy = new ListNode(0);
++        ListNode p = dummy;
++
++
++        for (ListNode listNode : lists)
++            queue.add(listNode);
++
++        while (!queue.isEmpty()) {
++
++            ListNode node1 = queue.poll();
++            dummy.next = node1;
++            dummy = dummy.next;
++            if (dummy.next != null)
++                queue.add(dummy.next);
++
++        }
++
++        return dummy.next;
++    }
++
+ }
+Index: Cracking_the_coding_interview/s0105.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0105.java	(date 1594785248061)
++++ Cracking_the_coding_interview/s0105.java	(date 1594785248061)
+@@ -0,0 +1,32 @@
++package Cracking_the_coding_interview;
++
++public class s0105 {
++
++    public boolean oneEditAway(String first, String second) {
++        if (Math.abs(first.length() - second.length()) > 1)
++            return false;
++
++        String s1 = first.length() < second.length() ? first : second;
++        String s2 = first.length() < second.length() ? second : first;
++
++        int index1 = 0;
++        int index2 = 0;
++        boolean foundDifference = false;
++        while (index1 < s1.length() && index2 < s2.length()) {
++            if (s1.charAt(index1) != s2.charAt(index2)) {
++                // 确保此处为发现的第一处不同
++                if (foundDifference)
++                    return false;
++                foundDifference = true;
++
++                if (s1.length() == s2.length())     // 更换后，移动较短字符串的指针（当长度相同时，替换后先移动s1）
++                    index1++;
++            } else {
++                index1++; // 如果相匹配，就移动较短字符串的指针
++            }
++            index2++; // 总是移动较长字符串的指针
++
++        }
++        return true;
++    }
++}
+Index: Math/a50.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Math/a50.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ Math/a50.java	(date 1595729668057)
+@@ -58,7 +58,26 @@
+         return fastPow(x, N);
+     }
+ 
++    // 快速幂
++    public double myPow_4(double x, int n) {
++        if (x == 0.0f)
++            return 0.0d;
++        long b = n;
++        double res = 1.0;
++        if (b < 0) {
++            x = 1/x;
++            b = -b;
++        }
+ 
++        while (b > 0) {
++            if ((b & 1) == 1) // 奇数
++                res *= x;
++            x = x * x;
++            b >>= 1;
++        }
++
++        return res;
++    }
+ 
+ 
+ }
+Index: DP/a96.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- DP/a96.java	(date 1595755766231)
++++ DP/a96.java	(date 1595755766231)
+@@ -0,0 +1,28 @@
++package DP;
++
++/**
++ * 不同的二叉搜索树
++ * 假设n个节点存在二叉排序树的个数是G(n)，令f(i)为以i为根的二叉搜索树的个数，则
++ * G(n) = f(1) + f(2) + f(3) + f(4) + ... + f(n)
++ *
++ * 当i为根节点时，其左子树节点个数为i-1个，右子树节点为n-i，则
++ * f(i) = G(i-1)*G(n-i)
++ *
++ * 综合两个公式可以得到 卡特兰数 公式
++ * G(n) = G(0)*G(n-1)+G(1)*(n-2)+...+G(n-1)*G(0)G(n)=G(0)∗G(n−1)+G(1)∗(n−2)+...+G(n−1)∗G(0)
++ */
++public class a96 {
++
++    public int numTrees(int n) {
++        int[] dp = new int[n+1];
++        dp[0] = 1;
++        dp[1] = 1;
++
++        for (int i = 2; i < n + 1; i++) {
++            for (int j = 1; j < i + 1; j++)
++                dp[i] += dp[j-1] * dp[i-j];
++        }
++
++        return dp[n];
++    }
++}
+Index: Cracking_the_coding_interview/s0106.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0106.java	(date 1594814462800)
++++ Cracking_the_coding_interview/s0106.java	(date 1594814462800)
+@@ -0,0 +1,24 @@
++package Cracking_the_coding_interview;
++
++/**
++ * 压缩字符串
++ */
++public class s0106 {
++
++    public String compressString(String S) {
++        StringBuilder comparessed = new StringBuilder();
++        int countConsecutive = 0;
++        for (int i = 0; i < S.length(); i++) {
++            countConsecutive++;
++
++            /* 如果下一个字符与当前字符不同，那么将当前字符添加到结果尾部 */
++            if (i + 1 >= S.length() || S.charAt(i) != S.charAt(i + 1)) {
++                comparessed.append(S.charAt(i));
++                comparessed.append(countConsecutive);
++                countConsecutive = 0;
++            }
++        }
++
++        return comparessed.length() < S.length() ? comparessed.toString() : S;
++    }
++}
+Index: Cracking_the_coding_interview/s0201.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0201.java	(date 1594886578965)
++++ Cracking_the_coding_interview/s0201.java	(date 1594886578965)
+@@ -0,0 +1,29 @@
++package Cracking_the_coding_interview;
++
++import data.ListNode;
++
++import java.util.HashSet;
++import java.util.Set;
++
++/**
++ * 移出重复节点
++ */
++public class s0201 {
++
++    public ListNode removeDuplicateNodes(ListNode head) {
++        Set<Integer> set = new HashSet<>();
++        ListNode cur = head;
++        while (cur != null && cur.next != null) {
++            set.add(cur.val);
++            if (set.contains(cur.next.val)) {
++                cur.next = cur.next.next;
++            } else {
++                cur = cur.next;
++            }
++        }
++
++        return head;
++    }
++
++
++}
+Index: Cracking_the_coding_interview/s0109.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0109.java	(date 1594870916299)
++++ Cracking_the_coding_interview/s0109.java	(date 1594870916299)
+@@ -0,0 +1,14 @@
++package Cracking_the_coding_interview;
++
++/**
++ * 字符串轮转
++ */
++public class s0109 {
++
++    public boolean isFlipedString(String s1, String s2) {
++        if (s1.length() != s2.length())
++            return false;
++
++        return (s2+s2).indexOf(s1) != -1;
++    }
++}
+Index: Cracking_the_coding_interview/s0108.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0108.java	(date 1594870375531)
++++ Cracking_the_coding_interview/s0108.java	(date 1594870375531)
+@@ -0,0 +1,29 @@
++package Cracking_the_coding_interview;
++
++import java.util.HashSet;
++import java.util.Set;
++
++public class s0108 {
++
++    public void setZeroes(int[][] matrix) {
++        Set<Integer> rows = new HashSet<>();
++        Set<Integer> cols = new HashSet<>();
++
++        for (int i = 0; i < matrix.length; i++) {
++            for (int j = 0; j < matrix[0].length; j++) {
++                if (matrix[i][j] == 0) {
++                    rows.add(i);
++                    cols.add(j);
++                }
++            }
++        }
++
++        for (int i = 0; i < matrix.length; i++) {
++            for (int j = 0; j < matrix[0].length; j++) {
++                if (rows.contains(i) || cols.contains(j))
++                    matrix[i][j] = 0;
++            }
++        }
++    }
++
++}
+Index: .idea/uiDesigner.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/uiDesigner.xml	(date 1594817002878)
++++ .idea/uiDesigner.xml	(date 1594817002878)
+@@ -0,0 +1,124 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Palette2">
++    <group name="Swing">
++      <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="1" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="com.intellij.uiDesigner.VSpacer" tooltip-text="Vertical Spacer" icon="/com/intellij/uiDesigner/icons/vspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="1" anchor="0" fill="2" />
++      </item>
++      <item class="javax.swing.JPanel" icon="/com/intellij/uiDesigner/icons/panel.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JScrollPane" icon="/com/intellij/uiDesigner/icons/scrollPane.png" removable="false" auto-create-binding="false" can-attach-label="true">
++        <default-constraints vsize-policy="7" hsize-policy="7" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JButton" icon="/com/intellij/uiDesigner/icons/button.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="0" fill="1" />
++        <initial-values>
++          <property name="text" value="Button" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JRadioButton" icon="/com/intellij/uiDesigner/icons/radioButton.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="RadioButton" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JCheckBox" icon="/com/intellij/uiDesigner/icons/checkBox.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="CheckBox" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JLabel" icon="/com/intellij/uiDesigner/icons/label.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="Label" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JTextField" icon="/com/intellij/uiDesigner/icons/textField.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JPasswordField" icon="/com/intellij/uiDesigner/icons/passwordField.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JFormattedTextField" icon="/com/intellij/uiDesigner/icons/formattedTextField.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextArea" icon="/com/intellij/uiDesigner/icons/textArea.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextPane" icon="/com/intellij/uiDesigner/icons/textPane.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JEditorPane" icon="/com/intellij/uiDesigner/icons/editorPane.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JComboBox" icon="/com/intellij/uiDesigner/icons/comboBox.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="2" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JTable" icon="/com/intellij/uiDesigner/icons/table.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JList" icon="/com/intellij/uiDesigner/icons/list.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="2" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTree" icon="/com/intellij/uiDesigner/icons/tree.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTabbedPane" icon="/com/intellij/uiDesigner/icons/tabbedPane.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSplitPane" icon="/com/intellij/uiDesigner/icons/splitPane.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSpinner" icon="/com/intellij/uiDesigner/icons/spinner.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSlider" icon="/com/intellij/uiDesigner/icons/slider.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSeparator" icon="/com/intellij/uiDesigner/icons/separator.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JProgressBar" icon="/com/intellij/uiDesigner/icons/progressbar.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JToolBar" icon="/com/intellij/uiDesigner/icons/toolbar.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1">
++          <preferred-size width="-1" height="20" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JToolBar$Separator" icon="/com/intellij/uiDesigner/icons/toolbarSeparator.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JScrollBar" icon="/com/intellij/uiDesigner/icons/scrollbar.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
++      </item>
++    </group>
++  </component>
++</project>
+\ No newline at end of file
+Index: Cracking_the_coding_interview/s0206.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0206.java	(date 1594898425316)
++++ Cracking_the_coding_interview/s0206.java	(date 1594898425316)
+@@ -0,0 +1,53 @@
++package Cracking_the_coding_interview;
++
++import data.ListNode;
++
++/**
++ * 回文链表
++ */
++public class s0206 {
++
++    public boolean isPalindrome(ListNode head) {
++        // 找到中间点位置，从这里开始反转后半段链表
++        // 再次找到中点位置，中点与head开始进行对比，中途有不同的返回false
++        ListNode dummy = new ListNode(-1);
++        dummy.next = head;
++        ListNode slow = dummy; // 遍历后slow指向的是mid的前一个
++        ListNode fast = head;
++        while (fast != null && fast.next != null) {
++            slow = slow.next;
++            fast = fast.next.next;
++        }
++
++        ListNode head2 = reverse(slow.next);
++        slow.next = null;
++        while (head != null && head2 != null) {
++            if (head.val != head2.val) {
++                return false;
++            } else {
++                head = head.next;
++                head2 = head2.next;
++            }
++        }
++
++        return true;
++    }
++
++    private ListNode reverse(ListNode head) {
++        if (head == null)
++            return null;
++        ListNode dummy = new ListNode(0);
++        dummy.next = head;
++        ListNode pre = dummy;
++        ListNode cur = pre.next;
++        while (cur.next != null) {
++            ListNode next = cur.next;
++            cur.next = next.next;
++            next.next = pre.next;
++            pre.next = next;
++        }
++        return pre.next;
++    }
++
++
++}
+Index: DP/a264.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- DP/a264.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ DP/a264.java	(date 1595838477766)
+@@ -2,6 +2,10 @@
+ 
+ /**
+  * 丑数
++ *
++ * 让我们从数组中只包含一个丑数数字 1 开始，使用三个指针, 标记所指向丑数要乘以的因子。
++ *
++ * 在 2*p2，3*p3，5*p5选出最小的丑数并添加到数组中。并将该丑数对应的因子指针往前走一步。
+  */
+ public class a264 {
+ 
+Index: Cracking_the_coding_interview/s0204.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0204.java	(date 1594894305996)
++++ Cracking_the_coding_interview/s0204.java	(date 1594894305996)
+@@ -0,0 +1,33 @@
++package Cracking_the_coding_interview;
++
++import data.ListNode;
++
++/**
++ * 分割链表
++ */
++public class s0204 {
++
++    public ListNode partition(ListNode head, int x) {
++        ListNode less_head = new ListNode(0);
++        ListNode more_head = new ListNode(0);
++        ListNode less_ptr = less_head;
++        ListNode more_ptr = more_head;
++
++        while(head != null){
++            if(head.val < x){
++                less_ptr.next = head;
++                less_ptr = less_ptr.next;
++            }else{
++                more_ptr.next = head;
++                more_ptr = more_ptr.next;
++            }
++            head = head.next;
++        }
++
++        more_ptr.next = null;
++        less_ptr.next = more_head.next;
++        return less_head.next;
++    }
++
++
++}
+Index: Cracking_the_coding_interview/s0203.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0203.java	(date 1594888766416)
++++ Cracking_the_coding_interview/s0203.java	(date 1594888766416)
+@@ -0,0 +1,15 @@
++package Cracking_the_coding_interview;
++
++import data.ListNode;
++
++/**
++ * 删除中间节点
++ */
++public class s0203 {
++
++    public void deleteNode(ListNode node) {
++        ListNode next = node.next;
++        node.val = next.val;
++        node.next = next.next;
++    }
++}
+Index: Cracking_the_coding_interview/s0202.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0202.java	(date 1594887435715)
++++ Cracking_the_coding_interview/s0202.java	(date 1594887435715)
+@@ -0,0 +1,26 @@
++package Cracking_the_coding_interview;
++
++import data.ListNode;
++
++/**
++ * 返回倒数第k个节点
++ */
++public class s0202 {
++
++    public int kthToLast(ListNode head, int k) {
++        ListNode fast = head;
++        ListNode slow = head;
++        int i = 0;
++        while (i < k) {
++            fast = fast.next;
++            i++;
++        }
++
++        while (fast != null) {
++            fast = fast.next;
++            slow = slow.next;
++        }
++
++        return slow.val;
++    }
++}
+Index: Cracking_the_coding_interview/s0301.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0301.java	(date 1594953711511)
++++ Cracking_the_coding_interview/s0301.java	(date 1594953711511)
+@@ -0,0 +1,52 @@
++package Cracking_the_coding_interview;
++
++/**
++ * 三合一。描述如何只用一个数组来实现三个栈。
++ * 数组下标为｛0,3,6,9....,0+3*(stackSize-1)}存放stack0;
++ * 数组下标为｛1,4,7,10....,1+3*(stackSize-1)}存放stack0;
++ * 数组下标为｛2,5,8,11....,2+3*(stackSize-1)}存放stack0;
++ */
++public class s0301 {
++
++    int[] arr;
++    int[] stackTop; // 标记每个栈的栈顶可插入元素的下标（在arr中的下标）
++    int stackSize;
++    public s0301(int stackSize) {
++        this.stackSize = stackSize;
++        arr = new int[stackSize * 3];
++        stackTop = new int[]{0, 1, 2};
++    }
++
++    // stackNum表示栈下标，value表示压入的值
++    public void push(int stackNum, int value) {
++        int curStackTop = stackTop[stackNum]; // 得到当前下标对应的栈的栈顶下标
++        if (curStackTop / 3 == stackSize)  // 当前下标是3的倍数，则栈满
++            // 栈已满
++            return;
++
++        arr[curStackTop] = value;
++        stackTop[stackNum] += 3;
++    }
++
++    public int pop(int stackNum) {
++        if (isEmpty(stackNum)) {
++            return -1;
++        }
++
++        int value = arr[stackTop[stackNum] - 3]; //删除对应的栈顶元素,前面加入元素的时候加了3，现在要减掉
++        stackTop[stackNum] -= 3; // 栈顶下标减3
++        return value;
++    }
++
++    public int peek(int stackNum) {
++        if (isEmpty(stackNum))
++            return -1;
++
++        return arr[stackTop[stackNum] - 3];
++    }
++
++    public boolean isEmpty(int stackNum) {
++        return stackTop[stackNum] < 3; //栈顶下标小于3，说明没有元素了
++    }
++
++}
+Index: Cracking_the_coding_interview/s0208.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0208.java	(date 1594901290722)
++++ Cracking_the_coding_interview/s0208.java	(date 1594901290722)
+@@ -0,0 +1,33 @@
++package Cracking_the_coding_interview;
++
++import data.ListNode;
++
++/**
++ * 环路检测
++ *
++ * 1. 检测链表是否有循环
++ * 2. 找到循环开始的位置
++ */
++public class s0208 {
++
++    public ListNode detectCycle(ListNode head) {
++        ListNode fast = head, slow = head;
++        while (true) {
++            if (fast == null || fast.next == null)
++                return null;
++            fast = fast.next.next;
++            slow = slow.next;
++
++            if (fast == slow)
++                break;
++        }
++
++        fast = head;
++        while (slow != fast) {
++            slow = slow.next;
++            fast = fast.next;
++        }
++
++        return fast;
++    }
++}
+Index: Cracking_the_coding_interview/s0207.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0207.java	(date 1594900219428)
++++ Cracking_the_coding_interview/s0207.java	(date 1594900219428)
+@@ -0,0 +1,25 @@
++package Cracking_the_coding_interview;
++
++import data.ListNode;
++
++/**
++ * 相交链表
++ *
++ * 创建两个指针 pApA 和 pBpB，分别初始化为链表 A 和 B 的头结点。然后让它们向后逐结点遍历。
++ * 当 pApA 到达链表的尾部时，将它重定位到链表 B 的头结点 (你没看错，就是链表 B); 类似的，当 pBpB 到达链表的尾部时，将它重定位到链表 A 的头结点。
++ * 若在某一时刻 pApA 和 pBpB 相遇，则 pApA/pBpB 为相交结点。
++ * 想弄清楚为什么这样可行, 可以考虑以下两个链表: A={1,3,5,7,9,11} 和 B={2,4,9,11}，相交于结点 9。 由于 B.length (=4) < A.length (=6)，pBpB 比 pApA 少经过 22 个结点，会先到达尾部。将 pBpB 重定向到 A 的头结点，pApA 重定向到 B 的头结点后，pBpB 要比 pApA 多走 2 个结点。因此，它们会同时到达交点。
++ * 如果两个链表存在相交，它们末尾的结点必然相同。因此当 pApA/pBpB 到达链表结尾时，记录下链表 A/B 对应的元素。若最后元素不相同，则两个链表不相交。
++ */
++public class s0207 {
++
++    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
++        ListNode ha = headA, hb = headB;
++        while (ha != hb) {
++            ha = ha != null ? ha.next : headB;
++            hb = hb != null ? hb.next : headA;
++        }
++
++        return ha;
++    }
++}
+Index: Cracking_the_coding_interview/s0205.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0205.java	(date 1594898807454)
++++ Cracking_the_coding_interview/s0205.java	(date 1594898807454)
+@@ -0,0 +1,37 @@
++package Cracking_the_coding_interview;
++
++import data.ListNode;
++
++/**
++ * 链表求和
++ */
++public class s0205 {
++
++    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
++        ListNode pre = new ListNode(0);
++        ListNode cur = pre;
++        int carry = 0;
++
++        while (l1 != null || l2 != null) {
++            int x = l1 == null ? 0 : l1.val;
++            int y = l2 == null ? 0 : l2.val;
++
++            int sum = x + y + carry;
++            carry = sum / 10;
++            sum %= 10;
++            cur.next = new ListNode(sum);
++            cur = cur.next;
++
++            if (l1 != null)
++                l1 = l1.next;
++            if (l2 != null)
++                l2 = l2.next;
++        }
++
++        if (carry == 1)
++            cur.next = new ListNode(carry);
++
++        return pre.next;
++    }
++
++}
+Index: week5/a48.java
+===================================================================
+--- week5/a48.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ Matrix/a48.java	(date 1594866983538)
+@@ -1,5 +1,8 @@
+-package week5;
++package Matrix;
+ 
++/**
++ * 旋转图像（矩阵）
++ */
+ public class a48 {
+ 
+     public void rotate(int[][] matrix) {
+Index: DP/a416.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- DP/a416.java	(date 1594973772256)
++++ DP/a416.java	(date 1594973772256)
+@@ -0,0 +1,38 @@
++package DP;
++
++/**
++ * 分割等和子集（0-1背包问题）
++ */
++public class a416 {
++
++    public boolean canPartition(int[] nums) {
++        int sum = 0;
++        for (int num : nums)
++            sum += num;
++
++        // 和为奇数时，不可能划分为两个和相等的集合
++        if (sum % 2 != 0)
++            return false;
++        int n = nums.length;
++        sum /= 2;
++        boolean[][] dp = new boolean[n + 1][sum +1];
++
++        // base case
++        for (int i = 0; i <= n; i++)
++            dp[i][0] = true;
++
++        for (int i = 1; i <= n; i++) {
++            for (int j = 1; j <= sum; j++) {
++                if (j - nums[i - 1] < 0) {
++                    // 背包容量不足，不能装入第i个物品
++                    dp[i][j] = dp[i - 1][j];
++                } else {
++                    // 装入或不装入背包
++                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i - 1]];
++                }
++            }
++        }
++
++        return dp[n][sum];
++    }
++}
+Index: Search/a733.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Search/a733.java	(date 1594971509529)
++++ Search/a733.java	(date 1594971509529)
+@@ -0,0 +1,44 @@
++package Search;
++
++/**
++ * 图像渲染
++ */
++public class a733 {
++
++    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
++
++        int origColor = image[sr][sc];
++        fill(image, sr, sc, origColor, newColor);
++        return image;
++    }
++
++    private void fill(int[][] image, int x ,int y, int origColor, int newColor) {
++        // 出界，超出边界索引
++        if (!inArea(image, x, y))
++            return;
++
++        // 碰壁，遇到其他颜色，超出origColor区域
++        if (image[x][y] != origColor)
++            return;
++
++        // 已经摊上过的 origColor 区域
++        if (image[x][y] == -1)
++            return;
++        // choose: 打标记，以免重复
++        image[x][y] = -1;
++
++        fill(image, x, y + 1, origColor, newColor);
++        fill(image, x, y - 1, origColor, newColor);
++        fill(image, x - 1, y, origColor, newColor);
++        fill(image, x + 1, y, origColor, newColor);
++        // unchoose: 将标记替换为 newColor
++        image[x][y] = newColor;
++    }
++
++    private boolean inArea(int[][] image, int x, int y) {
++        return x >= 0 && x < image.length
++                && y >= 0 && y < image[0].length;
++
++    }
++
++}
+Index: Matrix/a986.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Matrix/a986.java	(date 1594969788326)
++++ Matrix/a986.java	(date 1594969788326)
+@@ -0,0 +1,36 @@
++package Matrix;
++
++
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * 区间列表的交集
++ */
++public class a986 {
++
++    public int[][] intervalIntersection(int[][] A, int[][] B) {
++        int i = 0, j = 0;
++        List<int[]> ans = new ArrayList<>();
++
++        while (i < A.length && j < B.length) {
++            int a1 = A[i][0];
++            int a2 = A[i][1];
++            int b1 = B[j][0];
++            int b2 = B[j][1];
++
++            // 两个区间存在交集
++            if (b2 >= a1 && a2 >= b1) {
++                ans.add(new int[]{Math.max(a1, b1),Math.min(a2, b2)});
++            }
++
++            // 指针前进
++            if (b2 < a2)
++                j++;
++            else
++                i++;
++        }
++
++        return ans.toArray(new int[ans.size()][]);
++    }
++}
+Index: Cracking_the_coding_interview/s0302.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s0302.java	(date 1594954435604)
++++ Cracking_the_coding_interview/s0302.java	(date 1594954435604)
+@@ -0,0 +1,50 @@
++package Cracking_the_coding_interview;
++
++public class s0302 {
++
++    class Node {
++        int value;
++        int min;
++        Node next;
++
++        Node(int value, int min) {
++            this.value = value;
++            this.min = min;
++            next = null;
++        }
++    }
++
++    Node head;
++    public s0302() {
++
++    }
++
++    public void push(int x) {
++        if (head == null) {
++            head = new Node(x, x);
++        } else {
++            Node n = new Node(x, Math.min(x, head.min));
++            n.next = head;
++            head = n;
++        }
++    }
++
++    public void pop() {
++        if (head != null)
++            head = head.next;
++    }
++
++    public int top() {
++        if (head != null)
++            return head.value;
++        return -1;
++    }
++
++    public int getMin() {
++        if (null != head)
++            return head.min;
++
++        return -1;
++    }
++
++}
+Index: DP/a718.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- DP/a718.java	(date 1595057242619)
++++ DP/a718.java	(date 1595057242619)
+@@ -0,0 +1,24 @@
++package DP;
++
++/**
++ * 最长重复子数组
++ */
++public class a718 {
++
++    public int findLength(int[] A, int[] B) {
++        int n = A.length, m = B.length;
++        // dp[i][j] 表示 A[i:] 和 B[j:] 的最长公共前缀
++        int[][] dp = new int[n+1][m+1];
++        int ans = 0;
++        //考虑到这里 dp[i][j] 的值从 dp[i + 1][j + 1] 转移得到，所以我们需要倒过来，
++        // 首先计算 dp[len(A) - 1][len(B) - 1]，最后计算 dp[0][0]
++        for (int i = n-1; i >= 0; i--) {
++            for (int j = m-1; j >= 0; j--) {
++                dp[i][j] = A[i] == B[j] ? dp[i+1][j+1] + 1 : 0;
++                ans = Math.max(ans, dp[i][j]);
++            }
++        }
++
++        return ans;
++    }
++}
+Index: DP/String/a10.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- DP/String/a10.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ DP/String/a10.java	(date 1595513596823)
+@@ -13,7 +13,7 @@
+ 
+         if (p.length() >= 2 && p.charAt(1) == '*') {
+             return isMatch(s, p.substring(2)) ||    // 忽视模式串中这一部分，从*后面开始
+-                    (first_match && isMatch(s.substring(1), p));   // *前面的相匹配，则从字符串后面开始匹配
++                    (first_match && isMatch(s.substring(1), p));   // *前面的相匹配，则从字符串后面开始匹配，意味着 * 匹配多个
+         } else {
+             return first_match && isMatch(s.substring(1), p.substring(1));
+         }
+Index: week6/a42.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- week6/a42.java	(date 1595689195649)
++++ week6/a42.java	(date 1595689195649)
+@@ -0,0 +1,31 @@
++package week6;
++
++
++/**
++ * 接雨水
++ */
++public class a42 {
++
++    public int trap(int[] height) {
++        int sum = 0;
++        for (int i = 1; i < height.length; i++) {
++            // 找到左侧最大值
++            int max_left = 0;
++            for (int j = i - 1; j >= 0; j--)
++                if (height[j] > max_left)
++                    max_left = height[j];
++            // 找到右侧最大值
++            int max_right = 0;
++            for (int k = i + 1; k < height.length; k++)
++                if (height[k] > max_right)
++                    max_right = height[k];
++
++            int min = Math.min(max_left, max_right);
++            if (min > height[i])
++                sum += min - height[i];
++        }
++
++        return sum;
++    }
++
++}
+Index: Greedy/a452.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Greedy/a452.java	(date 1595052952718)
++++ Greedy/a452.java	(date 1595052952718)
+@@ -0,0 +1,49 @@
++package Greedy;
++
++import java.util.Arrays;
++
++public class a452 {
++
++    public int findMinArrowShots(int[][] points) {
++        if (points.length == 0)
++            return 0;
++
++        // 按end升序排列
++        Arrays.sort(points, (a, b) -> a[1] - b[1]);
++
++        // 至少有一个区间不相交
++        int count = 1;
++        // 排序后，第一个区间就是 x
++        int x_end = points[0][1];
++        for (int[] interval : points) {
++            int start = interval[0];
++            if (start > x_end) {
++                // 找到下一个选择的区间了
++                count++;
++                x_end = interval[1];
++            }
++        }
++
++        return count;
++    }
++
++    public boolean isPalindrome(String s) {
++        if (s.isEmpty())
++            return true;
++
++        int left = 0, right = s.length() - 1;
++        while (left < right) {
++            while (left < right && !Character.isLetterOrDigit(s.charAt(left)))
++                left++;
++            while (left < right && !Character.isLetterOrDigit(s.charAt(right)))
++                right++;
++            if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right)))
++                return false;
++            left++;
++            right--;
++        }
++
++        return true;
++    }
++
++}
+Index: Greedy/a435.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Greedy/a435.java	(date 1594976317229)
++++ Greedy/a435.java	(date 1594976317229)
+@@ -0,0 +1,39 @@
++package Greedy;
++
++import java.util.Arrays;
++
++/**
++ * 无重叠区间
++ */
++public class a435 {
++
++    public int eraseOverlapIntervals(int[][] intervals) {
++        int n = intervals.length;
++        return n - intervalSchedule(intervals);
++    }
++
++
++    // 算出这些区间中最多有几个互不相交的区间
++    private int intervalSchedule(int[][] intvs) {
++        if (intvs.length == 0)
++            return 0;
++
++        // 按end升序排列
++        Arrays.sort(intvs, (a, b) -> a[1] - b[1]);
++
++        // 至少有一个区间不相交
++        int count = 1;
++        // 排序后，第一个区间就是 x
++        int x_end = intvs[0][1];
++        for (int[] interval : intvs) {
++            int start = interval[0];
++            if (start >= x_end) {
++                // 找到下一个选择的区间了
++                count++;
++                x_end = interval[1];
++            }
++        }
++
++        return count;
++    }
++}
+Index: Cracking_the_coding_interview/s1713.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s1713.java	(date 1595147333328)
++++ Cracking_the_coding_interview/s1713.java	(date 1595147333328)
+@@ -0,0 +1,27 @@
++package Cracking_the_coding_interview;
++
++import java.util.Arrays;
++import java.util.HashSet;
++import java.util.Set;
++
++/**
++ * 恢复空格
++ */
++public class s1713 {
++
++    public int respace(String[] dictionary, String sentence) {
++        Set<String> dict = new HashSet<>(Arrays.asList(dictionary));
++        int n = sentence.length();
++        int[] dp = new int[n + 1];      // dp[i] 表示句子前 i 个字符中最少的未识别字符数。
++        for (int i = 1; i <= n; i++) {
++            dp[i] = dp[i - 1] + 1;
++            for (int idx = 0; idx < i; idx++) {
++                if (dict.contains(sentence.substring(idx, i)))
++                    dp[i] = Math.min(dp[i], dp[idx]);
++            }
++        }
++
++        return dp[n];
++    }
++
++}
+Index: Cracking_the_coding_interview/s1611.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Cracking_the_coding_interview/s1611.java	(date 1595145370239)
++++ Cracking_the_coding_interview/s1611.java	(date 1595145370239)
+@@ -0,0 +1,24 @@
++package Cracking_the_coding_interview;
++
++/**
++ * 跳水板
++ */
++public class s1611 {
++
++    public int[] divingBoard(int shorter, int longer, int k) {
++
++        if (k == 0)
++            return new int[0];
++
++        if (shorter == longer)
++            return new int[]{shorter * k};
++
++        int[] lengths = new int[k + 1];
++        for (int i = 0; i <= k; i++) {
++            lengths[i] = shorter * (k - i) + longer * i;
++        }
++
++        return lengths;
++    }
++
++}
+Index: Heap/a378.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Heap/a378.java	(date 1595062169127)
++++ Heap/a378.java	(date 1595062169127)
+@@ -0,0 +1,22 @@
++package Heap;
++
++import java.util.PriorityQueue;
++
++public class a378 {
++
++    public int kthSmallest(int[][] matrix, int k) {
++        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
++        int n = matrix.length;
++        for (int i = 0; i < n; i++)
++            pq.offer(new int[]{matrix[i][0], i, 0});
++
++        for (int i = 0; i < k - 1; i++) {
++            int[] now = pq.poll();
++            if (now[2] != n - 1) {
++                pq.offer(new int[]{matrix[now[1]][now[2] + 1], now[1], now[2] + 1});
++            }
++        }
++
++        return pq.poll()[0];
++    }
++}
+Index: backtrack/a47.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backtrack/a47.java	(date 1595249067199)
++++ backtrack/a47.java	(date 1595249067199)
+@@ -0,0 +1,47 @@
++package backtrack;
++
++import java.util.Arrays;
++import java.util.LinkedList;
++import java.util.List;
++
++/**
++ * 全排列 2
++ */
++public class a47 {
++
++    List<List<Integer>> res;
++    boolean[] used;
++
++    public List<List<Integer>> permuteUnique(int[] nums) {
++        res = new LinkedList<>();
++        used = new boolean[nums.length];
++        LinkedList<Integer> list = new LinkedList<>();
++        // 排序（升序或者降序都可以），排序是剪枝的前提
++        Arrays.sort(nums);
++
++        backtrack(nums, list);
++        return res;
++    }
++
++    private void backtrack(int[] nums, LinkedList<Integer> list) {
++        if (list.size() == nums.length) {
++            res.add(new LinkedList<>(list));
++            return;
++        }
++
++        for (int i = 0; i < nums.length; i++) {
++            if (used[i])
++                continue;
++
++            // 剪枝条件：i > 0 是为了保证 nums[i - 1] 有意义
++            // 写 !used[i - 1] 是因为 nums[i - 1] 在深度优先遍历的过程中刚刚被撤销选择
++            if (i > 0 && nums[i] == nums[i-1] && !used[i-1])
++                continue;
++            list.add(nums[i]);
++            used[i] = true;
++            backtrack(nums, list);
++            used[i] = false;
++            list.removeLast();
++        }
++    }
++}
+Index: backtrack/a46.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backtrack/a46.java	(date 1595248349452)
++++ backtrack/a46.java	(date 1595248349452)
+@@ -0,0 +1,37 @@
++package backtrack;
++
++import java.util.LinkedList;
++import java.util.List;
++
++/**
++ * 全排列 1
++ */
++public class a46 {
++
++    List<List<Integer>> res;
++    boolean[] used;
++    public List<List<Integer>> permute(int[] nums) {
++        res = new LinkedList<>();
++        used = new boolean[nums.length];
++        LinkedList<Integer> track = new LinkedList<>();
++        dfs(track, nums);
++        return res;
++    }
++
++    private void dfs(LinkedList<Integer> track, int[] nums) {
++        if (track.size() == nums.length) {
++            res.add(new LinkedList<>(track));
++            return;
++        }
++
++        for (int i = 0; i < nums.length; i++) {
++            if (used[i])
++                continue;
++            used[i] = true;
++            track.add(nums[i]);
++            dfs(track, nums);
++            used[i] = false;
++            track.removeLast();
++        }
++    }
++}
+Index: Tree/Trie/a820.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Tree/Trie/a820.java	(date 1595161613210)
++++ Tree/Trie/a820.java	(date 1595161613210)
+@@ -0,0 +1,50 @@
++package Tree.Trie;
++
++import java.util.Arrays;
++
++public class a820 {
++
++    public int minimumLengthEncoding(String[] words) {
++        int len = 0;
++        Trie trie = new Trie();
++        // 先对单词列表根据单词长度由长到短排序
++        Arrays.sort(words, (s1, s2) -> s2.length() - s1.length());
++        // 单词插入trie，返回该单词增加的编码长度
++        for (String word : words)
++            len += trie.insert(word);
++
++        return len;
++    }
++
++
++    class Trie {
++        TrieNode root;
++
++        public Trie() {
++            root = new TrieNode();
++        }
++
++        public int insert(String word) {
++            TrieNode cur = root;
++            boolean isNew = false;
++            // 倒着插入单词
++            for (int i = word.length() - 1; i >= 0; i--) {
++                int c = word.charAt(i) - 'a';
++                if (cur.children[c] == null) {
++                    isNew = true;
++                    cur.children[c] = new TrieNode();
++                }
++                cur = cur.children[c];
++            }
++            // 如果是新单词的话编码长度增加新单词的长度+1，否则不变。
++            return isNew ? word.length() + 1 : 0;
++        }
++    }
++
++    class TrieNode {
++        char val;
++        TrieNode[] children = new TrieNode[26];
++
++        public TrieNode() {}
++    }
++}
+Index: Tree/Trie/Trie.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Tree/Trie/Trie.java	(date 1595151419880)
++++ Tree/Trie/Trie.java	(date 1595151419880)
+@@ -0,0 +1,51 @@
++package Tree.Trie;
++
++/**
++ * 前缀树 208
++ */
++public class Trie {
++
++    private boolean is_string = false;
++    private Trie next[] = new Trie[26];
++
++    /** Initialize your data structure here. */
++    public Trie() {}
++
++    /** Inserts a word into the trie. */
++    public void insert(String word) {
++        Trie root = this;
++        char w[] = word.toCharArray();
++        for (int i = 0; i < w.length; i++) {
++            if (root.next[w[i]-'a'] == null)
++                root.next[w[i]-'a'] = new Trie();
++
++            root = root.next[w[i]-'a'];
++        }
++        root.is_string = true;
++    }
++
++    /** Returns if the word is in the trie. */
++    public boolean search(String word) {
++        Trie root = this;
++        char w[] = word.toCharArray();
++        for (int i = 0; i < w.length; i++) {
++            if (root.next[w[i]-'a'] == null)
++                return false;
++            root = root.next[w[i]-'a'];
++        }
++        return root.is_string;
++    }
++
++    /** Returns if there is any word in the trie that starts with the given prefix. */
++    public boolean startsWith(String prefix) {
++        Trie root = this;
++        char p[] = prefix.toCharArray();
++        for (int i = 0; i < p.length; i++) {
++            if (root.next[p[i]-'a'] == null)
++                return false;
++            root = root.next[p[i]-'a'];
++        }
++        return true;
++    }
++
++}
+Index: Matrix/a31.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Matrix/a31.java	(date 1595250603163)
++++ Matrix/a31.java	(date 1595250603163)
+@@ -0,0 +1,39 @@
++package Matrix;
++
++/**
++ * 下一个排列
++ */
++public class a31 {
++
++    public void nextPermutation(int[] nums) {
++        int i = nums.length - 2;
++        while (i > 0 && nums[i + 1] <= nums[i]) {
++            i--;
++        }
++
++        int j = nums.length - 1;
++        if (i >= 0) {
++            while (j >= 0 && nums[i] >= nums[j]) {
++                j--;
++            }
++            swap(nums, i, j);
++        }
++
++        reverse(nums, i + 1);
++    }
++
++    private void swap(int[] nums, int i, int j) {
++        int temp = nums[i];
++        nums[i] = nums[j];
++        nums[j] = temp;
++    }
++
++    private void reverse(int[] nums, int start) {
++        int i = start, j = nums.length - 1;
++        while (i < j) {
++            swap(nums, i, j);
++            i++;
++            j--;
++        }
++    }
++}
+Index: List/a234.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- List/a234.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ List/a234.java	(date 1594895161994)
+@@ -14,9 +14,9 @@
+     }
+ 
+     boolean traverse(ListNode right) {
+-        if(right==null) return true;
++        if(right == null) return true;
+         boolean res = traverse(right.next);
+-        res = res && (right.val==left.val);
++        res = res && (right.val == left.val);
+         left = left.next;
+         return res;
+     }
+Index: Sliding_Window/a239.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Sliding_Window/a239.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ Sliding_Window/a239.java	(date 1595475464929)
+@@ -21,6 +21,7 @@
+                 deque.pollFirst();
+ 
+             // 队头保持最大值
++
+             while (!deque.isEmpty() && nums[deque.peekLast()] <= nums[i])
+                 deque.pollLast();
+ 
+Index: List/a61.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- List/a61.java	(date 1595731914662)
++++ List/a61.java	(date 1595731914662)
+@@ -0,0 +1,31 @@
++package List;
++
++import data.ListNode;
++
++/**
++ * 旋转链表
++ */
++public class a61 {
++
++    public ListNode rotateRight(ListNode head, int k) {
++        if (head == null)
++            return null;
++        if (head.next == null)
++            return head;
++
++        ListNode old_tail = head;
++        int n;
++        // 形成一个循环链表
++        for (n = 1; old_tail.next != null; n++)
++            old_tail = old_tail.next;
++        old_tail.next = head;
++
++        ListNode new_tail = head;
++        for (int i = 0; i < n- k%n - 1; i++)
++            new_tail = new_tail.next;
++
++        ListNode new_head = new_tail.next;
++        new_tail.next = null;
++        return new_head;
++    }
++}
+Index: Matrix/a118.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Matrix/a118.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ Matrix/a118.java	(date 1595297924371)
+@@ -1,6 +1,8 @@
+ package Matrix;
+ 
+ import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.LinkedList;
+ import java.util.List;
+ 
+ /**
+Index: Matrix/a18.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Matrix/a18.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ Matrix/a18.java	(date 1595396110827)
+@@ -2,6 +2,7 @@
+ 
+ import java.util.ArrayList;
+ import java.util.Arrays;
++import java.util.LinkedList;
+ import java.util.List;
+ 
+ public class a18 {
+Index: Matrix/a56.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Matrix/a56.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ Matrix/a56.java	(date 1594966972369)
+@@ -8,14 +8,18 @@
+ public class a56 {
+ 
+     public int[][] merge(int[][] intervals) {
++        // 先按照区间起始位置排序
+         Arrays.sort(intervals, (v1, v2) -> v1[0] - v2[0]);
+ 
+         int[][] res = new int[intervals.length][2];
+         int idx = -1;
+         for (int[] interval : intervals) {
++            // 如果结果数组是空的，或者当前区间的起始位置 > 结果数组中最后区间的终止位置，
++            // 则不合并，直接将当前区间加入结果数组。
+             if (idx == -1 || interval[0] > res[idx][1])
+                 res[++idx] = interval;
+             else {
++                // 反之将当前区间合并至结果数组的最后区间
+                 res[idx][1] = Math.max(res[idx][1], interval[1]);
+             }
+         }
+Index: Math/a189.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Math/a189.java	(date 1595834128324)
++++ Math/a189.java	(date 1595834128324)
+@@ -0,0 +1,30 @@
++package Math;
++
++/**
++ * 旋转数组
++ *
++ * 给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。
++ *
++ * 这个方法基于这个事实：当我们旋转数组 k 次， k\%nk%n 个尾部元素会被移动到头部，剩下的元素会被向后移动。
++ * 在这个方法中，我们首先将所有元素反转。然后反转前 k 个元素，再反转后面 n-kn−k 个元素，就能得到想要的结果。
++ *
++ */
++public class a189 {
++
++    public void rotate(int[] nums, int k) {
++        k %= nums.length;
++        reverse(nums, 0, nums.length-1);
++        reverse(nums, 0, k-1);
++        reverse(nums, k, nums.length-1);
++    }
++
++    void reverse(int[] nums, int l, int r) {
++        while (l < r) {
++            int tmp = nums[l];
++            nums[l] = nums[r];
++            nums[r] = tmp;
++            l++;
++            r--;
++        }
++    }
++}
+Index: week2/a36.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- week2/a36.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ week2/a36.java	(date 1595257286757)
+@@ -8,31 +8,33 @@
+     public boolean isValidSudoku(char[][] board) {
+         // 初始化数据, rows是一个数组，每个元素都是一个map，共9个元素
+         Map<Integer, Integer> [] rows = new HashMap[9];
+-        Map<Integer, Integer> [] columns = new HashMap[9];
+-        Map<Integer, Integer> [] boxes = new HashMap[9];
++        Map<Integer, Integer> [] cols = new HashMap[9];
++        Map<Integer, Integer> [] boxed = new HashMap[9];
+ 
+-        for (int i = 0; i < 9; i++) {
++        for (int i = 0; i < 0; i++) {
+             rows[i] = new HashMap<>();
+-            columns[i] = new HashMap<>();
+-            boxes[i] = new HashMap<>();
++            cols[i] = new HashMap<>();
++            boxed[i] = new HashMap<>();
+         }
+ 
+         for (int i = 0; i < 9; i++) {
+             for (int j = 0; j < 9; j++) {
+-                char num = board[i][j];
++                char num  = board[i][j];
++
+                 if (num != '.') {
+                     int n = (int)num;
+-                    int box_index = (i / 3) * 3 + j / 3;
++                    int k = (i / 3) * 3 + j / 3;
+ 
+                     rows[i].put(n, rows[i].getOrDefault(n, 0) + 1);
+-                    columns[j].put(n, columns[j].getOrDefault(n, 0) + 1);
+-                    boxes[box_index].put(n, boxes[box_index].getOrDefault(n, 0) + 1);
++                    cols[j].put(n, cols[j].getOrDefault(n, 0) + 1);
++                    boxed[k].put(n, boxed[k].getOrDefault(n, 0) + 1);
+ 
+-                    if (rows[i].get(n) > 1 || columns[j].get(n) > 1 || boxes[box_index].get(n) > 1)
++                    if (rows[i].get(n) > 1 || cols[j].get(n) > 1 || boxed[k].get(n) > 1)
+                         return false;
+                 }
+             }
+         }
+-        return true;
++
++        return false;
+     }
+ }
+Index: Double_Pointer/a11.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Double_Pointer/a11.java	(revision 440f0ef54ae5cb3bab4184e9d032eeb061561512)
++++ Double_Pointer/a11.java	(date 1595516849738)
+@@ -1,7 +1,7 @@
+ package Double_Pointer;
+ 
+ /**
+- * 剩水最多的容器
++ * 盛水最多的容器
+  */
+ public class a11 {
+ 
+Index: DP/a44.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- DP/a44.java	(date 1595836691997)
++++ DP/a44.java	(date 1595836691997)
+@@ -0,0 +1,35 @@
++package DP;
++
++
++/**
++ * 通配符匹配，？匹配单个，*匹配任意（包括空）
++ */
++public class a44 {
++
++    public boolean isMatch(String s, String p) {
++        // dp[i][j]表示s截止到第i个位置(s[i-1])的子串与p截止到第j个位置(p[j-1])的子串是否匹配
++        boolean[][] dp = new boolean[s.length()+1][s.length()+1];
++        dp[0][0] = true;
++
++        for (int j = 1; j <= p.length(); j++)
++            if (p.charAt(j-1) == '*')
++                dp[0][j] = dp[0][j-1];
++
++        // 注意 i,j表示的是s和p中第几个字符，对应的索引索引是i-1,j-1
++        for (int i = 1; i <= s.length(); i++) {
++            for (int j = 1; j <= p.length(); j++) {
++                // * 可以匹配任意字符包括空字符，所以考虑 dp[i-1][j-1],dp[i-1][j],dp[i][j-1]这前面已处理过的三个结果
++                // 但其实 dp[i-1][j-1]不用考虑，因为考虑dp[i-1][j]时也会执行这个if，还是会考虑到dp[i-1][j-1]
++                if (p.charAt(j-1) == '*') {
++                    dp[i][j] = dp[i-1][j] || dp[i][j-1];
++                // 当前位置是 ？,可以匹配任意单个字符，所以和前一个位置结果一样
++                // p当前位置字符和s当前字符一样，所以跟前一个位置匹配结果一样
++                } else if (p.charAt(j-1) == '?' || s.charAt(i-1) == p.charAt(j-1)) {
++                    dp[i][j] = dp[i-1][j-1];
++                }
++            }
++        }
++
++        return dp[s.length()][p.length()];
++    }
++}

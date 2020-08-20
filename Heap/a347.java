@@ -2,6 +2,9 @@ package Heap;
 
 import java.util.*;
 
+/**
+ * 前 k 个高频元素
+ */
 public class a347 {
 
     public static List<Integer> topKFrequent(int[] nums, int k) {

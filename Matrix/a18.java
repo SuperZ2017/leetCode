@@ -2,9 +2,11 @@ package Matrix;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 四数之和
+ */
 public class a18 {
 
     public List<List<Integer>> fourSum(int[] nums, int target) {
