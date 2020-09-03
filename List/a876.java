@@ -5,7 +5,7 @@ import data.ListNode;
 /**
  * 链表的中间节点
  */
-public class a867 {
+public class a876 {
 
     public ListNode middleNode(ListNode head) {
         if (head == null || head.next == null)

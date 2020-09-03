@@ -6,7 +6,7 @@ import java.util.Arrays;
 /**
  *  数组中的逆序对
  */
-public class a51 {
+public class b51 {
 
     public static void main(String[] args) {
         int[] arr = {1,4,6,2,3};
@@ -14,7 +14,7 @@ public class a51 {
         Arrays.stream(arr).forEach(i -> System.out.println(i));
     }
 
-    int count = 0;
+    static int count = 0;
     public int reversePairs(int[] nums) {
         mergeSort(nums, 0, nums.length - 1);
         return count;
@@ -38,7 +38,7 @@ public class a51 {
                 temp[k++] = a[p1++];
             else {
                 temp[k++] = a[p2++];
-               // count += (mid - p1 + 1);
+                count += (mid - p1 + 1);
             }
         }
 

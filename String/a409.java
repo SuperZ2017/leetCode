@@ -17,6 +17,7 @@ public class a409 {
         for (char c : s.toCharArray())
             arr[c]++;
 
+        // 记录有多少个字符出现次数为奇数
         for (int i : arr)
             count += i % 2;
 

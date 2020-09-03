@@ -9,7 +9,7 @@ import java.util.LinkedList;
  */
 public class a226 {
 
-    public TreeNode invertTree(TreeNode root) {
+    public TreeNode invertTree1(TreeNode root) {
         if (root == null)
             return null;
 
@@ -27,6 +27,17 @@ public class a226 {
             node.right = tmp;
         }
 
+        return root;
+    }
+
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null)
+            return null;
+
+        TreeNode right = invertTree1(root.right);
+        TreeNode left = invertTree1(root.left);
+        root.left = right;
+        root.right = left;
         return root;
     }
 }

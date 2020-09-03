@@ -5,6 +5,9 @@ import data.ListNode;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+/**
+ * K 个一组翻转链表
+ */
 public class a25 {
 
     public ListNode reverseKGroup(ListNode head, int k) {
@@ -36,5 +39,11 @@ public class a25 {
         }
 
         return dummy.next;
+    }
+
+
+    // 尾插法
+    public ListNode reverseKGroup1(ListNode head, int k) {
+        return null;
     }
 }

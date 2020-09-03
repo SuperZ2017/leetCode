@@ -2,6 +2,9 @@ package List;
 
 import data.ListNode;
 
+/**
+ * 奇偶链表
+ */
 public class a328 {
 
     public ListNode oddEvenList(ListNode head) {

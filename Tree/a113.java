@@ -22,7 +22,7 @@ public class a113 {
             return ;
 
         temp.add(root.val);
-        if(root.left == null && root.right == null && sum -root.val == 0){
+        if(root.left == null && root.right == null && sum - root.val == 0){
             res.add(new ArrayList<>(temp));
         }
 

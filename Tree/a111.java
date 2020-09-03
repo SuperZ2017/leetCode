@@ -2,8 +2,7 @@ package Tree;
 
 import data.TreeNode;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * 二叉树的最小深度
@@ -48,5 +47,27 @@ public class a111 {
         }
 
         return -1;
+    }
+
+    public List<Integer> inorderTraversal(TreeNode root) {
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        List<Integer> res = new ArrayList<>();
+
+        stack.add(root);
+
+        while (!stack.isEmpty()) {
+
+            while (root.left != null) {
+                stack.add(root.left);
+                root = root.left;
+            }
+
+            TreeNode node = stack.poll();
+            res.add(node.val);
+            root = root.right;
+
+        }
+
+        return res;
     }
 }

@@ -2,6 +2,9 @@ package Tree;
 
 import data.TreeNode;
 
+/**
+ * 二叉搜索树最近公共祖先
+ */
 public class a235 {
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {

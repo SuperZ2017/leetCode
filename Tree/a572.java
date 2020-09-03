@@ -2,6 +2,9 @@ package Tree;
 
 import data.TreeNode;
 
+/**
+ * 另一个树的子树
+ */
 public class a572 {
 
     public boolean isSubtree(TreeNode s, TreeNode t) {

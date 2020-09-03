@@ -7,8 +7,7 @@ public class a169 {
     public int majorityElement(int[] nums) {
 
         Map<Integer, Integer> map = new HashMap<>();
-        Arrays.stream(nums).forEach(num ->
-                map.merge(num, 1, Integer::sum));
+        Arrays.stream(nums).forEach(num -> map.merge(num, 1, Integer::sum));
 
         return Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
@@ -41,6 +40,18 @@ public class a169 {
             }
         }
         return count;
+    }
+
+    public int majorityElement1(int[] nums) {
+        int x = 0, votes = 0;
+        for (int num : nums) {
+            if (votes == 0)
+                x = num;
+
+            votes += num == x ? 1 : -1;
+        }
+
+        return x;
     }
 
 

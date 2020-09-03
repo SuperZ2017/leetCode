@@ -2,6 +2,9 @@ package Tree;
 
 import data.TreeNode;
 
+/**
+ * 求根到叶子节点数字之和
+ */
 public class a129 {
 
 

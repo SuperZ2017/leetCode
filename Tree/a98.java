@@ -4,6 +4,9 @@ import data.TreeNode;
 
 import java.util.LinkedList;
 
+/**
+ * 验证二叉搜索树
+ */
 public class a98 {
 
     public boolean isValidBST(TreeNode root) {

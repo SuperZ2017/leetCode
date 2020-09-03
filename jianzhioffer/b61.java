@@ -3,9 +3,12 @@ package jianzhioffer;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 扑克牌中的顺子
+ */
 public class b61 {
 
-    public boolean isStraight(int[] nums) {
+    public static boolean isStraight(int[] nums) {
         Set<Integer> repeat = new HashSet<>();
         int max = 0, min = 14;
         for (int num : nums) {
@@ -22,5 +25,10 @@ public class b61 {
 
         return max - min < 5;
 
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {0, 0, 1, 2, 5};
+        System.out.println(isStraight(nums));
     }
 }
