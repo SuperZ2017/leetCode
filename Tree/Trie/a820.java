@@ -2,6 +2,9 @@ package Tree.Trie;
 
 import java.util.Arrays;
 
+/**
+ * 单词的压缩编码
+ */
 public class a820 {
 
     public int minimumLengthEncoding(String[] words) {

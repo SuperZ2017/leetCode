@@ -1,6 +1,10 @@
 package Search;
 
+/**
+ * 单词搜索
+ */
 public class a79 {
+
     boolean[][] visited;
     public boolean exist(char[][] board, String word) {
         visited = new boolean[board.length][board[0].length];

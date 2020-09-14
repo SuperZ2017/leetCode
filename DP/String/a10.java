@@ -13,7 +13,7 @@ public class a10 {
 
         if (p.length() >= 2 && p.charAt(1) == '*') {
             return isMatch(s, p.substring(2)) ||    // 忽视模式串中这一部分，从*后面开始
-                    (first_match && isMatch(s.substring(1), p));   // *前面的相匹配，则从字符串后面开始匹配，意味着 * 匹配多个
+                    (first_match && isMatch(s.substring(1), p));   // *前面的相匹配，则从字符串后面开始匹配，意味着 * 匹配多个，如aa a*
         } else {
             return first_match && isMatch(s.substring(1), p.substring(1));
         }

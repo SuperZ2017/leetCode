@@ -1,4 +1,4 @@
-package week6;
+package Stack;
 
 
 import java.util.Stack;
@@ -55,8 +55,8 @@ public class a42 {
         Stack<Integer> stack =  new Stack<>();
         int current = 0;
         while (current < height.length) {
-            //如果栈不空并且当前指向的高度大于栈顶高度就一直循环
-            while (!stack.isEmpty() && height[current] > height[stack.peek()]) {
+            //如果栈不空并且当前指向的高度大于栈顶高度就一直循环，单调递减栈储存可能储水的柱子，当找到一个比前面高的柱子，就可以计算接到的雨水
+            while (!stack.isEmpty() && height[stack.peek()] < height[current]) {
                 int h = height[stack.peek()]; // 取出要出栈的元素
                 stack.pop();
                 if (stack.isEmpty())
@@ -72,6 +72,31 @@ public class a42 {
         }
 
         return sum;
+    }
+
+    public int trap_4(int[] height) {
+        int left = 0, right = height.length - 1;
+        int ans = 0;
+        int left_max = 0, right_max = 0;
+        while (left < right) {
+
+            if (height[left] < height[right]) {
+                if (height[left] >= left_max)
+                    left_max = height[left];
+                else
+                    ans += left_max - height[left];
+                left++;
+            } else {
+                if (height[right] >= right_max)
+                    right_max = height[right];
+                else
+                    ans += right_max - height[right];
+                --right;
+            }
+
+        }
+
+        return ans;
     }
 
 }

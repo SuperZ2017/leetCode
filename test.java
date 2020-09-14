@@ -83,10 +83,13 @@ public class test {
 
     public static void main(String[] args) {
 //        System.out.println("abc".indexOf("abc"));
-        StringBuilder sb = new StringBuilder();
-        sb.insert(0, 'A');
-        sb.insert(0, 'c');
-        System.out.println(sb.toString());
+//        StringBuilder sb = new StringBuilder();
+//        sb.insert(0, 'A');
+//        sb.insert(0, 'c');
+//        System.out.println(sb.toString());
+        String a = "123";
+        String b = new String("123");
+        System.out.println(a == b);
     }
 
     public int threeSumClosest(int[] nums, int target) {
@@ -181,6 +184,40 @@ public class test {
 
         return head;
     }
+
+    public TreeNode pruneTree(TreeNode root) {
+        if (root == null)
+            return null;
+
+        root.left = pruneTree(root.left);
+        root.right = pruneTree(root.right);
+        if (root.val == 0 && root.left == null && root.right == null)
+            return null;
+        return root;
+    }
+
+    String[] chars = {"","", "abc", "def", "ghi", "jkl", ",mno", "pqrs", "tuv", "wxyz"};
+    List<String> res1;
+    public List<String> letterCombinations(String digits) {
+        res1 = new LinkedList<>();
+
+        findCombination(digits, 0, "");
+        return res;
+    }
+
+    private void findCombination(String digits, int idx, String s) {
+        if (idx == digits.length()) {
+            res1.add(s);
+            return;
+        }
+
+        Character c = digits.charAt(idx);
+        String letters = chars[c - '0'];
+        for (int i = 0; i < letters.length(); i++)
+            findCombination(digits, idx + 1, s + letters.charAt(i));
+        return;
+    }
+
 
 
 }

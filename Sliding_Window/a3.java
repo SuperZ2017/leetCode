@@ -1,4 +1,4 @@
-package week3;
+package Sliding_Window;
 
 import java.util.HashMap;
 import java.util.Map;

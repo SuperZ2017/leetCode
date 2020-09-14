@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * 子集
+ *
+ * 因为是组合问题，所以我们按顺序读字符，就不需要设置 used 数组；
  */
 public class a78 {
 

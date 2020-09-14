@@ -21,7 +21,10 @@ public class a162 {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1,2,3,9,8,7,6};
-        System.out.println(findPeakElement(arr));
+//        int[] arr = {1,2,3,9,8,7,6};
+//        System.out.println(findPeakElement(arr));
+        String version = "7.5.2.4";
+        String[] num1 = version.split("\\.");
+        System.out.println(1);
     }
 }

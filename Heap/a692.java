@@ -12,7 +12,7 @@ public class a692 {
         for (String word : words)
             count.merge(word, 1, (p, o) -> p + o);
 
-        List<String>  candidates = new ArrayList<>(count.keySet());
+        List<String> candidates = new ArrayList<>(count.keySet());
         Collections.sort(candidates, (w1, w2) ->
                 count.get(w1).equals(count.get(w2)) ? w1.compareTo(w2) : count.get(w2) - count.get(w1));
 

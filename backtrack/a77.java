@@ -4,6 +4,8 @@ import java.util.*;
 
 /**
  * 组合
+ *
+ * 顺序取数 就无需使用 used 数组判断是否取过
  */
 public class a77 {
 

@@ -11,7 +11,7 @@ public class a560 {
     public int subarraySum(int[] nums, int k) {
         int n = nums.length;
         Map<Integer, Integer> preSum = new HashMap<>();
-        preSum.put(0, 0);
+        preSum.put(0, 1);
 
         int ans = 0, sum0_i = 0;
         for (int i = 0; i < nums.length; i++) {

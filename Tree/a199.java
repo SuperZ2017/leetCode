@@ -14,6 +14,8 @@ public class a199 {
 
     public List<Integer> rightSideView(TreeNode root) {
         List<Integer> res = new ArrayList<>();
+        if (root == null)
+            return res;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 

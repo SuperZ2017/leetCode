@@ -19,7 +19,7 @@ public class a236 {
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null)
-            return root;
+            return null;
         if (root == p || root == q)
             return root;
 
