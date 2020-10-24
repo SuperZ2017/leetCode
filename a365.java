@@ -63,4 +63,38 @@ public class a365 {
         }
     }
 
+
+    public int calculate(String s) {
+        char[] chars = s.replace(" ", "").toCharArray();
+        int res = 0;
+        char pre = ' ';
+        int n = chars.length;
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < chars.length; i++) {
+            StringBuilder sb = new StringBuilder();
+            while (Character.isDigit(chars[i]) && i < n) {
+                sb.append(chars[i++]);
+            }
+            int num = Integer.valueOf(sb.toString());
+            if (pre == '+')
+                stack.push(num);
+            else if (pre == '-')
+                stack.push(-num);
+            else if (pre == '*')
+                stack.push(stack.pop() * num);
+            else if (pre == '/')
+                stack.push(stack.pop() / num);
+            else
+                stack.push(num);
+
+            if (i < n)
+                pre = chars[i];
+        }
+
+        while (!stack.isEmpty())
+            res += stack.pop();
+
+        return res;
+    }
+
 }

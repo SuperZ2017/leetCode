@@ -1,6 +1,5 @@
 package Sort;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class quickSort {
@@ -31,8 +30,8 @@ public class quickSort {
 
         arr[low] = arr[i];
         arr[i] = tmp;
-        quickSort(arr, low, j - 1);
-        quickSort(arr, j + 1, high);
+        quickSort(arr, low, i - 1);
+        quickSort(arr, i + 1, high);
 
     }
 

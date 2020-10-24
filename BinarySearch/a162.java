@@ -10,7 +10,7 @@ public class a162 {
 
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if (nums[mid] > nums[mid + 1]) { //如果 m 较大，则左侧存在峰值
+            if (nums[mid] > nums[mid + 1]) { //如果 mid 较大，则左侧存在峰值
                 right = mid;
             } else {
                 left = mid + 1;

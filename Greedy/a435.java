@@ -12,7 +12,6 @@ public class a435 {
         return n - intervalSchedule(intervals);
     }
 
-
     // 算出这些区间中最多有几个互不相交的区间
     private int intervalSchedule(int[][] intvs) {
         if (intvs.length == 0)
@@ -27,6 +26,7 @@ public class a435 {
         int x_end = intvs[0][1];
         for (int[] interval : intvs) {
             int start = interval[0];
+            // 不与 x 相交
             if (start >= x_end) {
                 // 找到下一个选择的区间了
                 count++;

@@ -2,6 +2,9 @@ package Stack;
 
 import java.util.*;
 
+/**
+ * 有效的括号
+ */
 public class a20 {
 
     // 只入栈左括号，和其匹配

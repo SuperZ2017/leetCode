@@ -2,6 +2,9 @@ package Greedy;
 
 import java.util.Arrays;
 
+/**
+ * 分发糖果
+ */
 public class a135 {
 
     public int candy(int[] ratings) {
@@ -15,7 +18,7 @@ public class a135 {
             if (ratings[i] > ratings[i-1])
                 left[i] = left[i-1] + 1;
 
-        int count = left[ratings.length-1];
+        int count = left[ratings.length - 1];
 
         for (int i = ratings.length-2; i >= 0; i--) {
             if (ratings[i] > ratings[i+1])

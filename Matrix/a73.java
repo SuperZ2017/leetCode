@@ -3,6 +3,9 @@ package Matrix;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 矩阵置零
+ */
 public class a73 {
 
     public void setZeroes(int[][] matrix) {

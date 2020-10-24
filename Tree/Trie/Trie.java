@@ -2,6 +2,8 @@ package Tree.Trie;
 
 /**
  * 前缀树 208
+ *
+ * 应用：一次建树，多次查询。
  */
 public class Trie {
 

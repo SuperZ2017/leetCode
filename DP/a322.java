@@ -21,7 +21,7 @@ public class a322 {
             for (int coin : coins) {
                 if (i - coin < 0)   // 无解，跳过
                     continue;
-                dp[i] = Math.min(dp[i], 1 + dp[i-coin]);
+                dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
             }
         }
 

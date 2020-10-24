@@ -1,7 +1,7 @@
 package Bit;
 
 /**
- * 位1的个数
+ * 位 1 的个数
  */
 public class a191 {
 

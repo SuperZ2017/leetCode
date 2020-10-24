@@ -1,5 +1,8 @@
 package week6;
 
+/**
+ * Excel表列序号
+ */
 public class a171 {
 
     public static int titleToNumber(String s) {
@@ -12,10 +15,4 @@ public class a171 {
 
         return num;
     }
-
-    public static void main(String[] args) {
-        System.out.println(titleToNumber("AB"));
-//        System.out.println('Z' - 'A');
-    }
-
 }

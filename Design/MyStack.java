@@ -3,6 +3,9 @@ package Design;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 用队列实现栈 225
+ */
 class MyStack {
 
     Queue<Integer> q1 = new LinkedList<>();

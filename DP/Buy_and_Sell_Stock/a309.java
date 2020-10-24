@@ -13,8 +13,7 @@ public class a309 {
         for (int i = 0; i < n; i++) {
             int temp = dp_i_0;
             dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
-            // 解释：第 i
-            // buy 的时候，要从 i-2 的状态转移，⽽不是 i-1 。
+            // 解释：第 i 天 buy 的时候，要从 i-2 的状态转移，⽽不是 i-1 。
             dp_i_1 = Math.max(dp_i_1, dp_pre_0 - prices[i]);
             dp_pre_0 = temp;
         }

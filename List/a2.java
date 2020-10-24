@@ -20,8 +20,8 @@ public class a2 {
             int n1 = l1 == null ? 0 : l1.val;
             int n2 = l2 == null ? 0 : l2.val;
             int sum = n1 + n2 + carray;
-            carray = sum % 10;
-            cur.next = new ListNode(sum / 10);
+            carray = sum / 10;
+            cur.next = new ListNode(sum % 10);
             cur = cur.next;
             if (l1.next != null)
                 l1 = l1.next;
@@ -34,5 +34,7 @@ public class a2 {
 
         return pre.next;
     }
+
+
 
 }

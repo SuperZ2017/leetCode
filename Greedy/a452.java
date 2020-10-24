@@ -2,6 +2,9 @@ package Greedy;
 
 import java.util.Arrays;
 
+/**
+ * 用最少数量的箭引爆气球
+ */
 public class a452 {
 
     public int findMinArrowShots(int[][] points) {

@@ -1,5 +1,7 @@
 package DP;
 
+import com.sun.corba.se.impl.orbutil.graph.Graph;
+
 /**
  * 零钱兑换2，完全背包问题
  * 此时的子问题是，对于硬币从0到k，我们必须使用第k个硬币的时候，当前金额 i 的组合数。
@@ -22,6 +24,7 @@ public class a518 {
     public int change(int amount, int[] coins) {
         int[] dp = new int[amount + 1];
         dp[0] = 1;
+
         // amount 放在外层循环，得到的是所有种组合可能。与322, 518题对应看
         // 如果amount 在内层循环，得到的是去重后的结果，即顺序不同也算相同
         for (int coin : coins) {

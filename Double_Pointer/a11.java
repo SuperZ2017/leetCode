@@ -6,9 +6,9 @@ package Double_Pointer;
 public class a11 {
 
     public int maxArea(int[] height) {
-        int l = 0, r = height.length-1;
+        int l = 0, r = height.length - 1;
         int res = 0;
-        int area = 0;
+        int area;
         while (l < r) {
             area = (r - l) * Math.min(height[l], height[r]);
             res = Math.max(area, res);

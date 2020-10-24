@@ -29,7 +29,6 @@ class CQueue {
             return -1;
         while (!stack1.isEmpty())
             stack2.push(stack1.pop());
-        System.out.println();
         return stack2.pop();
     }
 }

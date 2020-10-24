@@ -4,6 +4,8 @@ import java.util.PriorityQueue;
 
 /**
  * 数据流中第K大元素
+ *
+ * 703 easy
  */
 public class KthLargest {
     final PriorityQueue<Integer> q;

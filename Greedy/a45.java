@@ -12,7 +12,7 @@ public class a45 {
         for (int i = 0; i < nums.length - 1; i++) {
             // 找到范围内最远的距离
             if (i <= maxPosition) {
-                maxPosition = Math.max(maxPosition, nums[i]+i);
+                maxPosition = Math.max(maxPosition, nums[i] + i);
                 //第一次起跳 或 到达跳跃的边界
                 if (i == end) {
                     end = maxPosition;

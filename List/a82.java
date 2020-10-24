@@ -23,8 +23,6 @@ public class a82 {
                 node.next = temp.next;
             } else
                 node = node.next;
-
-
         }
 
         return p.next;

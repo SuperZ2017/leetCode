@@ -3,7 +3,7 @@ package Design;
 import data.ListNode;
 
 /**
- * 栈实现队列
+ * 链表实现队列
  */
 public class Queue {
 
@@ -23,7 +23,7 @@ public class Queue {
         // 向表尾添加元素
         ListNode oldTail = tail;
         tail = new ListNode(val);
-        tail.next =  null;
+        tail.next = null;
         if (isEmpty()) {
             head = tail;
         } else {

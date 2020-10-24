@@ -2,6 +2,9 @@ package Design;
 
 import java.util.Stack;
 
+/**
+ * 两个栈实现队列
+ */
 class MyQueue {
     private int front;
     Stack<Integer> stack1 = new Stack<>();

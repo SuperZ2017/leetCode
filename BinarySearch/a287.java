@@ -9,7 +9,7 @@ public class a287 {
         int left = 0;
         int right = nums.length - 1;
 
-        while (left < right) {
+        while (left <= right) {
             int mid = left + (right - left) / 2;
             int cnt = 0;
             for (int num : nums) {
@@ -18,7 +18,7 @@ public class a287 {
             }
 
             if (cnt > mid) {
-                right = mid;
+                right = mid - 1;
             } else {
                 left = mid + 1;
             }

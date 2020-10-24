@@ -16,17 +16,21 @@ public class a463 {
     }
 
     int dfs(int[][] grid, int r, int c) {
+        // 从一个岛屿方格走向网格边界，周长加 1
         if (!inArea(grid,r,c))
             return 1;
 
+        // 从一个岛屿方格走向水域方格，周长加 1
         if (grid[r][c] == 0)
             return 1;
 
+        // 若该方格不是岛屿，直接返回
         if (grid[r][c] != 1)
             return 0;
 
+        // 用 2 表示已遍历过的岛屿
         grid[r][c] = 2;
-        return dfs(grid,r-1,c) + dfs(grid,r+1,c) + dfs(grid,r,c-1) + dfs(grid,r,c+1);
+        return dfs(grid,r - 1, c) + dfs(grid,r + 1, c) + dfs(grid, r,c - 1) + dfs(grid, r,c + 1);
     }
 
     boolean inArea(int[][] grid, int r, int c) {

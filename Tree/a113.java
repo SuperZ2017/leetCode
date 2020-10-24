@@ -22,12 +22,14 @@ public class a113 {
             return ;
 
         temp.add(root.val);
-        if(root.left == null && root.right == null && sum - root.val == 0){
+        sum -= root.val;
+        // ps 这里不需要 return
+        if(root.left == null && root.right == null && sum == 0){
             res.add(new ArrayList<>(temp));
         }
 
-        pathSum(root.left,sum - root.val, temp);
-        pathSum(root.right,sum - root.val, temp);
+        pathSum(root.left,sum, temp);
+        pathSum(root.right,sum, temp);
 
         temp.remove(temp.size() - 1);
     }

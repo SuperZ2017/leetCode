@@ -32,7 +32,6 @@ public class a347 {
             else {
                 queue.add(key);
                 queue.poll();
-
             }
         }
 

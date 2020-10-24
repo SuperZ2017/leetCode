@@ -74,12 +74,13 @@ public class a42 {
         return sum;
     }
 
+    // 如果一端有更高的条形块（例如右端），积水的高度依赖于当前方向的高度（从左到右）。当
+    // 我们发现另一侧（右侧）的条形块高度不是最高的，我们则开始从相反的方向遍历（从右到左）
     public int trap_4(int[] height) {
         int left = 0, right = height.length - 1;
         int ans = 0;
         int left_max = 0, right_max = 0;
         while (left < right) {
-
             if (height[left] < height[right]) {
                 if (height[left] >= left_max)
                     left_max = height[left];
@@ -93,10 +94,16 @@ public class a42 {
                     ans += right_max - height[right];
                 --right;
             }
-
         }
-
         return ans;
     }
 
+//    定理一：在某个位置i处，它能存的水，取决于它左右两边的最大值中较小的一个。
+//
+//    定理二：当我们从左往右处理到left下标时，左边的最大值left_max对它而言是可信的，但right_max对它而言是不可信的。（见下图，由于中间状况未知，对于left下标而言，right_max未必就是它右边最大的值）
+//
+//    定理三：当我们从右往左处理到right下标时，右边的最大值right_max对它而言是可信的，但left_max对它而言是不可信的。
+
+//    对于位置left而言，它左边最大值一定是left_max，右边最大值“大于等于”right_max，这时候，如果left_max<right_max成立，那么它就知道自己能存多少水了。
+//    无论右边将来会不会出现更大的right_max，都不影响这个结果。 所以当left_max<right_max时，我们就希望去处理left下标，反之，我们希望去处理right下标。
 }

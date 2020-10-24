@@ -34,6 +34,7 @@ public class a567 {
                 char c2 = ch2[left];
                 left++;
                 if (needs.containsKey(c2)) {
+                    // 先 match-- ，在减 1
                     if (windows.get(c2) == needs.get(c2))
                         match--;
                     windows.put(c2, windows.get(c2) - 1);

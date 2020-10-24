@@ -12,7 +12,7 @@ public class a34 {
             return nums[0] == target ? new int[]{0,0} : new int[]{-1,-1};
         int start = leftSearch(nums, target);
         int end = rightSearch(nums, target);
-        return new int[]{start,end};
+        return new int[]{start, end};
     }
 
     public static int leftSearch(int[] nums, int target) {

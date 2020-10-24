@@ -22,6 +22,7 @@ public class a221 {
                     if (i == 0 || j == 0) {
                         dp[i][j] = 1;
                     } else {
+                        // 注意，选择长度最短的
                         dp[i][j] = min(dp[i-1][j], min(dp[i][j-1], dp[i-1][j-1])) + 1;
                     }
                 }

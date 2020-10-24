@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,22 +23,54 @@ public class Main {
         return dp[n][w];
     }
 
+//    public static void main(String[] args) {
+//        Scanner input = new Scanner(System.in);
+//        while (input.hasNextInt()) {
+//            int n = input.nextInt(); // 总钱数
+//            int m = input.nextInt(); // 商品个数
+//            int[] p = new int[m];
+//            int[] v = new int[m];
+//            int[] q = new int[m];
+//            for (int i = 0; i < m; i++) {
+//                p[i] = input.nextInt();        // 价格
+//                v[i] = input.nextInt() * p[i]; // 价值
+//                q[i] = input.nextInt();        // 主or附件
+//            }
+//            System.out.println(getMaxValue(v, p, q, m, n));
+//        }
+//    }
+
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        while (input.hasNextInt()) {
-            int n = input.nextInt(); // 总钱数
-            int m = input.nextInt(); // 商品个数
-            int[] p = new int[m];
-            int[] v = new int[m];
-            int[] q = new int[m];
-            for (int i = 0; i < m; i++) {
-                p[i] = input.nextInt();        // 价格
-                v[i] = input.nextInt() * p[i]; // 价值
-                q[i] = input.nextInt();        // 主or附件
-            }
-            System.out.println(getMaxValue(v, p, q, m, n));
-        }
+        String str1 = "todo";
+        String str2 = "todo";
+        String str3 = "to";
+        String str4 = "do";
+        String str5 = str3 + str4;
+        String str6 = new String(str1);
+        String str7 = "to" + "do";									// str1 == str7  true
+
+        System.out.println("------普通String测试结果------");
+        System.out.print("str1 == str2 ? ");
+        System.out.println( str1 == str2);								// true
+        System.out.print("str1 == str5 ? ");
+        System.out.println(str1 == str5);								// false
+        System.out.print("str1 == str6 ? ");
+        System.out.print(str1 == str6);									// false
+        System.out.println();
+
+        System.out.println("---------intern测试结果---------");
+        System.out.print("str1.intern() == str2.intern() ? ");
+        System.out.println(str1.intern() == str2.intern());				// true
+        System.out.print("str1.intern() == str5.intern() ? ");
+        System.out.println(str1.intern() == str5.intern());				// true
+        System.out.print("str1.intern() == str6.intern() ? ");
+        System.out.println(str1.intern() == str6.intern());				// true
+        System.out.print("str1 == str6.intern() ? ");
+        System.out.println(str1 == str6.intern());						// true
+        System.out.print("str6 == str1.intern() ? ");
+        System.out.println(str6 == str1.intern());						// false
     }
+
 
 
 }

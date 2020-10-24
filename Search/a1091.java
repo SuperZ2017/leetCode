@@ -23,6 +23,7 @@ public class a1091 {
         grid[0][0] = 1;  // 直接用grid[i][j]记录从起点到这个点的最短路径长。按照题意 起点也有长度1
         pos.add(new int[]{0,0});
 
+        // 第二个条件不满足时，说明已经有路径到达右下角了，就可以停止搜索。
         while (!pos.isEmpty() && grid[row-1][col-1] == 0) {  // 求最短路径 使用BFS
             int[] xy = pos.remove();
             int preLength = grid[xy[0]][xy[1]];

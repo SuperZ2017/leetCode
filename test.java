@@ -81,16 +81,6 @@ public class test {
     }
 
 
-    public static void main(String[] args) {
-//        System.out.println("abc".indexOf("abc"));
-//        StringBuilder sb = new StringBuilder();
-//        sb.insert(0, 'A');
-//        sb.insert(0, 'c');
-//        System.out.println(sb.toString());
-        String a = "123";
-        String b = new String("123");
-        System.out.println(a == b);
-    }
 
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
@@ -218,7 +208,35 @@ public class test {
         return;
     }
 
+    public static void main(String[] args) {
+        char c = '2';
 
+//        char d = String.valueOf(c).toLowerCase().charAt(0);
+        System.out.println(Character.isLetter(c));
+    }
 
+    public void quickSort(int[] nums, int start, int end) {
+        if (start > end)
+            return;
+        int temp, t, l, r;
+        l = start;
+        r = end;
+        temp = nums[start];
+
+        while (l < r) {
+            while (l < r && nums[r] < temp)
+                r--;
+            while (l < r && nums[l] > temp)
+                l++;
+            t = nums[l];
+            nums[l] = nums[r];
+            nums[r] = t;
+        }
+
+        nums[start] = nums[l];
+        nums[l] = temp;
+        quickSort(nums, start, l - 1);
+        quickSort(nums, l + 1, end);
+    }
 }
 

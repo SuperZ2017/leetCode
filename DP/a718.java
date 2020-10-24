@@ -18,7 +18,6 @@ public class a718 {
                 ans = Math.max(ans, dp[i][j]);
             }
         }
-
         return ans;
     }
 }

@@ -1,8 +1,12 @@
 package Sort;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
+
+/**
+ * 归并排序
+ *
+ * 稳定排序
+ */
 public class mergeSort {
 
     public static void mergeSort (int[] arr, int low, int high) {
@@ -31,7 +35,7 @@ public class mergeSort {
         while (pos2 <= high)
             help[i++] = arr[pos2++];
         for (int j = 0; j < help.length; j++) {
-            arr[low+j] = help[j];
+            arr[low + j] = help[j];
         }
     }
 

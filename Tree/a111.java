@@ -16,7 +16,7 @@ public class a111 {
         // 没有左子树
         if (root.left == null)
             return 1 + minDepth(root.right);
-        // 没有右子数
+        // 没有右子树
         if (root.right == null)
             return 1 + minDepth(root.left);
 
@@ -47,27 +47,5 @@ public class a111 {
         }
 
         return -1;
-    }
-
-    public List<Integer> inorderTraversal(TreeNode root) {
-        LinkedList<TreeNode> stack = new LinkedList<>();
-        List<Integer> res = new ArrayList<>();
-
-        stack.add(root);
-
-        while (!stack.isEmpty()) {
-
-            while (root.left != null) {
-                stack.add(root.left);
-                root = root.left;
-            }
-
-            TreeNode node = stack.poll();
-            res.add(node.val);
-            root = root.right;
-
-        }
-
-        return res;
     }
 }

@@ -22,7 +22,7 @@ public class NStack {
         return t;
     }
 
-    public int max() {
+    public int max()  {
         return max;
     }
 }

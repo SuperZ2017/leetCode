@@ -14,7 +14,8 @@ public class a234 {
     }
 
     boolean traverse(ListNode right) {
-        if(right == null) return true;
+        if(right == null)
+            return true;
         boolean res = traverse(right.next);
         res = res && (right.val == left.val);
         left = left.next;

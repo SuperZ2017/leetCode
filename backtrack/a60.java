@@ -1,7 +1,6 @@
 package backtrack;
 
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * 第K个排列
@@ -36,12 +35,18 @@ public class a60 {
                 backTrack(n, k);
                 if (count == k)
                     return;
-                used[i-1] = false;
+                used[i - 1] = false;
                 res.removeLast();
             }
         }
 
         return;
+    }
+
+    public static void main(String[] args) {
+        int n = 3, k = 3;
+        a60 a = new a60();
+        a.getPermutation(n, k);
     }
 
 }

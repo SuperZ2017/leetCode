@@ -53,7 +53,6 @@ public class MyBlockingQueue<E> {
                     Thread.sleep((int) (Math.random() * 100));
                 }
             } catch (InterruptedException e){
-
             }
         }
     }
@@ -75,7 +74,6 @@ public class MyBlockingQueue<E> {
                     Thread.sleep((int) (Math.random() * 100));
                 }
             } catch (InterruptedException e){
-
             }
         }
     }

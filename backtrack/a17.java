@@ -31,7 +31,6 @@ public class a17 {
         for (int i = 0; i < letters.length(); i++) {
             findCombination(digits, index + 1, s + letters.charAt(i));
         }
-
         return;
     }
 }

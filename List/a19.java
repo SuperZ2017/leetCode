@@ -25,6 +25,5 @@ public class a19 {
 
         // 删除后返回 pre.next，为什么不直接返回 head 呢，因为 head 有可能是被删掉的点
         return pre.next;
-
     }
 }

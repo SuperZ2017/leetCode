@@ -1,5 +1,8 @@
 package DP;
 
+/**
+ * 最低票价
+ */
 public class a983 {
 
     public int mincostTickets(int[] days, int[] costs) {

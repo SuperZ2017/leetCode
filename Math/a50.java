@@ -1,5 +1,8 @@
 package Math;
 
+/**
+ * Pow(x,n)
+ */
 public class a50 {
 
     public static void main(String[] args) {

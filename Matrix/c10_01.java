@@ -10,9 +10,9 @@ public class c10_01 {
         int j = n - 1;
         while (i >= 0 && j >= 0) {
             if (B[j] >= A[i]) {
-                A[i+j+1] = B[j--];
+                A[i + j + 1] = B[j--];
             } else {
-                A[i+j+1] = A[i--];
+                A[i + j + 1] = A[i--];
             }
         }
 

@@ -30,6 +30,7 @@ public class a77 {
 
         for (int i = start; i <= n; i++) {
             track.add(i);
+            // ps 这里如果使用 idx + 1 表明
             backtrack(n, k, i + 1, track);
             track.removeLast();
         }

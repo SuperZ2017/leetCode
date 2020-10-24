@@ -1,6 +1,5 @@
 package String;
 
-
 /**
  * 字符串相乘
  */

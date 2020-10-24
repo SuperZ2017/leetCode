@@ -5,6 +5,11 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 队列的最大值
+ *
+ * b59
+ */
 class MaxQueue {
 
     // deque 队首元素就是队列的最大值

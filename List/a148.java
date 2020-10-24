@@ -2,6 +2,9 @@ package List;
 
 import data.ListNode;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
 /**
  * 排序链表
  */
@@ -45,7 +48,7 @@ public class a148 {
         while(itrv < len) {
             ListNode pre = dummy;
             ListNode h = dummy.next;
-            // 找到合并链表的h1和h2头节点
+            // 找到合并链表的 h1 和 h2 头节点
             while(h != null) {
                 int i = itrv;
                 ListNode h1 = h;

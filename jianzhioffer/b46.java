@@ -1,7 +1,12 @@
 package jianzhioffer;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 把数字翻译成字符串
+ *
+ * 动态规划
  */
 public class b46 {
 

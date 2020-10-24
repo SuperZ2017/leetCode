@@ -1,5 +1,8 @@
 package Math;
 
+/**
+ * x 的平方根
+ */
 public class a69 {
 
     public int mySqrt(int x) {

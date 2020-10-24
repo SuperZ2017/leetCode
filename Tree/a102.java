@@ -10,7 +10,7 @@ import java.util.*;
 public class a102 {
 
     // BFS
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public static List<List<Integer>>  levelOrder(TreeNode root){
         if (root == null)
             return Collections.emptyList();
 
@@ -56,4 +56,5 @@ public class a102 {
         if (node.right != null)
             dfs(node.right, level + 1);
     }
+
 }

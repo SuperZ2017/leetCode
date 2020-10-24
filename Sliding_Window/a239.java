@@ -21,7 +21,6 @@ public class a239 {
                 deque.pollFirst();
 
             // 队头保持最大值
-
             while (!deque.isEmpty() && nums[deque.peekLast()] <= nums[i])
                 deque.pollLast();
 

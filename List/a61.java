@@ -22,7 +22,7 @@ public class a61 {
 
         ListNode new_tail = head;
         // 新的链表头是第 (n - k % n) 个节点
-        for (int i = 0; i < n- k%n - 1; i++)
+        for (int i = 0; i < n- k % n - 1; i++)
             new_tail = new_tail.next;
 
         ListNode new_head = new_tail.next;

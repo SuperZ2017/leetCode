@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 全排列 1
+ * 全排列 1，nums 中没有重复的数字
  */
 public class a46 {
 
@@ -25,6 +25,7 @@ public class a46 {
         }
 
         for (int i = 0; i < nums.length; i++) {
+            // ps : used数组用于前进和去重
             if (used[i])
                 continue;
             used[i] = true;
