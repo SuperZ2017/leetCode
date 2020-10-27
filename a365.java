@@ -42,13 +42,13 @@ public class a365 {
                 addIntoQueue(queue, visited, new AbstractMap.SimpleEntry<>(curX, 0));
             }
 
-            // y - curY是第二个桶还可以再加的水的升数，但是最多只能加curX升水。
+            // y - curY 是第二个桶还可以再加的水的升数，但是最多只能加 curX 升水。
             int moveSize = Math.min(curX, y - curY);
             // 把第一个桶里的curX升水倒到第二个桶里去。
             addIntoQueue(queue, visited, new AbstractMap.SimpleEntry<>(curX - moveSize, curY + moveSize));
-            // 反过来同理，x - curX是第一个桶还可以再加的升数，但是最多只能加curY升水。
+            // 反过来同理，x - curX 是第一个桶还可以再加的升数，但是最多只能加 curY 升水。
             moveSize = Math.min(curY, x - curX);
-            // 把第一个桶里的curX升水倒到第二个桶里去。
+            // 把第一个桶里的 curX 升水倒到第二个桶里去。
             addIntoQueue(queue, visited, new AbstractMap.SimpleEntry<>(curX + moveSize, curY - moveSize));
         }
         return false;
@@ -62,39 +62,4 @@ public class a365 {
             queue.add(newEntry);
         }
     }
-
-
-    public int calculate(String s) {
-        char[] chars = s.replace(" ", "").toCharArray();
-        int res = 0;
-        char pre = ' ';
-        int n = chars.length;
-        Stack<Integer> stack = new Stack<>();
-        for (int i = 0; i < chars.length; i++) {
-            StringBuilder sb = new StringBuilder();
-            while (Character.isDigit(chars[i]) && i < n) {
-                sb.append(chars[i++]);
-            }
-            int num = Integer.valueOf(sb.toString());
-            if (pre == '+')
-                stack.push(num);
-            else if (pre == '-')
-                stack.push(-num);
-            else if (pre == '*')
-                stack.push(stack.pop() * num);
-            else if (pre == '/')
-                stack.push(stack.pop() / num);
-            else
-                stack.push(num);
-
-            if (i < n)
-                pre = chars[i];
-        }
-
-        while (!stack.isEmpty())
-            res += stack.pop();
-
-        return res;
-    }
-
 }

@@ -7,27 +7,6 @@ import data.ListNode;
  */
 public class a92 {
 
-    public ListNode reverseBetween(ListNode head, int m, int n) {
-        if (m == 1)
-            return reverseN(head, n);
-
-        head.next = reverseBetween(head.next, m - 1, n - 1);
-        return head;
-    }
-
-    ListNode successor = null;
-    ListNode reverseN(ListNode head, int n) {
-        if (n == 1) {
-            successor = head.next;
-            return head;
-        }
-
-        ListNode last = reverseN(head.next, n - 1);
-        head.next.next = head;
-        head.next = successor;
-        return last;
-    }
-
     public ListNode reverseBetween_1(ListNode head, int m, int n) {
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
@@ -48,5 +27,26 @@ public class a92 {
         pre.next.next = cur;
         pre.next = node;
         return dummy.next;
+    }
+
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        if (m == 1)
+            return reverseN(head, n);
+
+        head.next = reverseBetween(head.next, m - 1, n - 1);
+        return head;
+    }
+
+    ListNode successor = null;
+    ListNode reverseN(ListNode head, int n) {
+        if (n == 1) {
+            successor = head.next;
+            return head;
+        }
+
+        ListNode last = reverseN(head.next, n - 1);
+        head.next.next = head;
+        head.next = successor;
+        return last;
     }
 }

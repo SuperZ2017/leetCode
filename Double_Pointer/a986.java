@@ -1,4 +1,4 @@
-package Matrix;
+package Double_Pointer;
 
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class a986 {
 
             // 两个区间存在交集
             if (b2 >= a1 && a2 >= b1) {
-                ans.add(new int[]{Math.max(a1, b1),Math.min(a2, b2)});
+                ans.add(new int[]{Math.max(a1, b1), Math.min(a2, b2)});
             }
 
             // 指针前进

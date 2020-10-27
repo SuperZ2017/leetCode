@@ -4,6 +4,8 @@ import data.TreeNode;
 
 /**
  * 把二叉搜索树转换为累加树
+ *
+ * 反中序遍历
  */
 public class a538 {
 

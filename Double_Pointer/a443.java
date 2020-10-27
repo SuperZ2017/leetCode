@@ -1,4 +1,4 @@
-package String;
+package Double_Pointer;
 
 /**
  * 压缩字符串

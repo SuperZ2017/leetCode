@@ -12,7 +12,7 @@ public class a435 {
         return n - intervalSchedule(intervals);
     }
 
-    // 算出这些区间中最多有几个互不相交的区间
+    // 算出这些区间中最多有 几个 互不相交 的区间
     private int intervalSchedule(int[][] intvs) {
         if (intvs.length == 0)
             return 0;

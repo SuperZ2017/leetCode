@@ -1,4 +1,4 @@
-package week6;
+package Vote;
 
 import java.util.*;
 
@@ -6,6 +6,18 @@ import java.util.*;
  * 多数元素
  */
 public class a169 {
+
+    public int majorityElement1(int[] nums) {
+        int x = 0, votes = 0;
+        for (int num : nums) {
+            if (votes == 0)
+                x = num;
+
+            votes += num == x ? 1 : -1;
+        }
+
+        return x;
+    }
 
     public int majorityElement(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
@@ -42,18 +54,4 @@ public class a169 {
         }
         return count;
     }
-
-    public int majorityElement1(int[] nums) {
-        int x = 0, votes = 0;
-        for (int num : nums) {
-            if (votes == 0)
-                x = num;
-
-            votes += num == x ? 1 : -1;
-        }
-
-        return x;
-    }
-
-
 }

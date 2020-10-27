@@ -7,6 +7,6 @@ package Math;
 public class a470 {
 
 //    public int rand10() {
-//        return (rand7()+rand7()+rand7()+rand7()+rand7()+rand7()+rand7()+rand7()+rand7()+rand7())%10 ;
+//        return (rand7() + rand7() + rand7() + rand7() + rand7() + rand7() + rand7() + rand7() + rand7() + rand7()) % 10 ;
 //    }
 }

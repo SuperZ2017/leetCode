@@ -3,7 +3,7 @@ package backtrack;
 import java.util.LinkedList;
 
 /**
- * 第K个排列
+ * 第 K个排列
  */
 public class a60 {
 

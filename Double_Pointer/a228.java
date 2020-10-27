@@ -1,4 +1,4 @@
-package String;
+package Double_Pointer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class a228 {
 
+    // j 指向连续区间的最后一个元素，i 指向连续区间的开头元素
     public List<String> summaryRanges(int[] nums) {
         List<String> res = new ArrayList<>();
         for (int i = 0, j = 0; j < nums.length; j++) {

@@ -15,7 +15,7 @@ public class a404 {
         //是否是当前节点的左孩子
         //当前节点的左孩子是不是叶子节点（叶子结点：没有左右孩子）
         if(root.left != null && (root.left.left == null && root.left.right == null)){
-            result = result +root.left.val;
+            result = result + root.left.val;
         }
         sumOfLeftLeaves(root.left);
         sumOfLeftLeaves(root.right);

@@ -1,4 +1,4 @@
-package Matrix;
+package Double_Pointer;
 
 import java.util.*;
 

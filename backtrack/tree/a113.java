@@ -1,4 +1,4 @@
-package Tree;
+package backtrack.tree;
 
 import data.TreeNode;
 

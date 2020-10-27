@@ -34,42 +34,4 @@ public class a491 {
             }
         }
     }
-
-    public int findTriangle(int[] A) {
-        if (A == null || A.length <= 2) {
-            return 0;
-        }
-        Arrays.sort(A);
-        int count = 0;
-        for (int i = A.length - 1; i > 1 ; i++) {
-            int left = 0, right = i - 1;
-            while (left < right) {
-                if (A[left] + A[right] > A[i]) {
-                    count += right - left;
-                    right--;
-                } else {
-                    left++;
-                }
-            }
-        }
-
-        return count;
-    }
-
-    public int[] getWater(int[] W, int requirement) {
-        int left = 0, right = W.length - 1;
-        Arrays.sort(W);
-        while (left < right) {
-            int sum = W[left] + W[right];
-            if (sum == requirement) {
-                return new int[]{left, right};
-            } else if (sum > requirement) {
-                right--;
-            } else if (sum < requirement) {
-                left++;
-            }
-        }
-
-        return new int[]{-1, -1};
-    }
 }

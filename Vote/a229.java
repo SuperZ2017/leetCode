@@ -1,4 +1,4 @@
-package Matrix;
+package Vote;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,7 @@ public class a229 {
                 count1++;
                 continue;
             }
+
             if (cand2 == num) {
                 count2++;
                 continue;

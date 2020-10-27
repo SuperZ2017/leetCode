@@ -26,7 +26,7 @@ public class a518 {
         dp[0] = 1;
 
         // amount 放在外层循环，得到的是所有种组合可能。与322, 518题对应看
-        // 如果amount 在内层循环，得到的是去重后的结果，即顺序不同也算相同
+        // 如果 amount 在内层循环，得到的是去重后的结果，即顺序不同也算相同
         for (int coin : coins) {
             for (int i = coin; i <= amount; i++) {
                 if (i >= coin)

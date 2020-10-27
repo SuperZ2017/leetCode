@@ -1,4 +1,4 @@
-package week6;
+package Double_Pointer;
 
 /**
  * 颜色分类

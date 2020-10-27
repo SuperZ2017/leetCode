@@ -56,7 +56,7 @@ public class a94 {
     }
 
     /**
-     * 二叉树后序遍历
+     * 二叉树后序遍历  左 -> 右 -> 根
      * @param root
      * @return
      */

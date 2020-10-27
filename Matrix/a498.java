@@ -12,7 +12,7 @@ public class a498 {
         int r = 0,c = 0;
         int row = matrix.length, col = matrix[0].length;
         int[] res = new int[row * col];
-        for(int i = 0;i < res.length; i++){
+        for(int i = 0; i < res.length; i++){
             res[i] = matrix[r][c];
             if((r + c) % 2 == 0){
                 if(c == col - 1){
