@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 /**
- * 合并K个升序链表
+ * 合并 K 个升序链表
  */
 public class a23 {
 
     public static ListNode mergeKLists(ListNode[] lists) {
         ListNode dummy = new ListNode(0);
         ListNode p = dummy;
-        PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>((a, b) -> a.val - b.val); // 最小堆
+        PriorityQueue<ListNode> queue = new PriorityQueue<>((a, b) -> a.val - b.val); // 最小堆
         for (ListNode list : lists)
             if (list != null)
                 queue.add(list);

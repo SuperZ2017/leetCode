@@ -1,4 +1,4 @@
-package DP;
+package DP.Matrix;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 

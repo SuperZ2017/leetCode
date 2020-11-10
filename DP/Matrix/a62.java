@@ -1,4 +1,4 @@
-package DP;
+package DP.Matrix;
 
 /**
  * 不同路径

@@ -16,7 +16,7 @@ public class a322 {
         Arrays.fill(dp, amount + 1);
         dp[0] = 0;
 
-        for (int i = 0; i < amount; i++) {
+        for (int i = 1; i <= amount; i++) {
             // 求所有子问题的最小解
             for (int coin : coins) {
                 if (i - coin < 0)   // 无解，跳过
