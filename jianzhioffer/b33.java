@@ -30,8 +30,8 @@ public class b33 {
         return recur(postorder, 0, postorder.length - 1);
     }
 
-    // 寻找 第一个大于根节点 的节点，索引记为 mm 。
-    // 此时，可划分出左子树区间 [i,m-1][i,m−1] 、右子树区间 [m, j - 1][m,j−1] 、根节点索引 j 。
+    // 寻找 第一个大于根节点 的节点，索引记为 m 。
+    // 此时，可划分出左子树区间 [i, m-1]、右子树区间 [m, j - 1]、根节点索引 j 。
     // 左子树区间 [i, m - 1] 内的所有节点都应 < postorder[j] 。而第 1.划分左右子树 步骤已经保证左子树区间的正确性，因此只需要判断右子树区间即可。
     // 右子树区间 [m, j-1] 内的所有节点都应 > postorder[j] 。实现方式为遍历，当遇到 ≤postorder[j] 的节点则跳出；则可通过 p = j判断是否为二叉搜索树。
     boolean recur(int[] postorder, int i, int j){

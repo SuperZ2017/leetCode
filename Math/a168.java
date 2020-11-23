@@ -14,7 +14,7 @@ public class a168 {
                 c = 26;
                 n -= 1;
             }
-            sb.insert(0, (char)('A'+c-1));
+            sb.insert(0, (char)('A' + c - 1));
             n /= 26;
         }
 

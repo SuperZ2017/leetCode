@@ -1,7 +1,5 @@
 package DP.Buy_and_Sell_Stock;
 
-import java.util.Arrays;
-
 /**
  * 买卖股票，最多交易一次
  */

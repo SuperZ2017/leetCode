@@ -1,6 +1,5 @@
 package Design;
 
-
 import java.util.Stack;
 
 /**
@@ -9,6 +8,7 @@ import java.util.Stack;
  * 分别完成在队列尾部插入整数和在队列头部删除整数的功能。
  * (若队列中没有元素，deleteHead 操作返回 -1 )
  *
+ * b9
  */
 class CQueue {
     // stack1 用于入栈，stack2 用于出栈

@@ -36,7 +36,7 @@ public class a76 {
 
                 char c2 = s.charAt(left);
                 if (needs.containsKey(c2)) {
-                    window.put(c2, window.get(c2)-1);
+                    window.put(c2, window.get(c2) - 1);
                     if (window.get(c2) < needs.get(c2))
                         match--;
                 }

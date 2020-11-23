@@ -6,7 +6,7 @@ public class MyReadWriteLock {
     private int writers = 0;
     private int writeRequests = 0;  // 请求写锁
 
-    // 读锁的实现在lockRead()中,只要没有线程拥有写锁（writers==0），且没有线程在请求写锁（writeRequests ==0），所有想获得读锁的线程都能成功获取。
+    // 读锁的实现在lockRead()中，只要没有线程拥有写锁（writers==0），且没有线程在请求写锁（writeRequests ==0），所有想获得读锁的线程都能成功获取。
     public synchronized void lockRead() throws InterruptedException {
         while (writers > 0 || writeRequests > 0) {
             wait();

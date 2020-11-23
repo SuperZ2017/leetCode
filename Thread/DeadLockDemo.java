@@ -37,7 +37,6 @@ public class DeadLockDemo {
         }).start();
     }
 
-
     public static void main(String[] args) {
         startThreadA();
         startThreadB();
