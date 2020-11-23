@@ -55,7 +55,7 @@ public class test1 {
 
     public static void main(String[] args) {
         test1 test1 = new test1();
-        int[][] graph = {{0, 1}, {1, 2}, {2, 3}, {3, 4}, {4, 1}};
+        int[][] graph = {{0, 1}, {1, 2}, {2, 0}};
         boolean f = test1.hasCycle(graph);
         System.out.println(f);
     }

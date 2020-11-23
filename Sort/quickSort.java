@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class quickSort {
 
+    // ps 结束条件、先从右往左，再从左往右
     public static void quickSort (int[] arr, int low, int high) {
         int i, j, tmp, t;
         i = low;

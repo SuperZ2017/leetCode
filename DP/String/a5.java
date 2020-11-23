@@ -2,6 +2,9 @@ package DP.String;
 
 import data.ListNode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 最长回文子串
  *
@@ -12,7 +15,6 @@ public class a5 {
     public String longestPalindrome(String s) {
         if (s == null || s.length() < 2)
             return s;
-
         int strLen = s.length();
         int maxStart = 0;
         int maxEnd = 0;
@@ -33,5 +35,18 @@ public class a5 {
         }
 
         return s.substring(maxStart, maxEnd + 1);
+    }
+
+    public static void main(String[] args) {
+        Integer a = 12;
+        String b = "你好";
+        a5 a1 = new a5();
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(1, 12);
+        map.put(3, 12);
+        System.out.println(map.hashCode());
+        System.out.println(a1.hashCode());
+        System.out.println(a.hashCode());
+        System.out.println(b.hashCode());
     }
 }

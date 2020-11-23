@@ -3,7 +3,7 @@ package week6;
 /**
  * 一年中的第几天
  */
-public class a1154 {
+class a1154 {
 
     public int dayOfYear(String date) {
         // "2019-8-20"

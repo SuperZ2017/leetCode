@@ -14,7 +14,7 @@ public class a718 {
         // 首先计算 dp[len(A) - 1][len(B) - 1]，最后计算 dp[0][0]
         for (int i = n-1; i >= 0; i--) {
             for (int j = m-1; j >= 0; j--) {
-                dp[i][j] = A[i] == B[j] ? dp[i+1][j+1] + 1 : 0;
+                dp[i][j] = A[i] == B[j] ? dp[i + 1][j + 1] + 1 : 0;
                 ans = Math.max(ans, dp[i][j]);
             }
         }

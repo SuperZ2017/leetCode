@@ -49,8 +49,9 @@ public class test2 {
 
     public static void main(String[] args) {
         test2 test2 = new test2();
-        System.out.println(1 != 1);
+//        System.out.println(1 != 1);
 //        test2.startThreadA();
 //        test2.startThreadB();
+        System.out.println(54321 + 12345);
     }
 }

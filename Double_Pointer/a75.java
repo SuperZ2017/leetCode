@@ -18,7 +18,7 @@ public class a75 {
                 nums[p0++] = nums[curr];
                 nums[curr++] = tmp;
             } else if (nums[curr] == 2) {
-                // 交换第 k 个和第 curr 个元素
+                // 交换第 p2 个和第 curr 个元素
                 // p2--
                 tmp = nums[curr];
                 nums[curr] = nums[p2];
