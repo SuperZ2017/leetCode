@@ -1,4 +1,4 @@
-package Matrix;
+package Intervals;
 
 import java.util.Arrays;
 

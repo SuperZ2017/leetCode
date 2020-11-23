@@ -15,7 +15,7 @@ public class a377 {
         for (int i = 1; i <= target; i++) {
             for (int num : nums) {
                 if (i >= num)
-                    dp[i] += dp[i-num];
+                    dp[i] += dp[i - num];
             }
         }
         return dp[target];

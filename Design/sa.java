@@ -1,4 +1,0 @@
-package Design;
-
- interface sa {
-}

@@ -15,7 +15,7 @@ public class a845 {
                 while (right + 1 < n && A[right] < A[right + 1]) {
                     right++;
                 }
-                if (right < n - 1 && A[right] > A[right + 1]) {
+                if (right + 1 < n && A[right] > A[right + 1]) {
                     while (right + 1 < n && A[right] > A[right + 1]) {
                         right++;
                     }

@@ -7,6 +7,45 @@ import java.util.*;
  */
 public class a15 {
 
+    public List<List<Integer>> second(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        //排序
+        Arrays.sort(nums);
+
+        int len = nums.length;
+        for (int i = 0; i < len; i++) {
+
+            if (nums[i] > 0)
+                return result;
+
+            // 去重，跳过重复的
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+
+            int cur = nums[i];
+            int L = i + 1, R = len - 1;
+
+            //举例[-1, 0, 0, 1, 1]
+            while (L < R) {
+                int temp = cur + nums[L] + nums[R];
+                if (temp == 0) {
+                    result.add(Arrays.asList(cur, nums[L], nums[R]));
+                    while (L < R && nums[L + 1] == nums[L])
+                        ++L;
+                    while (L < R && nums[R - 1] == nums[R])
+                        --R;
+                    ++L;
+                    --R;
+                } else if (temp < 0) {
+                    ++L;
+                } else {
+                    --R;
+                }
+            }
+        }
+        return result;
+    }
+
     public List<List<Integer>> threeSum(int[] nums) {
         if (nums == null || nums.length <= 2)
             return Collections.emptyList();
@@ -30,44 +69,5 @@ public class a15 {
             }
         }
         return new ArrayList<>(sum);
-    }
-
-    public List<List<Integer>> second(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        //排序
-        Arrays.sort(nums);
-
-        int len = nums.length;
-        for (int i = 0; i < len; i++) {
-
-            if (nums[i] > 0)
-                return result;
-
-            // 去重，跳过重复的
-            if (i > 0 && nums[i] == nums[i-1])
-                continue;
-
-            int cur = nums[i];
-            int L = i + 1, R = len - 1;
-
-            //举例[-1, 0, 0, 1, 1]
-            while (L < R) {
-                int temp = cur + nums[L] + nums[R];
-                if (temp == 0) {
-                    result.add(Arrays.asList(cur, nums[L], nums[R]));
-                    while (L < R && nums[L+1] == nums[L])
-                        ++L;
-                    while (L < R && nums[R-1] == nums[R])
-                        --R;
-                    ++L;
-                    --R;
-                } else if (temp < 0) {
-                    ++L;
-                } else {
-                    --R;
-                }
-            }
-        }
-        return result;
     }
 }

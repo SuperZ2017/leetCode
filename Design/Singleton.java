@@ -7,7 +7,6 @@ public class Singleton {
     private Singleton(){}
 
     private static Singleton getInstance() {
-
         if (instance == null) {
             synchronized (Singleton.class) {
                 if (instance == null) {
@@ -17,7 +16,4 @@ public class Singleton {
         }
         return instance;
     }
-
-
-
 }

@@ -1,6 +1,9 @@
 package Utils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * 中缀表达式转后缀表达式
@@ -11,8 +14,7 @@ public class d2 {
     Stack<String> vals;
     // 操作符栈
     Stack<Character> ops;
-
-    public  List<String> convert(String expr) {
+    public List<String> convert(String expr) {
         ops = new Stack<>();
         vals = new Stack<>();
         char[] exprs = expr.toCharArray();
@@ -90,36 +92,9 @@ public class d2 {
     }
 
     public static void main(String[] args) {
-//        d2 d2 = new d2();
-//        String s = "10+2*3+(4*5+6)*7";
-//        System.out.println(d2.convert(s));
-        Collection<Integer> list = new ArrayList<>();
-        Set<Integer> set = new HashSet<>();
-        set.add(1);
-        set.add(2);
-        list.add(11);
-        list.add(12);
-        get(list);
-        get(list);
-        get(list);
-        get1(set);
+        d2 d2 = new d2();
+        String s = "10+2*3+(4*5+6)*7";
+        System.out.println(d2.convert(s));
     }
-
-    static void get1(Set set) {
-        System.out.println("jj");
-    }
-
-    static void get(Collection col) {
-        System.out.println("hh");
-    }
-
-//    static void get(List list) {
-//        System.out.println("ll");
-//    }
-//
-//    static void get(ArrayList arr) {
-//        System.out.println("kk");
-//    }
-
 
 }

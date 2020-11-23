@@ -34,11 +34,11 @@ public class a13 {
                     num += map.get(c);
                     i++;
                 } else {
-                    num += map.get(""+a);
+                    num += map.get("" + a);
                 }
             } else {
                 char d = s.charAt(i);
-                num += map.get(""+d);
+                num += map.get("" + d);
             }
         }
         return num;

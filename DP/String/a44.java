@@ -8,12 +8,12 @@ public class a44 {
 
     public boolean isMatch(String s, String p) {
         // dp[i][j]表示s截止到第i个位置(s[i-1])的子串与p截止到第j个位置(p[j-1])的子串是否匹配
-        boolean[][] dp = new boolean[s.length()+1][s.length()+1];
+        boolean[][] dp = new boolean[s.length() + 1][s.length() + 1];
         dp[0][0] = true;
 
         for (int j = 1; j <= p.length(); j++)
-            if (p.charAt(j-1) == '*')
-                dp[0][j] = dp[0][j-1];
+            if (p.charAt(j - 1) == '*')
+                dp[0][j] = dp[0][j - 1];
 
         // 注意 i,j 表示的是 s 和 p 中第几个字符，对应的索引索引是 i - 1, j - 1
         for (int i = 1; i <= s.length(); i++) {

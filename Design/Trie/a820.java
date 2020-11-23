@@ -1,4 +1,4 @@
-package Tree.Trie;
+package Design.Trie;
 
 import java.util.Arrays;
 
