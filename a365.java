@@ -9,7 +9,7 @@ public class a365 {
         if (z == 0) {
             return true;
         }
-        if (x + y < z) {
+        if (x + y <= z) {
             return false;
         }
         Queue<Map.Entry<Integer, Integer>> queue = new ArrayDeque<>();
