@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 有两个线程分别读取数组a和数组b，线程1循环打印数组a中的数字，线程2循环打印数组b中的数
+ * 有两个线程分别读取数组 a 和数组 b，线程 1 循环打印数组 a 中的数字，线程 2 循环打印数组 b 中的数
  */
 public class test1 {
 

@@ -9,7 +9,7 @@ public class a344 {
         swap(0,s.length-1, s);
     }
 
-    public void swap(int start, int end, char[] s){
+    public void swap(int start, int end, char[] s) {
         if(start >= end)
             return;
         char temp = s[end];
