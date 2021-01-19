@@ -2,6 +2,9 @@ package Stack;
 
 import java.util.Stack;
 
+/**
+ * 最大矩形
+ */
 public class a85 {
 
     public int maximalRectangle(char[][] matrix) {
