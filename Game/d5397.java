@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class d5397 {
-    // jkl
+
     public static List<String> simplifiedFractions(int n) {
         List<String> res = new LinkedList<>();
         int fenMu = 0, fenZi = 0;
