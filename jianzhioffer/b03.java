@@ -18,7 +18,7 @@ public class b03 {
 
                 nums[i] = nums[temp];
                 nums[temp] = temp;
-                return "hello"
+
             }
         }
 
