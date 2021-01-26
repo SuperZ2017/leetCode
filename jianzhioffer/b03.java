@@ -5,6 +5,7 @@ package jianzhioffer;
  */
 public class b03 {
 
+    // hahaha
     public int findRepeatNumber(int[] nums) {
 
 
