@@ -1,7 +1,7 @@
 package Game;
 
 public class d2 {
-
+//bbbbb
     public static int maxDiff(int num) {
         int a = 0, b = 0;
         String s1 = new String(String.valueOf(num));
