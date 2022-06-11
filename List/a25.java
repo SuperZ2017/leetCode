@@ -17,7 +17,7 @@ public class a25 {
         while (true) {
             int count = 0;
             ListNode temp = head;
-            while (temp != null && count <= k) {
+            while (temp != null && count < k) {
                 stack.push(temp);
                 temp = temp.next;
                 count++;

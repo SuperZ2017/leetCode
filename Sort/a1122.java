@@ -47,7 +47,8 @@ public class a1122 {
         Collections.sort(list, (x, y) -> {
             if (map.containsKey(x) || map.containsKey(y))
                 return map.getOrDefault(x, 1001) - map.getOrDefault(y, 1001);
-                return x - y;});
+            return x - y;}
+        );
         for (int i = 0; i < arr1.length; i++) {
             arr1[i] = list.get(i);
         }

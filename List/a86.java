@@ -25,7 +25,7 @@ public class a86 {
             head = head.next;
         }
 
-        more_ptr.next = null;
+//        more_ptr.next = null;
         less_ptr.next = more_head.next;
         return less_head.next;
     }

@@ -13,13 +13,12 @@ public class a455 {
         int idx1 = 0;
         int idx2 = 0;
         int count = 0;
-        while(idx1 < g.length && idx2 < s.length) {
-            if(g[idx1] <= s[idx2]) {
+        while (idx1 < g.length && idx2 < s.length) {
+            if (g[idx1] <= s[idx2]) {
                 ++count;
                 idx1++;
                 idx2++;
-            }
-            else {
+            } else {
                 idx2++;
             }
         }

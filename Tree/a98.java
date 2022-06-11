@@ -9,6 +9,22 @@ import java.util.LinkedList;
  */
 public class a98 {
 
+    // 中序遍历时，判断当前节点是否大于中序遍历的前一个节点，如果大于，说明满足 BST，继续遍历；否则直接返回 false。
+    long pre = Long.MIN_VALUE;
+    public boolean isValidBST_1(TreeNode root) {
+        if (root == null) return true;
+
+        if (!isValidBST_1(root.left)) return false;
+
+        if (root.val >= pre) return false;
+
+        pre = root.val;
+
+        if (!isValidBST_1(root.right)) return false;
+
+        return true;
+    }
+
     public boolean isValidBST(TreeNode root) {
 
         return isValid(root, null, null);

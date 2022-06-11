@@ -10,10 +10,10 @@ import java.util.List;
 public class a1002 {
 
     // minfreq[c] 存储字符 c 在所有字符串中出现次数的最小值。
-    public List<String> commonChars(String[] A) {
+    public static List<String> commonChars(String[] A) {
         int[] minfreq = new int[26];
         Arrays.fill(minfreq, Integer.MAX_VALUE);
-        for (String word: A) {
+        for (String word : A) {
             int[] freq = new int[26];
             int length = word.length();
             for (int i = 0; i < length; ++i) {
@@ -25,12 +25,21 @@ public class a1002 {
             }
         }
 
+        System.out.println(Arrays.toString(minfreq));
+
         List<String> ans = new ArrayList<>();
         for (int i = 0; i < 26; ++i) {
             for (int j = 0; j < minfreq[i]; ++j) {
                 ans.add(String.valueOf((char) (i + 'a')));
             }
         }
+
+        System.out.println(ans);
         return ans;
+    }
+
+    public static void main(String[] args) {
+        String[] A = {"bella", "label", "roller"};
+        commonChars(A);
     }
 }

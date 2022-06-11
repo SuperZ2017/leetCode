@@ -24,7 +24,7 @@ public class a378 {
     }
 
     public static void main(String[] args) {
-        int[][] arr = {{1,5,9},{10,11,13},{12,13,15}};
+        int[][] arr = {{1, 5, 9}, {10, 11, 13}, {12, 13, 15}};
         int k = 8;
         System.out.println(kthSmallest(arr, k));
     }

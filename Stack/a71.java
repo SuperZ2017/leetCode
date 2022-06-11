@@ -6,7 +6,7 @@ import java.util.LinkedList;
 /**
  * 简化路径
  *
- * 把当前目录压入栈中,遇到..弹出栈顶,最后返回栈中元素.
+ * 把当前目录压入栈中，遇到..弹出栈顶，最后返回栈中元素.
  */
 public class a71 {
 
@@ -27,8 +27,12 @@ public class a71 {
     }
 
     public static void main(String[] args) {
-        String path = "/a//b////c/d//././/..";
-        System.out.println(simplifyPath(path));
+//        String path = "/a//b////c/d//././/..";
+//        System.out.println(simplifyPath(path));
+
+        String path = "/home//foo/";
+        for (String item : path.split("/"))
+            System.out.println(item + "~");
     }
 
 }

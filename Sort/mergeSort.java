@@ -39,7 +39,7 @@ public class mergeSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1,7,9,0,2,9};
+        int[] arr = {1, 7, 9, 0, 2, 9};
         mergeSort(arr, 0, arr.length - 1);
         Arrays.stream(arr).forEach(i -> System.out.println(i));
     }

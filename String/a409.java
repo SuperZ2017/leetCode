@@ -26,6 +26,11 @@ public class a409 {
 
     public static void main(String[] args) {
         String a = "aaabbccdsf";
-        System.out.println(longestPalindrome(a));
+//        System.out.println(longestPalindrome(a));
+        char c = 'a';
+        System.out.println('Z' + 0);
+        System.out.println('z' + 0);
+        System.out.println('A' - '0');
+        System.out.println('a' - '0');
     }
 }

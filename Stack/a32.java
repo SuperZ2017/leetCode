@@ -36,4 +36,10 @@ public class a32 {
 
         return maxLen;
     }
+
+
+    public static void main(String[] args) {
+        System.out.println(longestValidParentheses("()()()"));
+    }
+
 }

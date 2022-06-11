@@ -5,6 +5,7 @@ package String;
  */
 public class a556 {
 
+    // 123985 -> 125983 -> 125389
     public int nextGreaterElement(int n) {
         char[] a = ("" + n).toCharArray();
         int i = a.length - 2;

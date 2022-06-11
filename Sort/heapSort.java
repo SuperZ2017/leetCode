@@ -24,8 +24,8 @@ public class heapSort {
 
     void heapify(int[] nums) {
         int len = nums.length;
-        // 只需要从 i = (len - 1) / 2 这个位置开始逐层下移
-        for (int i = (len - 1) / 2; i >= 0; i--) {
+        // 只需要从 i = len / 2 这个位置开始逐层下移
+        for (int i = len / 2; i >= 0; i--) {
             siftDown(nums, i, len - 1);
         }
     }

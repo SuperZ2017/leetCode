@@ -3,7 +3,7 @@ package Game;
 import java.util.Arrays;
 
 public class d3 {
-//ccccc
+//c    ccccftyvubhjk
 //    public static boolean checkIfCanBreak(String s1, String s2) {
 //        int[] num1 = new int[s1.length()];
 //        int[] num2 = new int[s2.length()];

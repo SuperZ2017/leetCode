@@ -24,7 +24,7 @@ public class a215 {
         for (int num : nums) {
             queue.add(num);
         }
-        while(k != 0){
+        while (k != 0) {
             queue.poll();
             k--;
         }
@@ -34,7 +34,7 @@ public class a215 {
 
 
     public static void main(String[] args) {
-        int[] arr = {3,2,9,5,3,1,2,4,5,5,6};
+        int[] arr = {3, 2, 9, 5, 3, 1, 2, 4, 5, 5, 6};
         int k = 4;
         System.out.println(findKthLargest(arr, k));
     }

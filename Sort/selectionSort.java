@@ -22,16 +22,18 @@ public class selectionSort {
                     minIndex = j;
                 }
             }
-            swap(nums, i, minIndex);
+
+            if(i != minIndex)
+                swap(nums, i, minIndex);
         }
 
         return nums;
     }
 
-    private void swap(int[] nums, int index1, int index2) {
-        int temp = nums[index1];
-        nums[index1] = nums[index2];
-        nums[index2] = temp;
+    private void swap(int[] nums, int idx1, int idx2) {
+        int temp = nums[idx1];
+        nums[idx1] = nums[idx2];
+        nums[idx2] = temp;
     }
 
     public static void main(String[] args) {

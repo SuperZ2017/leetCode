@@ -25,7 +25,7 @@ public class a135 {
         // 且左边孩子当前的糖果数不大于右边孩子的糖果数，则左边孩子的糖果数更新为右边孩子的糖果数加 1。
         for (int i = ratings.length - 2; i >= 0; i--) {
             if (ratings[i] > ratings[i + 1])
-                right[i] = right[i + 1]+1;
+                right[i] = right[i + 1] + 1;
             count += Math.max(left[i], right[i]);
         }
 

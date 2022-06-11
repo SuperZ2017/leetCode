@@ -9,7 +9,7 @@ public class a1044 {
 
     // 后缀数组法：将字符串所有的后缀字符串存放在一个数组里，然后进行排序，
     // 遍历数组，寻找相邻两个字符串的最长公共前缀子串即为字符串的最长重复子串。
-    public String longestDupSubstring(String S) {
+    public static String longestDupSubstring(String S) {
         if(S == null || S.length() == 0) {
             return null;
         }
@@ -21,6 +21,8 @@ public class a1044 {
             strs[i] = S.substring(i, len);
         }
         Arrays.sort(strs);
+        System.out.println(Arrays.toString(strs));
+
         for(int i = 0; i < len - 1; i++) {
             int tmp = len(strs[i], strs[i + 1]);
             if(tmp > maxLen) {
@@ -31,14 +33,16 @@ public class a1044 {
         return res;
     }
 
-    private int len(String str1, String str2) {
-        if(str1.length() == 0 || str2.length() == 0) {
+    private static int len(String str1, String str2) {
+        if(str1.length() == 0 || str2.length() == 0)
             return 0;
-        }
         int i = 0;
-        while (i < str1.length() && i < str2.length() && str1.charAt(i) == str2.charAt(i)) {
+        while (i < str1.length() && i < str2.length() && str1.charAt(i) == str2.charAt(i))
             i++;
-        }
         return i;
+    }
+
+    public static void main(String[] args) {
+        longestDupSubstring("banana");
     }
 }

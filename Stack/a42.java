@@ -52,10 +52,10 @@ public class a42 {
 
     public int trap_3(int[] height) {
         int sum = 0;
-        Stack<Integer> stack =  new Stack<>();
+        Stack<Integer> stack = new Stack<>();
         int current = 0;
         while (current < height.length) {
-            //如果栈不空并且当前指向的高度大于栈顶高度就一直循环，单调递减栈储存可能储水的柱子，当找到一个比前面高的柱子，就可以计算接到的雨水
+            //如果栈不空 并且当前指向的高度 大于 栈顶高度就一直循环，单调递减栈储存可能储水的柱子，当找到一个比前面高的柱子，就可以计算接到的雨水
             while (!stack.isEmpty() && height[stack.peek()] < height[current]) {
                 int h = height[stack.peek()]; // 取出要出栈的元素
                 stack.pop();
