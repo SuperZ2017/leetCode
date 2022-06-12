@@ -5,6 +5,7 @@ package Tree;
  */
 public class a116 {
 
+    // 按层处理
     public Node connect(Node root) {
 
         if (root == null)
@@ -14,7 +15,7 @@ public class a116 {
 
         while (leftmost.left != null) {
             Node head = leftmost;
-            while (head != null){
+            while (head != null) {
                 // 连接同一个父节点的两个子节点
                 head.left.next = head.right;
                 if (head.next != null) {
@@ -49,4 +50,7 @@ public class a116 {
             next = _next;
         }
     }
+
+
+
 }

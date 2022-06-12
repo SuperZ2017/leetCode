@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 /**
  * 选择排序
- *
+ * <p>
  * 每一轮选择最小元素交换到未排序部分的开头
- *
+ * <p>
  * 优点：交换次数少，O(N^2), O(1)
  */
 public class selectionSort {
@@ -23,7 +23,7 @@ public class selectionSort {
                 }
             }
 
-            if(i != minIndex)
+            if (i != minIndex)
                 swap(nums, i, minIndex);
         }
 

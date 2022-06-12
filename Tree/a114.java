@@ -30,7 +30,16 @@ public class a114 {
         }
     }
 
-
+    // 反先序遍历, 逐一将节点的右指针赋值下一个节点即可
+    TreeNode post = null;
+    public void flatten2(TreeNode root) {
+        if (root == null) return;
+        flatten2(root.right);
+        flatten2(root.left);
+        root.right = post;
+        root.left = null;
+        post = root;
+    }
 
     // 递归
     public void flatten1(TreeNode root) {

@@ -9,6 +9,8 @@ import java.util.*;
  */
 public class a111 {
 
+
+
     public int minDepth(TreeNode root) {
 
         if (root == null)

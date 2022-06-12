@@ -10,7 +10,7 @@ import java.util.*;
 public class a102 {
 
     // BFS
-    public static List<List<Integer>>  levelOrder(TreeNode root){
+    public static List<List<Integer>> levelOrder(TreeNode root) {
         if (root == null)
             return Collections.emptyList();
 
@@ -19,7 +19,7 @@ public class a102 {
         queue.add(root);
         while (!queue.isEmpty()) {
             int len = queue.size();
-            List<Integer> list= new ArrayList<>();
+            List<Integer> list = new ArrayList<>();
             for (int i = 0; i < len; i++) {
                 TreeNode node = queue.poll();
                 list.add(node.val);
@@ -51,6 +51,8 @@ public class a102 {
 
         if (res.size() == level)
             res.add(new ArrayList<>());
+
+        res.get(level).add(node.val);
         if (node.left != null)
             dfs(node.left, level + 1);
         if (node.right != null)
