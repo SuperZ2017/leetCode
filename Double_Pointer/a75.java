@@ -6,9 +6,10 @@ package Double_Pointer;
 public class a75 {
 
     public void sortColors(int[] nums) {
-        // p0 指向 0 的最右边界，p2 指向 2 的最左边界，curr 指向当前元素
-        int p0 = 0, curr = 0;
-        int p2 = nums.length - 1;
+        // p0 指向 0 的最右边界，
+        // p2 指向 2 的最左边界，
+        // curr 指向当前元素
+        int p0 = 0, curr = 0, p2 = nums.length - 1;
 
         int tmp;
         while (curr <= p2) {

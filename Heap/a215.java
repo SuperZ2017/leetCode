@@ -3,7 +3,7 @@ package Heap;
 import java.util.PriorityQueue;
 
 /**
- * 数组中的第K个最大元素
+ * 数组中的第 K 个最大元素
  */
 public class a215 {
 

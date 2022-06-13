@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class a696 {
 
+    // todo review
     public int countBinarySubstrings(String s) {
         List<Integer> counts = new ArrayList<>();
         int ptr = 0, n = s.length();

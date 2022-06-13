@@ -44,6 +44,6 @@ public class a8 {
 
 
     public static void main(String[] args) {
-        System.out.println(myAtoi("words and 987"));
+        System.out.println(myAtoi("- 987"));
     }
 }

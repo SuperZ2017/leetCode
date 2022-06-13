@@ -25,7 +25,7 @@ public class a349 {
         Object[] num = set.toArray();
         int[] res = new int[set.size()];
         for (int i = 0; i < res.length; i++) {
-            res[i] = (int)num[i];
+            res[i] = (int) num[i];
         }
         return res;
     }

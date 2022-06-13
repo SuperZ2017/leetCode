@@ -8,6 +8,7 @@ import java.util.Map;
  */
 public class a3 {
 
+    // TODO review
     public int lengthOfLongestSubstring(String s) {
         int res = 0, left = 0, right = 0;
         Map<Character, Integer> window = new HashMap<>();

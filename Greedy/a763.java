@@ -17,7 +17,6 @@ public class a763 {
             last[S.charAt(i) - 'a'] = i;
         }
 
-        System.out.println(Arrays.toString(last));
         List<Integer> partition = new ArrayList<>();
         int start = 0, end = 0;
         for (int i = 0; i < length; i++) {

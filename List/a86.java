@@ -14,11 +14,11 @@ public class a86 {
         ListNode less_ptr = less_head;
         ListNode more_ptr = more_head;
 
-        while(head != null){
-            if(head.val < x){
+        while (head != null) {
+            if (head.val < x) {
                 less_ptr.next = head;
                 less_ptr = less_ptr.next;
-            }else{
+            } else {
                 more_ptr.next = head;
                 more_ptr = more_ptr.next;
             }

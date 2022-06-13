@@ -19,30 +19,30 @@ public class a18 {
             return res;
 
         for (int a = 0; a < nums.length - 3; a++) {
-            if (a > 0 && nums[a] == nums[a-1])
+            if (a > 0 && nums[a] == nums[a - 1])
                 continue;
 
             for (int b = a + 1; b < nums.length - 2; b++) {
-                if (b > a + 1 && nums[b] == nums[b-1])
+                if (b > a + 1 && nums[b] == nums[b - 1])
                     continue;
 
                 int i = b + 1, j = nums.length - 1;
                 while (i < j) {
                     int sum = nums[a] + nums[b] + nums[i] + nums[j];
                     if (sum > target) {
-                        while (i < j && nums[j] == nums[j-1])
+                        while (i < j && nums[j] == nums[j - 1])
                             j--;
                         j--;
                     } else if (sum < target) {
-                        while (i < j && nums[i] == nums[i+1])
+                        while (i < j && nums[i] == nums[i + 1])
                             i++;
                         i++;
                     } else {
                         res.add(new ArrayList<>(Arrays.asList(nums[a], nums[b], nums[i], nums[j])));
-                        while (i < j && nums[i] == nums[i+1])
+                        while (i < j && nums[i] == nums[i + 1])
                             i++;
                         i++;
-                        while (i < j && nums[j] == nums[j-1])
+                        while (i < j && nums[j] == nums[j - 1])
                             j--;
                         j--;
                     }

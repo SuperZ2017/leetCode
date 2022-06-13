@@ -7,9 +7,10 @@ import java.util.*;
  */
 public class a15 {
 
+    // TODO review
     public List<List<Integer>> second(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        //排序
+        // 排序
         Arrays.sort(nums);
 
         int len = nums.length;
@@ -25,7 +26,7 @@ public class a15 {
             int cur = nums[i];
             int L = i + 1, R = len - 1;
 
-            //举例[-1, 0, 0, 1, 1]
+            // 举例 [-1, 0, 0, 1, 1]
             while (L < R) {
                 int temp = cur + nums[L] + nums[R];
                 if (temp == 0) {
@@ -43,6 +44,7 @@ public class a15 {
                 }
             }
         }
+
         return result;
     }
 
@@ -50,7 +52,7 @@ public class a15 {
         if (nums == null || nums.length <= 2)
             return Collections.emptyList();
 
-        //答案不包括重复的元素，用于去重
+        // 答案不包括重复的元素，用于去重
         Set<List<Integer>> sum = new LinkedHashSet<>();
 
         for (int i = 0; i < nums.length - 2; i++) {

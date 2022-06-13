@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class a228 {
 
+    // TODO rewrite
     // j 指向连续区间的最后一个元素，i 指向连续区间的开头元素
     public List<String> summaryRanges(int[] nums) {
         List<String> res = new ArrayList<>();

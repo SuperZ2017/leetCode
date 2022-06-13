@@ -10,16 +10,22 @@ public class a14 {
         if (strs.length == 0)
             return "";
 
-        String prefx = strs[0];
+        String prefix = strs[0];
 
         for (int i = 1; i < strs.length; i++) {
-            while (strs[i].indexOf(prefx) != 0) {  // 为0意味着str中能完全找到prefx
-                prefx = prefx.substring(0, prefx.length() - 1); // 去掉末尾最后一个数字
-                if (prefx.isEmpty())
+            while (strs[i].indexOf(prefix) != 0) {  // 为 0 意味着 str 中能完全找到 prefix
+                prefix = prefix.substring(0, prefix.length() - 1); // 去掉末尾最后一个数字
+                if (prefix.isEmpty())
                     return "";
             }
         }
 
-        return prefx;
+        return prefix;
+    }
+
+    public static void main(String[] args) {
+        String s = "   ";
+        System.out.println(s.isEmpty());
+        System.out.println(s.length());
     }
 }

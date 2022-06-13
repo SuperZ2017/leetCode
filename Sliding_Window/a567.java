@@ -19,7 +19,7 @@ public class a567 {
         for (char c : ch1)
             needs.merge(c, 1, (p, o) -> p + o);
 
-        while (right <= len ) {
+        while (right <= len) {
             char c1 = ch2[right];
             right++;
             if (needs.containsKey(c1)) {

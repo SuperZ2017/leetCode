@@ -2,7 +2,7 @@ package Double_Pointer;
 
 import java.util.*;
 
-// 两个数组的交集2
+// 两个数组的交集 2
 public class a350 {
 
     public int[] intersect(int[] nums1, int[] nums2) {
@@ -34,7 +34,7 @@ public class a350 {
 
         Map<Integer, Integer> map = new HashMap<>();
         for (int num : nums1) {
-            map.merge(num, 0, (p,v) -> p + v);
+            map.merge(num, 0, (p, v) -> p + v);
         }
 
         int[] res = new int[nums1.length];

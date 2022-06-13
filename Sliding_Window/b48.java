@@ -11,6 +11,7 @@ import java.util.Set;
  */
 public class b48 {
 
+    // TODO rewrite
     public static int lengthOfLongestSubstring(String s) {
         Set<Character> windows = new HashSet<>();
         char[] ch = s.toCharArray();

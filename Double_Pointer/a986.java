@@ -31,6 +31,6 @@ public class a986 {
                 i++;
         }
 
-        return ans.toArray(new int[ans.size()][]);
+        return ans.toArray(new int[ans.size()][]); // TODO look
     }
 }

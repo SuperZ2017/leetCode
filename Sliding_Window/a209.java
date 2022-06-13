@@ -10,10 +10,10 @@ public class a209 {
         int ans = 10000;
         int left = 0;
         int sum = 0;
-        for(int i = 0;i < n; i++){
+        for (int i = 0; i < n; i++) {
             sum += nums[i];
-            while(sum >= s){
-                //i+1-left 是当前子数组的长度
+            while (sum >= s) {
+                // i + 1 - left 是当前子数组的长度
                 ans = Math.min(ans, (i + 1 - left));
                 sum -= nums[left++];
             }

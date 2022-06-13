@@ -16,6 +16,7 @@ public class a32 {
      *      如果栈不为空，当前右括号的下标减去栈顶元素即为「以该右括号为结尾的最长有效括号的长度」
      */
 
+    // todo review
     public static int longestValidParentheses(String s) {
         int maxLen = 0;
         Stack<Integer> stack = new Stack<>();

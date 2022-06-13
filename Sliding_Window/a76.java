@@ -8,11 +8,12 @@ import java.util.Map;
  */
 public class a76 {
 
+    // TODO rewrite
     public String minWindow(String s, String t) {
         Map<Character, Integer> window = new HashMap<>();
         Map<Character, Integer> needs = new HashMap<>();
         for (int i = 0; i < t.length(); i++)
-            needs.merge(t.charAt(i), 1, (prev ,one) -> prev + one);
+            needs.merge(t.charAt(i), 1, (prev, one) -> prev + one);
 
         int left = 0, right = 0, start = 0;
         int match = 0;
@@ -40,7 +41,7 @@ public class a76 {
                     if (window.get(c2) < needs.get(c2))
                         match--;
                 }
-                left++;
+                left++; // 从左边开始缩减，直到不满足条件，找到最短子串
             }
         }
 

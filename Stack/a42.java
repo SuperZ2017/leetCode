@@ -8,6 +8,31 @@ import java.util.Stack;
  */
 public class a42 {
 
+    // todo review 单调 (减) 栈
+    public int trap_3(int[] height) {
+        int sum = 0;
+        Stack<Integer> stack = new Stack<>();
+        int current = 0;
+        while (current < height.length) {
+            //如果栈不空 并且当前指向的高度 大于 栈顶高度就一直循环，单调递减栈储存可能储水的柱子，当找到一个比前面高的柱子，就可以计算接到的雨水
+            while (!stack.isEmpty() && height[stack.peek()] < height[current]) {
+                int h = height[stack.peek()]; // 取出要出栈的元素
+                stack.pop();
+                if (stack.isEmpty())
+                    break;
+
+                int distance = current - stack.peek() - 1; // 两堵墙之前的距离
+                int min = Math.min(height[stack.peek()], height[current]);
+                sum += distance * (min - h);
+            }
+
+            stack.push(current); //当前指向的墙入栈
+            current++;
+        }
+
+        return sum;
+    }
+
     public int trap(int[] height) {
         int sum = 0;
         for (int i = 1; i < height.length; i++) {
@@ -45,30 +70,6 @@ public class a42 {
             int min = Math.min(max_left[i], max_right[i]);
             if (min > height[i])
                 sum = sum + (min - height[i]);
-        }
-
-        return sum;
-    }
-
-    public int trap_3(int[] height) {
-        int sum = 0;
-        Stack<Integer> stack = new Stack<>();
-        int current = 0;
-        while (current < height.length) {
-            //如果栈不空 并且当前指向的高度 大于 栈顶高度就一直循环，单调递减栈储存可能储水的柱子，当找到一个比前面高的柱子，就可以计算接到的雨水
-            while (!stack.isEmpty() && height[stack.peek()] < height[current]) {
-                int h = height[stack.peek()]; // 取出要出栈的元素
-                stack.pop();
-                if (stack.isEmpty())
-                    break;
-
-                int distance = current - stack.peek() - 1; // 两堵墙之前的距离
-                int min = Math.min(height[stack.peek()], height[current]);
-                sum = sum + distance * (min - h);
-            }
-
-            stack.push(current); //当前指向的墙入栈
-            current++;
         }
 
         return sum;

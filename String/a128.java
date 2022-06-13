@@ -17,7 +17,7 @@ public class a128 {
 
         for (int num : set) {
 
-            // 如果不存在 比它小1的数，就从它开始
+            // 如果不存在 比它小 1 的数，就从它开始
             if (!set.contains(num - 1)) {
                 int currentNum = num;
                 int currentStreak = 1;

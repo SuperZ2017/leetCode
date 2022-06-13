@@ -29,7 +29,7 @@ public class a438 {
             }
             right++;
 
-            // 注意needs与p的长度不一样
+            // 注意 needs 与 p 的长度不一样
             while (match == needs.size()) {
                 if (right - left == p.length()) {
                     res.add(left);
