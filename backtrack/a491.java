@@ -10,6 +10,8 @@ import java.util.*;
 public class a491 {
 
     List<List<Integer>> res;
+
+    // todo review
     public List<List<Integer>> findSubsequences(int[] nums) {
         res = new LinkedList<>();
         backTrack(nums, 0, new LinkedList<>());
@@ -33,5 +35,10 @@ public class a491 {
                 path.removeLast();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        a491 a = new a491();
+        a.findSubsequences(new int[]{4, 7, 7});
     }
 }

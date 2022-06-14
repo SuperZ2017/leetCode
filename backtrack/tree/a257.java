@@ -1,6 +1,7 @@
 package backtrack.tree;
 
 import data.TreeNode;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 public class a257 {
 
     List<String> ans;
+
     public List<String> binaryTreePaths(TreeNode root) {
         ans = new LinkedList<>();
         if (root == null)

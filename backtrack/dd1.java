@@ -5,13 +5,14 @@ import java.util.List;
 
 /**
  * 给一个正数 N，求这个 N 的所有的因子分解；
- *
  * N = 12；
- * Ans = {12},{6,2},{3,4},{3,2,2}
+ * Ans = {12}, {6, 2}, {3, 4}, {3, 2, 2}
  */
 public class dd1 {
 
     List<List<Integer>> res;
+
+    // todo rewrite
     public List<List<Integer>> getFactors(int n) {
         res = new LinkedList<>();
         backTrack(n, 1, n, new LinkedList<Integer>());

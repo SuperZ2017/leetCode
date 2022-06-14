@@ -11,6 +11,7 @@ public class b38 {
 
     List<String> res;
     boolean[] used;
+
     public String[] permutation(String s) {
         int len = s.length();
         if (len == 0) {
@@ -42,7 +43,7 @@ public class b38 {
         }
         for (int i = 0; i < len; i++) {
             if (!used[i]) {
-                if (i > 0 && charArr[i] == charArr[i - 1] && !used[i - 1]) {
+                if (i >= 1 && charArr[i] == charArr[i - 1] && !used[i - 1]) {
                     continue;
                 }
                 used[i] = true;

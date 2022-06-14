@@ -5,12 +5,14 @@ import java.util.List;
 
 /**
  * 字母大小写全排列
- *
+ * <p>
  * 多分枝
  */
 public class a784 {
 
     List<String> res;
+
+    // todo rewrite
     public List<String> letterCasePermutation(String S) {
         res = new LinkedList<>();
         char[] charArray = new char[S.length()];
@@ -19,7 +21,8 @@ public class a784 {
     }
 
     public void backTrack(String S, int idx, char[] charArray) {
-        if(idx == S.length()) {
+        if (idx == S.length()) {
+            System.out.println(new String(charArray));
             res.add(new String(charArray));
             return;
         }
@@ -27,14 +30,14 @@ public class a784 {
         charArray[idx] = S.charAt(idx);
         backTrack(S, idx + 1, charArray);
 
-        if(Character.isLetter(S.charAt(idx))) {
+        if (Character.isLetter(S.charAt(idx))) {
             charArray[idx] = change(S.charAt(idx));
             backTrack(S, idx + 1, charArray);
         }
     }
 
     public char change(char c) {
-        if(c >= 'a' && c <= 'z')
+        if (c >= 'a' && c <= 'z')
             return String.valueOf(c).toUpperCase().charAt(0);
         else
             return String.valueOf(c).toLowerCase().charAt(0);

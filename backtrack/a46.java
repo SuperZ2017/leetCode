@@ -26,7 +26,7 @@ public class a46 {
         }
 
         for (int i = 0; i < nums.length; i++) {
-            // ps : used数组用于前进和去重
+            // ps : used 数组用于前进和去重
             if (used[i])
                 continue;
             used[i] = true;

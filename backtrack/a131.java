@@ -9,6 +9,8 @@ import java.util.List;
 public class a131 {
 
     List<List<String>> res;
+
+    // todo review
     public List<List<String>> partition(String s) {
         res = new LinkedList<>();
         backTrack(s, 0, new LinkedList<>());

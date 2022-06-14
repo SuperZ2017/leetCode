@@ -10,6 +10,7 @@ import java.util.List;
 public class a90 {
 
     static List<List<Integer>> res;
+
     public static List<List<Integer>> subsetsWithDup(int[] nums) {
         res = new LinkedList<>();
         LinkedList<Integer> track = new LinkedList<>();
@@ -24,8 +25,8 @@ public class a90 {
 
         for (int i = start; i < nums.length; i++) {
 //            if (i != start && nums[i] == nums[i-1])   // 需要注意的是 nums[i - 1] == nums[i] 的作用是在递归树的同一层上的，
-                                                        // 也就是防止 nums = [1, 2, 2'] 出现 [1, 2]， [1, 2'] 两个重复的解
-                                                        // （即： 通过 nums[1] == nums[2]: continue 进行的剪枝）
+            // 也就是防止 nums = [1, 2, 2'] 出现 [1, 2]， [1, 2'] 两个重复的解
+            // （即： 通过 nums[1] == nums[2]: continue 进行的剪枝）
 //                continue;
             track.add(nums[i]);
             backtrack(nums, i + 1, track);
@@ -34,6 +35,6 @@ public class a90 {
     }
 
     public static void main(String[] args) {
-        System.out.println(subsetsWithDup(new int[]{4,4,4,4,1}));
+        System.out.println(subsetsWithDup(new int[]{3, 4, 4, 1}));
     }
 }
