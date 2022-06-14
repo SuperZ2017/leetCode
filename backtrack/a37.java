@@ -5,6 +5,7 @@ package backtrack;
  */
 public class a37 {
 
+    // TODO review
     public void solveSudoku(char[][] board) {
         backtrack(board, 0, 0);
     }
@@ -17,6 +18,7 @@ public class a37 {
             return backtrack(board, i + 1, 0);
         }
 
+        // i == m 意味着穷举结束，ps：i 是从 0 开始的
         if (i == m)
             return true;
 
@@ -46,17 +48,22 @@ public class a37 {
             if (board[r][i] == n) return false;
             // 判断列是否存在重复
             if (board[i][c] == n) return false;
+
             // 判断 3 x 3 方框是否存在重复
             // (r/3) * 3 确定他所在的子数独在第一个三行，还是第二个三行，还是第三个三行
-            // (c/3) * 3可以确定它所在的子数独是前三列还是中散列还是后三列
-            if (board[(r/3)*3 + i/3][(c/3)*3 + i%3] == n)
+            // (c/3) * 3 可以确定它所在的子数独是前三列还是中散列还是后三列
+            if (board[(r / 3) * 3 + i / 3][(c / 3) * 3 + i % 3] == n)
                 return false;
         }
         return true;
     }
 
     public static void main(String[] args) {
-        System.out.println(2/3*3);
+//        System.out.println(2 / 3 * 3);
+        for (int i = 0; i < 9; i++) {
+            System.out.println(i / 3 + " " + i % 3);
+        }
     }
+
 
 }

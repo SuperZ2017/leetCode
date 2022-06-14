@@ -1,6 +1,5 @@
 package backtrack;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +10,7 @@ import java.util.List;
 public class a51 {
 
     static List<List<String>> res;
+
     public static List<List<String>> solveNQueens(int n) {
         if (n <= 0) return null;
         res = new LinkedList<>();
@@ -28,11 +28,16 @@ public class a51 {
         }
 
         int n = board[row].length;
+        // 在当前行的每一列都可能放置皇后
         for (int col = 0; col < n; col++) {
-            if (!isVaild(board, row, col))
+            // 排除可以互相攻击的格子
+            if (!isValid(board, row, col))
                 continue;
+            // 做选择
             board[row][col] = 'Q';
+            // 进入下一行放皇后
             backtrack(board, row + 1);
+            // 撤销选择
             board[row][col] = '.';
         }
     }
@@ -45,7 +50,7 @@ public class a51 {
         return result;
     }
 
-    private static boolean isVaild(char[][] board, int row, int col) {
+    private static boolean isValid(char[][] board, int row, int col) {
         int n = board.length;
 
         // 检查列是否有冲突
@@ -54,7 +59,7 @@ public class a51 {
                 return false;
 
         // 检查右上方是否有皇后互相冲突
-        for (int i = row-1, j = col + 1; i >= 0 && j < n; i--, j++)
+        for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++)
             if (board[i][j] == 'Q')
                 return false;
 

@@ -4,13 +4,15 @@ import java.util.Arrays;
 
 /**
  * 动态数组
+ *
  * @param <E>
  */
 public class DynamicArray<E> {
     private static final int DEFAULT_CAPACITY = 10;
     private int size;
     private Object[] elementData;
-    public DynamicArray(){
+
+    public DynamicArray() {
         this.elementData = new Object[DEFAULT_CAPACITY];
     }
 
@@ -33,10 +35,10 @@ public class DynamicArray<E> {
     }
 
     public E get(int index) {
-        return (E)elementData[index];
+        return (E) elementData[index];
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 

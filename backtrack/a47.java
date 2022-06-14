@@ -11,6 +11,8 @@ public class a47 {
 
     List<List<Integer>> res;
     boolean[] used;
+
+    // todo review
     public List<List<Integer>> permuteUnique(int[] nums) {
         res = new LinkedList<>();
         used = new boolean[nums.length];
@@ -32,7 +34,7 @@ public class a47 {
                 continue;
             // 剪枝条件：i > 0 是为了保证 nums[i - 1] 有意义
             // 写 !used[i - 1] 是因为 nums[i - 1] 在深度优先遍历的过程中刚刚被撤销选择
-            if (i > 0 && nums[i] == nums[i-1] && !used[i-1])
+            if (i > 0 && nums[i] == nums[i - 1] && used[i - 1] == false)
                 continue;
             list.add(nums[i]);
             used[i] = true;
@@ -45,6 +47,6 @@ public class a47 {
     public static void main(String[] args) {
         int[] arr = {1, 1, 2};
         a47 a = new a47();
-        a.permuteUnique(arr);
+        System.out.println(a.permuteUnique(arr));
     }
 }

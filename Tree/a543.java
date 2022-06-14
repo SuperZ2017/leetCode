@@ -4,6 +4,8 @@ import data.TreeNode;
 
 /**
  * 二叉树的直径
+ *
+ * 每一条二叉树的「直径」长度，就是一个节点的左右子树的最大深度之和
  */
 public class a543 {
 

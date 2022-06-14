@@ -7,7 +7,7 @@ import java.util.Queue;
 
 /**
  * 课程表
- *
+ * <p>
  * 拓扑排序
  */
 public class a207 {
@@ -16,6 +16,7 @@ public class a207 {
     List<List<Integer>> edges;
     int[] visited;  // 0 未搜索  1 搜索中  2 已完成
     boolean valid = true;
+
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         edges = new ArrayList<>();
         for (int i = 0; i < numCourses; i++)

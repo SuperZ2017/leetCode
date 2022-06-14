@@ -10,6 +10,7 @@ public class a46 {
 
     List<List<Integer>> res;
     boolean[] used;
+
     public List<List<Integer>> permute(int[] nums) {
         res = new LinkedList<>();
         used = new boolean[nums.length];

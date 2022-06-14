@@ -15,9 +15,11 @@ public class a39 {
     }
 
     static List<List<Integer>> res;
+
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
         res = new LinkedList<>();
         LinkedList<Integer> track = new LinkedList<>();
+        // 注意要排序
         Arrays.sort(candidates);
         backtrack(candidates, 0, track, target);
         return res;
@@ -31,17 +33,16 @@ public class a39 {
             return;
         }
 
+        // 注意 i 是从 start 开始
         for (int i = start; i < candidates.length; i++) {
             if (target < candidates[i])
                 continue;
             track.add(candidates[i]);
-            //因为每个数字都可以使用无数次，所以递归还可以从当前元素开始，start = i
+            // 因为每个数字都可以使用无数次，所以递归还可以从当前元素开始，start = i
             backtrack(candidates, i, track, target - candidates[i]);
             track.removeLast();
         }
     }
-
-
 
 
 }

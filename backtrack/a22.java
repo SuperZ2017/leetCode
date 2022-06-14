@@ -1,6 +1,7 @@
 package backtrack;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -9,6 +10,7 @@ import java.util.List;
 public class a22 {
 
     List<String> res = new ArrayList<>();
+
     public List<String> generateParenthesis(int n) {
         _gen("", n, n);
         return res;
