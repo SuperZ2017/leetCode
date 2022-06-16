@@ -8,6 +8,7 @@ import java.util.Map;
  */
 public class a166 {
 
+    // todo ingore
     public String fractionToDecimal(int numerator, int denominator) {
         if (numerator == 0)
             return "0";

@@ -22,6 +22,6 @@ public class b16 {
     }
 
     public static void main(String[] args) {
-        System.out.println(myPow(3,2));
+        System.out.println(myPow(3, 2));
     }
 }

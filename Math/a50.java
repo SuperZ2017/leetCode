@@ -20,14 +20,19 @@ public class a50 {
             if ((b & 1) == 1) // 奇数
                 res *= x;
             x = x * x;
-            b >>= 1;
+            b >>= 1; // 相当于除 2
         }
 
         return res;
     }
 
     public static void main(String[] args) {
-        System.out.println(myPow(2,5));
+        System.out.println(2 & 1);  // ==> 0010 & 0001 = 0
+        System.out.println(3 & 1);  // ==> 0101 & 0001 = 1
+        System.out.println(3 >> 1); //
+        System.out.println(4 >> 1);
+
+//        System.out.println(myPow(2,5));
     }
 
     public static double myPow(double x, int n) {

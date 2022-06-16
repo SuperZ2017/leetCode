@@ -28,7 +28,7 @@ public class a150 {
                 num2 = stack.poll();
                 stack.push(num2 / num1);
             } else {
-                stack.push(Integer.parseInt(s));
+                stack.push(Integer.valueOf(s));
             }
         }
         return stack.poll();

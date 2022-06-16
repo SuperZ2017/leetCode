@@ -19,13 +19,13 @@ public class a9 {
     }
 
     // 只反转一半
-    public boolean isPalindrome1(int x){
-        if (x < 0 || x % 10 == 0 && x != 0){
+    public boolean isPalindrome1(int x) {
+        if (x < 0 || x % 10 == 0 && x != 0) {
             return false;
         }
         int revertedNumber = 0;
         // 当原始数字小于或等于反转后的数字时，就意味着我们已经处理了一半位数的数字了。
-        while (x > revertedNumber){
+        while (x > revertedNumber) {
             revertedNumber = revertedNumber * 10 + x % 10;
             x /= 10;
         }
