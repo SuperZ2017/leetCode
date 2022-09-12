@@ -6,6 +6,7 @@ import java.util.*;
 public class a350 {
 
     // add new 1
+    // add new 2
     public int[] intersect(int[] nums1, int[] nums2) {
         Arrays.sort(nums1);
         Arrays.sort(nums2);
