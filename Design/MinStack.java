@@ -2,7 +2,6 @@ package Design;
 
 /**
  * 155，最小栈
- *
  * 直接用一个链表即可实现栈的基本功能，那么最小值该怎么得到呢？
  * 我们可以在 Node 节点中增加一个 min 字段，这样的话每次加入一个节点的时候，
  * 我们同时只要确定它的 min 值即可。
@@ -22,12 +21,15 @@ class MinStack {
     }
 
     Node head;
-    /** initialize your data structure here. */
+
+    /**
+     * initialize your data structure here.
+     */
     public MinStack() {
 
     }
 
-    //每次加入的节点放到头部
+    // 每次加入的节点放到头部
     public void push(int x) {
         if (head == null) {
             head = new Node(x, x);

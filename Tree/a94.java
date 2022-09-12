@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * 二叉树中序遍历 左->根->右
+ * 二叉树中序遍历 左 -> 根 -> 右
  */
 public class a94 {
 

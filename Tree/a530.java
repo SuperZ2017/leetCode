@@ -23,8 +23,7 @@ public class a530 {
         inorder(root.left);
         if (prev == -1){
             prev = root.val;
-        }
-        else {
+        } else {
             min = Math.min(min, root.val - prev);
             prev = root.val;
         }

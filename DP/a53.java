@@ -24,6 +24,6 @@ public class a53 {
 
     public static void main(String[] args) {
         int[][] dp = new int[3][3];
-        Arrays.fill(dp , 1);
+        Arrays.fill(dp, 1);
     }
 }

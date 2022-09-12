@@ -1,6 +1,8 @@
 package Heap;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
+import java.util.function.Supplier;
 
 /**
  * 数组中的第 K 个最大元素
@@ -35,7 +37,25 @@ public class a215 {
 
     public static void main(String[] args) {
         int[] arr = {3, 2, 9, 5, 3, 1, 2, 4, 5, 5, 6};
-        int k = 4;
-        System.out.println(findKthLargest(arr, k));
+//        int k = 4;
+//        System.out.println(findKthLargest(arr, k));
+
+//        int max = printMax( () -> {
+//            Arrays.sort(arr);
+//
+//            return arr[arr.length - 1];
+//        });
+
+        Arrays.stream(arr).filter(i -> i > 2).sorted().forEach(System.out::println);
+
+//        System.out.println("return max = " + max);
+    }
+
+
+    public static int printMax(Supplier<Integer> supplier) {
+        System.out.println("aa");
+        int max = supplier.get();
+        System.out.println("max = " + max);
+        return max;
     }
 }

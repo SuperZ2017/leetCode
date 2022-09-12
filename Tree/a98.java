@@ -16,7 +16,7 @@ public class a98 {
 
         if (!isValidBST_1(root.left)) return false;
 
-        if (root.val >= pre) return false;
+        if (root.val <= pre) return false;
 
         pre = root.val;
 
@@ -26,9 +26,7 @@ public class a98 {
     }
 
     public boolean isValidBST(TreeNode root) {
-
         return isValid(root, null, null);
-
     }
 
     public boolean isValid(TreeNode node, Integer lower, Integer upper) {

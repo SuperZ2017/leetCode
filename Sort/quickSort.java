@@ -51,7 +51,7 @@ public class quickSort {
         int N = arr.length;
         heapify(arr);
 
-        for (int i = N - 1; i >= 0;) {
+        for (int i = N - 1; i >= 0; ) {
             sortHelper.swap(arr, 0, i);
             i--;
             siftDown(arr, 0, i);

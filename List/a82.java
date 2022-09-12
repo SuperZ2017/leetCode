@@ -13,13 +13,10 @@ public class a82 {
         ListNode node = p;
 
         while (node.next != null && node.next.next != null) {
-
             if (node.next.val == node.next.next.val) {
                 ListNode temp = node.next;
-
                 while (temp != null && temp.next != null && temp.val == temp.next.val)
                     temp = temp.next;
-
                 node.next = temp.next;
             } else
                 node = node.next;

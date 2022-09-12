@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dd8e798b-f04a-437b-8ff9-86c78fe8b21d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jianzhioffer_02/b002.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DP/a53.java" beforeDir="false" afterPath="$PROJECT_DIR$/DP/a53.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Design/MaxQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/Design/MaxQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Design/MinStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/Design/MinStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Design/MyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/Design/MyLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Design/MyQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/Design/MyQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Heap/a215.java" beforeDir="false" afterPath="$PROJECT_DIR$/Heap/a215.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/List/a147.java" beforeDir="false" afterPath="$PROJECT_DIR$/List/a147.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/List/a203.java" beforeDir="false" afterPath="$PROJECT_DIR$/List/a203.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/List/a24.java" beforeDir="false" afterPath="$PROJECT_DIR$/List/a24.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/List/a82.java" beforeDir="false" afterPath="$PROJECT_DIR$/List/a82.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Search/a79.java" beforeDir="false" afterPath="$PROJECT_DIR$/Search/a79.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sort/bubbleSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/Sort/bubbleSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sort/quickSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/Sort/quickSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree/a108.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tree/a108.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree/a112.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tree/a112.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree/a124.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tree/a124.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree/a230.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tree/a230.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree/a236.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tree/a236.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree/a404.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tree/a404.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree/a530.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tree/a530.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree/a94.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tree/a94.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree/a98.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tree/a98.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2AphKk8B4ymCYXUtPx1UhPGqGQS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/cpzou/IdeaProjects/leetCode",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.a147">
+    <configuration name="a147" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="List.a147" />
+      <module name="leetCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="List.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="a79" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Search.a79" />
+      <module name="leetCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="b001" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="jianzhioffer_02.b001" />
+      <module name="leetCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jianzhioffer_02.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="b002" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="jianzhioffer_02.b002" />
+      <module name="leetCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jianzhioffer_02.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="bubbleSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Sort.bubbleSort" />
+      <module name="leetCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Sort.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.a147" />
+        <item itemvalue="Application.b002" />
+        <item itemvalue="Application.b001" />
+        <item itemvalue="Application.a79" />
+        <item itemvalue="Application.bubbleSort" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dd8e798b-f04a-437b-8ff9-86c78fe8b21d" name="Changes" comment="" />
+      <created>1655712372594</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655712372594</updated>
+      <workItem from="1657250825047" duration="1438000" />
+      <workItem from="1657368572520" duration="8698000" />
+      <workItem from="1657501633767" duration="1095000" />
+      <workItem from="1657509035602" duration="24969000" />
+      <workItem from="1658123863124" duration="5284000" />
+      <workItem from="1660646735432" duration="1363000" />
+      <workItem from="1660701483253" duration="4000" />
+      <workItem from="1662984456227" duration="235000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

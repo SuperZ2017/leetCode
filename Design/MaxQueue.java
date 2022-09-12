@@ -7,7 +7,6 @@ import java.util.Queue;
 
 /**
  * 队列的最大值
- *
  * b59
  */
 class MaxQueue {
@@ -15,6 +14,7 @@ class MaxQueue {
     // deque 队首元素就是队列的最大值
     Deque<Integer> deque;
     Queue<Integer> queue;
+
     public MaxQueue() {
         deque = new ArrayDeque<>();
         queue = new LinkedList<>();
